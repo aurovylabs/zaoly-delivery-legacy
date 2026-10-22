@@ -1,0 +1,29 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks'
+import * as Stories from './ToggleGroup.stories'
+
+<Meta of={Stories} />
+
+# ToggleGroup
+
+## Overview
+ToggleGroup is a reusable ECHON interface building block.
+
+## Anatomy
+- Primary content and supporting state are exposed through its public props.
+
+## Usage
+<Canvas of={Stories.Default} />
+<Controls of={Stories.Default} />
+
+## Do and Don't
+### Do
+- Provide clear, meaningful content and labels.
+
+### Don't
+- Use it without its required context or accessible labels.
+
+## Accessibility
+Use semantic controls and expose meaningful labels for interactive content.
+
+## Related
+See the Atomic Storybook catalog for adjacent components.

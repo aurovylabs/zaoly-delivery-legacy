@@ -1,0 +1,25 @@
+{
+  "name": "zaoly",
+  "version": "0.1.1",
+  "private": true,
+  "license": "AGPL-3.0-only",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "overrides": {
+    "react": "19.3.0",
+    "react-dom": "19.3.0"
+  },
+  "scripts": {
+    "build": "npm run build -w @zaoly/contracts && npm run build -w @zaoly/ui-tokens && npm run build -w @zaoly/ui && npm run build -w web",
+    "test": "npm run test -w web && npm run test -w @zaoly/site-kit && npm --prefix mcp-server test",
+    "typecheck": "npm run typecheck -w web",
+    "dev": "npm run dev -w web",
+    "sync:google-fonts": "node scripts/sync-google-font-families.mjs",
+    "check:google-fonts": "node scripts/sync-google-font-families.mjs --check",
+    "test:google-fonts-sync": "node --test scripts/sync-google-font-families.test.mjs",
+    "bootstrap:local-pg": "node scripts/bootstrap-local-pg.mjs",
+    "test:local-pg": "node --test scripts/bootstrap-local-pg.test.mjs"
+  }
+}

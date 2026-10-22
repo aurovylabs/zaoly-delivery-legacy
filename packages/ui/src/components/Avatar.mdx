@@ -1,0 +1,41 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks'
+import * as Stories from './Avatar.stories'
+
+<Meta of={Stories} />
+
+# Avatar
+
+Face mark with image or initials. **Default shape is `square`** (magazine portraits). Use `shape="round"` for dense list/table marks.
+
+## Usage
+
+<Canvas of={Stories.Default} />
+<Controls of={Stories.Default} />
+
+## Round (workstation)
+
+<Canvas of={Stories.Round} />
+
+## Do
+
+- Pass `name` for initials and accessible label when no `src`.
+- Prefer square for AUDION/CHECKION portrait grids and heroes.
+
+## Don't
+
+- Use round on magazine cover / persona index tiles.
+
+## Spec
+
+`specs/domain/zaoly-ui-feedback-data.md`
+
+## Tokens consumed
+
+DS-DEPOSIT D5b — Avatar consumes Brandion paths via Layer 0 CSS.
+
+See `knowledge/ds-deposit-component-semantic-map.md`.
+
+| Surface | CSS | Brandion path |
+|---------|-----|---------------|
+| * | `--ink` / `--field` | `color.ink` / `color.field` |
+| shape=round | `--radius-pill` | `radius.pill` |

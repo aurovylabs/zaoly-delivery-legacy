@@ -1,0 +1,24 @@
+export declare const webSystemAliases: {
+  readonly background: 'var(--bg0)'
+  readonly foreground: 'var(--ink)'
+  readonly card: 'var(--surface)'
+  readonly cardForeground: 'var(--ink)'
+  readonly popover: 'var(--bg1)'
+  readonly popoverForeground: 'var(--ink)'
+  readonly primary: 'var(--accent)'
+  readonly primaryForeground: '#ffffff'
+  readonly secondary: 'var(--surface-2)'
+  readonly secondaryForeground: 'var(--ink)'
+  readonly mutedSurface: 'color-mix(in srgb, var(--ink) 6%, var(--bg1))'
+  readonly mutedForeground: 'var(--muted)'
+  readonly accentSurface: 'color-mix(in srgb, var(--accent) 12%, var(--bg1))'
+  readonly accentForeground: 'var(--ink)'
+  readonly destructive: 'var(--danger)'
+  readonly destructiveForeground: '#ffffff'
+  readonly border: 'var(--line)'
+  readonly input: 'var(--field)'
+  readonly ring: 'color-mix(in srgb, var(--accent) 55%, transparent)'
+  readonly ringOffset: 'var(--background)'
+}
+export type WebSystemAlias = keyof typeof webSystemAliases
+export declare const brandionPromoteCssVar: Record<string, string>

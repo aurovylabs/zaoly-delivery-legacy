@@ -1,0 +1,36 @@
+import { Meta, Canvas } from '@storybook/addon-docs/blocks'
+import * as Stories from './Lede.stories'
+
+<Meta of={Stories} />
+
+# Lede / LedeStrip
+
+Layer: `Molecules`
+
+Unified magazine band for **metrics** (KPI ledes) and **steps** (numbered wizard). Same hairline + uppercase label language.
+
+Aliases: `StatLede` / `StatLedeGroup` · `WizardSteps`.
+
+## Metrics
+
+<Canvas of={Stories.Metrics} />
+
+## Steps
+
+<Canvas of={Stories.Steps} />
+
+## Spec
+
+`specs/domain/zaoly-ui-lede.md`
+
+## Tokens consumed
+
+DS-DEPOSIT D5 — tones consume Brandion paths via Layer 0 CSS. See `knowledge/ds-deposit-component-semantic-map.md`.
+
+| Tone | CSS | Brandion path |
+|------|-----|---------------|
+| pos / choice | `--accent` | `color.action.primary` |
+| ok | `--ok` | `color.status.ok` |
+| low | `--ink` / `--muted` | `color.ink` / `color.muted` |
+| neg | mix `--ink` + `--danger` | `color.ink` / `color.status.danger` |
+

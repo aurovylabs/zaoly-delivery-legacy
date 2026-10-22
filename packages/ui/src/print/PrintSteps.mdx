@@ -1,0 +1,18 @@
+import { Meta, Canvas } from '@storybook/addon-docs/blocks'
+import * as Stories from './PrintSteps.stories'
+
+<Meta of={Stories} />
+
+# Print Steps
+
+Layer: `Print`
+
+Linear numbered process — Twin zu `MagSteps`. Kein Branching / SVG-Diagramm.
+
+## Default (emphasisIndex 2)
+
+<Canvas of={Stories.Default} />
+
+## Vertical
+
+<Canvas of={Stories.Vertical} />

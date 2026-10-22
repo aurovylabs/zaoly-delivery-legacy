@@ -1,0 +1,20 @@
+{
+  "name": "@zaoly/ui-tokens",
+  "version": "0.1.0",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "vitest run",
+    "test:ds-deposit-drift": "vitest run deposit/drift.test.ts"
+  },
+  "devDependencies": {
+    "@types/node": "^24.13.2",
+    "typescript": "^6.0.2",
+    "vitest": "^4.1.10"
+  }
+}

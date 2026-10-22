@@ -1,0 +1,28 @@
+import { Meta, Canvas } from '@storybook/addon-docs/blocks'
+import * as Stories from './AppFrame.stories'
+
+<Meta of={Stories} />
+
+# AppFrame
+
+Layer: `Templates`
+
+Shared product shell: atmosphere, optional brand corner, nav rail, topbar, and page body.
+
+## Usage
+
+<Canvas of={Stories.Default} />
+
+## Do
+
+- Compose `NavRail` + `BrandCorner` + page chrome through slots — keep product routes out of the primitive.
+- Prefer `railEdge` to mirror dock orientation when the rail is static.
+
+## Don't
+
+- Put domain data fetching or route trees inside AppFrame.
+- Nest multiple AppFrames on one page.
+
+## Related
+
+Spec: `specs/domain/zaoly-ui-app-shell.md`

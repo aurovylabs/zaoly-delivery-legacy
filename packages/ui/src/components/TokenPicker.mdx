@@ -1,0 +1,51 @@
+# TokenPicker
+
+Layer: `molecules` (Storybook group: Organisms / editor chrome)
+
+Dense token-path picker for inspect bindings. Default: **token paths only** — swatches are display-only.
+
+Optional **`allowLiteral`**: Penpot-style hybrid strip — tippen writes a freeform literal via `onLiteralChange`; browse/cycle still write token paths via `onChange`.
+
+**Spec:** `specs/domain/zaoly-ui-token-picker.md`
+
+## Stories
+
+- Default (compact popover)
+- WithClear (`onClear`)
+- AllowNone
+- DenseList (`variant="list"`)
+- WithCycle (`allowCycle` −/+)
+- FontFamily (`fontPreview` on the value label)
+- **Browser** — floating multi-context window (search, scopes, Recent, drag, keyboard)
+- **BrowserColorList** — color tokens use the same columnar list as other kinds
+- **WithLiteral** — hybrid strip (`allowLiteral` + literal tippen + token browse)
+
+## Usage
+
+```tsx
+import { TokenPicker } from '@zaoly/ui'
+
+<TokenPicker
+  label="Radius"
+  browser
+  allowCycle
+  allowLiteral
+  previewKind="radius"
+  contextTitle="Binding for: Desktop"
+  options={[{ path: 'radius.md', label: 'radius.md · 8px', preview: '8px', category: 'radius' }]}
+  value={binding}
+  literalValue={literal}
+  onChange={(path) => setToken(path)}
+  onLiteralChange={(raw) => setLiteral(raw)}
+  onClear={() => clearBoth()}
+  scopes={[
+    { id: 'suggested', label: 'Suggested' },
+    { id: 'radius', label: 'Radius' },
+    { id: 'all', label: 'All' },
+  ]}
+  suggestedPaths={['radius.md']}
+  allowNone
+  emptyLabel="—"
+  noneLabel="None"
+/>
+```

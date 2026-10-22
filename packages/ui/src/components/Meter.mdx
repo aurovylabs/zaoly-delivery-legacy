@@ -1,0 +1,13 @@
+# Meter / MeterList
+
+Layer: `molecules`
+
+Labeled editable meters built on `Slider` — see `specs/domain/zaoly-ui-meter.md`.
+
+```tsx
+import { Meter, MeterList } from '@zaoly/ui'
+
+<MeterList aria-label="Traits">
+  <Meter label="Detail" valueLabel="72%" value={72} onChange={…} onCommit={…} />
+</MeterList>
+```

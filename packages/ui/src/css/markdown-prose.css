@@ -1,0 +1,164 @@
+/* design-system: markdown-prose — GFM body for GEO / LLM answers */
+.ds-markdown-prose {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: inherit;
+  font-weight: var(--weight-regular, 400);
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.ds-markdown-prose > :first-child {
+  margin-top: 0;
+}
+
+.ds-markdown-prose > :last-child {
+  margin-bottom: 0;
+}
+
+.ds-markdown-prose h1,
+.ds-markdown-prose h2,
+.ds-markdown-prose h3,
+.ds-markdown-prose h4 {
+  margin: 0.35rem 0 0;
+  font-family: var(--font-display);
+  font-weight: 200;
+  color: var(--section-title, var(--ink));
+  letter-spacing: -0.01em;
+  line-height: 1.25;
+}
+
+.ds-markdown-prose h1 {
+  font-size: 1.35rem;
+}
+
+.ds-markdown-prose h2 {
+  font-size: 1.15rem;
+}
+
+.ds-markdown-prose h3 {
+  font-size: 1.02rem;
+}
+
+.ds-markdown-prose h4 {
+  font-size: 0.95rem;
+}
+
+.ds-markdown-prose p {
+  margin: 0;
+}
+
+.ds-markdown-prose ul,
+.ds-markdown-prose ol {
+  margin: 0;
+  padding-left: 1.35rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.ds-markdown-prose li {
+  line-height: 1.5;
+}
+
+.ds-markdown-prose li > p {
+  margin: 0;
+}
+
+.ds-markdown-prose strong {
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.ds-markdown-prose em {
+  font-style: italic;
+}
+
+.ds-markdown-prose a {
+  color: var(--accent, #00ca55);
+  text-decoration: underline;
+  text-underline-offset: 0.12em;
+}
+
+.ds-markdown-prose a:hover {
+  color: color-mix(in srgb, var(--accent, #00ca55) 82%, var(--ink));
+}
+
+.ds-markdown-prose code {
+  font-family: var(--font-mono);
+  font-size: 0.88em;
+  padding: 0.08em 0.35em;
+  border-radius: 0.25rem;
+  background: color-mix(in srgb, var(--ink) 6%, transparent);
+}
+
+.ds-markdown-prose pre {
+  margin: 0;
+  padding: 0.75rem 0.85rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--line);
+  background: color-mix(in srgb, var(--ink) 4%, var(--bg1, var(--bg)));
+  overflow-x: auto;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  line-height: 1.45;
+}
+
+.ds-markdown-prose pre code {
+  padding: 0;
+  background: transparent;
+}
+
+.ds-markdown-prose blockquote {
+  margin: 0;
+  padding-left: 0.85rem;
+  border-left: 2px solid var(--line);
+  color: var(--muted);
+}
+
+.ds-markdown-prose hr {
+  border: 0;
+  border-top: 1px solid var(--line);
+  margin: 0.25rem 0;
+}
+
+.ds-markdown-prose-table-wrap {
+  overflow-x: auto;
+  max-width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 0.55rem;
+}
+
+.ds-markdown-prose table {
+  width: 100%;
+  min-width: 28rem;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+  line-height: 1.45;
+}
+
+.ds-markdown-prose th,
+.ds-markdown-prose td {
+  padding: 0.45rem 0.65rem;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid var(--line);
+}
+
+.ds-markdown-prose th {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted);
+  background: color-mix(in srgb, var(--ink) 4%, transparent);
+}
+
+.ds-markdown-prose tr:last-child td {
+  border-bottom: 0;
+}

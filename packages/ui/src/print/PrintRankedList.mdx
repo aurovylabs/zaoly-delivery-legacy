@@ -1,0 +1,22 @@
+import { Meta, Canvas } from '@storybook/addon-docs/blocks'
+import * as Stories from './PrintRankedList.stories'
+
+<Meta of={Stories} />
+
+# Print RankedList
+
+Layer: `Print`
+
+Nummerierte Magazin-Zeilen — Twin zu `MagRankedList` (1-spaltig, 2-spaltig, compact).
+
+## Default
+
+<Canvas of={Stories.Default} />
+
+## TwoColumn
+
+<Canvas of={Stories.TwoColumn} />
+
+## Compact
+
+<Canvas of={Stories.Compact} />

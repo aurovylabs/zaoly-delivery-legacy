@@ -1,0 +1,41 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+# W1: Vitest + typecheck gate. Coolify remains the next build / image gate.
+# Spec: specs/domain/ci-and-error-boundary.md · specs/domain/zaoly-ui-in-repo.md
+
+jobs:
+  web:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+
+      - name: Install
+        run: npm ci
+
+      - name: Install mcp-server
+        run: npm ci --prefix mcp-server
+
+      - name: Contracts + in-repo UI
+        run: |
+          npm run build -w @zaoly/contracts
+          npm run build -w @zaoly/ui-tokens
+          npm run build -w @zaoly/ui
+
+      - name: Test
+        run: npm test
+
+      - name: Typecheck
+        run: npm run typecheck -w web
+
+      - name: Google fonts sync check
+        run: npm run test:google-fonts-sync && npm run check:google-fonts

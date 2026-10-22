@@ -1,0 +1,78 @@
+{
+  "name": "@zaoly/ui",
+  "version": "0.1.0",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./mag": {
+      "types": "./dist/mag/index.d.ts",
+      "default": "./dist/mag/index.js",
+      "import": "./src/mag/index.ts",
+      "require": "./dist/mag/index.js"
+    },
+    "./styles.css": "./src/styles.css",
+    "./tailwind-theme.css": "./src/css/tailwind-theme.css",
+    "./catalog": {
+      "types": "./dist/storybook/catalog.d.ts",
+      "default": "./dist/storybook/catalog.js"
+    },
+    "./wc": {
+      "types": "./dist/wc/index.d.ts",
+      "default": "./dist/wc/index.js",
+      "import": "./src/wc/index.ts"
+    }
+  },
+  "files": [
+    "dist",
+    "src/styles.css",
+    "src/mag/fonts"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json && mkdir -p dist/mag/fonts && cp -R src/mag/fonts/. dist/mag/fonts/",
+    "test": "vitest run src/email/shell.test.ts src/packageSmoke.test.tsx src/AppFrame.test.tsx src/SurfacePanels.test.tsx src/Foundation.test.tsx src/webSystemFoundation.test.ts src/components/icons.test.tsx src/components/Field.test.tsx src/components/Accordion.test.tsx src/components/Flyout.test.tsx src/components/Chart.test.tsx src/components/SeriesChart.test.tsx src/components/LabTile.test.tsx src/components/ChatOverlay.test.tsx src/components/ContextMenu.test.tsx src/components/Slider.test.tsx src/components/Meter.test.tsx src/components/ScrollArea.test.tsx src/components/InspectDock.test.tsx src/components/StepStrip.test.tsx src/components/ChannelStack.test.tsx src/components/EventFooter.test.tsx src/components/CardActions.test.tsx src/components/Panel.test.tsx src/components/Button.test.tsx src/components/Avatar.test.tsx src/components/FilterRow.test.tsx src/components/Lede.test.tsx src/components/MarkdownProse.test.tsx src/components/InfoTip.test.tsx src/components/Tooltip.test.tsx src/components/SchemaTree.test.tsx src/SectionChrome.test.tsx src/chatChrome.test.ts src/components/MagazineContentsNav.test.tsx src/components/MarkerCanvas.test.tsx src/components/FormSection.test.tsx src/components/InspectSection.test.tsx src/components/InspectTabs.test.tsx src/components/BreakpointSwitcher.test.tsx src/components/LayersPanel.test.tsx src/components/EntityCard.test.tsx src/components/HubIndexCard.test.tsx src/components/CollectionHubCard.test.tsx src/components/HubIndexLayoutSwitch.test.tsx src/components/AddTile.test.tsx src/components/SwatchStrip.test.tsx src/components/creation-editor-primitives.test.tsx src/components/Stack.test.tsx src/components/Card.test.tsx src/components/CanvasViewport.test.tsx src/components/SelectionHandles.test.tsx src/components/PropertyInspector.test.tsx src/components/ComponentPalette.test.tsx src/components/TokenPicker.test.tsx src/mag/mag-kit.test.tsx src/ds-keep-mapping.test.ts src/library-composition-roundtrip.test.ts src/ds-deposit-semantic-map.test.ts src/storybook/catalogCompleteness.test.ts src/storybook/previewStyles.test.ts src/storybook/promotedTokenBindings.test.tsx src/storybook/restoreNativeFocus.test.ts src/wc/wc-compile.test.ts",
+    "storybook": "storybook dev -p 6006 --disable-telemetry",
+    "build-storybook": "storybook build --disable-telemetry"
+  },
+  "dependencies": {
+    "@zaoly/ui-tokens": "file:../ui-tokens",
+    "react": "^19.2.0 || ^19.3.0",
+    "react-dom": "^19.2.0 || ^19.3.0",
+    "react-driftkit": "^0.7.3",
+    "react-markdown": "^10.1.0",
+    "rehype-sanitize": "^6.0.0",
+    "remark-gfm": "^4.0.1"
+  },
+  "peerDependencies": {
+    "@react-pdf/renderer": "^4.5.0",
+    "react": "^19.2.0 || ^19.3.0",
+    "react-dom": "^19.2.0 || ^19.3.0"
+  },
+  "peerDependenciesMeta": {
+    "@react-pdf/renderer": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@react-pdf/renderer": "^4.6.1",
+    "@storybook/addon-a11y": "^10.5.5",
+    "@storybook/addon-docs": "^10.5.5",
+    "@storybook/react-vite": "^10.5.5",
+    "@testing-library/jest-dom": "^7.0.0",
+    "@testing-library/react": "^16.3.2",
+    "@types/node": "^22.20.5",
+    "@types/react": "^19.2.17",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^6.0.3",
+    "jsdom": "^29.1.1",
+    "pdf-to-img": "6.2.0",
+    "storybook": "^10.5.5",
+    "typescript": "^6.0.2",
+    "vite": "^8.1.1",
+    "vitest": "^4.1.10"
+  }
+}

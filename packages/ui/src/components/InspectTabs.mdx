@@ -1,0 +1,35 @@
+# InspectTabs
+
+Layer: `molecules`
+
+Dense Design | CSS (labels as props) tablist for the property inspect rail.
+
+**Spec:** `specs/domain/zaoly-ui-inspect-tabs.md`  
+**Related:** PropertyInspector — compose tabs above/around; do not put a `tabs` prop on the inspector.
+
+## Stories
+
+- Default
+- CustomLabels
+- Above PropertyInspector
+
+## Usage
+
+```tsx
+import { InspectTabs, PropertyInspector, InspectSection } from '@zaoly/ui'
+
+const [tab, setTab] = useState('design')
+
+<>
+  <InspectTabs value={tab} onChange={setTab} designLabel="Design" cssLabel="CSS" />
+  {tab === 'design' ? (
+    <PropertyInspector>
+      <InspectSection title="Layout">…</InspectSection>
+    </PropertyInspector>
+  ) : (
+    <CssPreview />
+  )}
+</>
+```
+
+Panels stay in the app — this is tablist chrome only.

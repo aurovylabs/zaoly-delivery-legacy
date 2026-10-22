@@ -1,0 +1,24 @@
+# HubIndexLayoutSwitch
+
+Layer: `molecules`
+
+Cards | List pill switch for hub index surfaces (projects, compositions, …).
+
+**Spec:** `specs/domain/zaoly-ui-hub-index-layout-switch.md`  
+**Origin:** Audion `.audion-editable-comm-layout-switch`
+
+## Stories
+
+- Default (interactive)
+
+```tsx
+import { HubIndexLayoutSwitch } from '@zaoly/ui'
+
+<HubIndexLayoutSwitch
+  value={layout}
+  onChange={setLayout}
+  aria-label="Layout"
+  cardsLabel="Cards"
+  listLabel="List"
+/>
+```

@@ -1,0 +1,169 @@
+/* design-system: responsive — narrow → desktop ladder
+ * SoT knobs: web.ui.responsive_* (paths.yaml) · specs/domain/zaoly-v2-responsive.md
+ * Defaults: sm max 640 · md max 900 · lg min 1200 (then ultra_wide ≥1600)
+ * Literals must match paths defaults — guarded by responsiveLayout.test.ts
+ */
+
+:root {
+  --responsive-sm-max: 640px;
+  --responsive-md-max: 900px;
+  --responsive-lg-min: 1200px;
+  --responsive-gutter: 1rem;
+}
+
+/* ——— Atoms: fluid / overflow-safe ——— */
+.ds-input,
+.ds-textarea,
+.search-input,
+.ds-select,
+.ds-select-trigger,
+.ds-button,
+.ds-chip,
+.ds-page-title,
+.ds-hint,
+.ds-alert,
+.ds-tooltip,
+.ds-tooltip-bubble,
+.ds-skeleton,
+.ds-spinner,
+.ds-empty-state,
+.ds-loading-text {
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.ds-select-trigger {
+  width: 100%;
+  max-width: min(14rem, 100%);
+}
+
+.ds-select-menu {
+  max-width: min(18rem, calc(100vw - 2 * var(--responsive-gutter)));
+}
+
+.ds-tooltip-bubble {
+  max-width: min(14rem, calc(100vw - 2 * var(--responsive-gutter)));
+}
+
+.ds-infotip .ds-tooltip-bubble {
+  max-width: min(22rem, calc(100vw - 2 * var(--responsive-gutter)));
+}
+
+.ds-dialog {
+  max-width: min(28rem, calc(100vw - 2 * var(--responsive-gutter)));
+  width: min(28rem, calc(100vw - 2 * var(--responsive-gutter)));
+}
+
+/* ——— Molecules / Organisms / Templates / Pages ——— */
+
+@media (max-width: 900px) {
+  .ds-field--inline {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .ds-filter-row.filter-row,
+  .ds-filter-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .ds-rank-row,
+  .category-rank-row {
+    min-width: 0;
+    width: 100%;
+  }
+
+  .ds-rank-track,
+  .category-rank-track {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .ds-tabs-list,
+  .ds-toggle-group {
+    max-width: 100%;
+  }
+
+  .kpi-strip {
+    grid-template-columns: 1fr;
+  }
+
+  .ops-strip,
+  .ops-pulse {
+    flex-wrap: wrap;
+  }
+
+  .module-panel,
+  .ds-panel {
+    min-width: 0;
+  }
+
+  .topbar {
+    flex-wrap: wrap;
+    gap: var(--space-2);
+  }
+
+  .topbar-right {
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .page-filters,
+  .signals-toolbar,
+  .waves-toolbar,
+  .sources-toolbar,
+  .filter-strip {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .detail-shell,
+  .signal-detail,
+  .wave-detail {
+    max-width: 100%;
+  }
+
+  .pipeline-lanes,
+  .overview-band,
+  .overview-band-ops,
+  .overview-band-pulse,
+  .briefing-grid,
+  .signal-meta-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .ds-page-title.page-title,
+  .ds-page-title {
+    font-size: clamp(1.75rem, 8vw, 3rem);
+  }
+
+  .chat-overlay {
+    padding: 0;
+    place-items: stretch;
+  }
+
+  .chat-overlay-sheet {
+    width: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    min-height: 100%;
+    border-radius: 0;
+  }
+
+  .ds-select {
+    display: flex;
+    width: 100%;
+  }
+
+  .ds-select-trigger {
+    max-width: none;
+  }
+
+  .nav-rail[data-orientation='vertical'] .rail-label {
+    display: none;
+  }
+}

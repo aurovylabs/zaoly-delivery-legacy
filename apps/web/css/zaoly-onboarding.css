@@ -1,0 +1,365 @@
+/* Editor onboarding — Zaoly CD (cobalt / cream). Spec: onboarding.md */
+
+.zaoly-onboarding-welcome,
+.zaoly-onboarding-empty,
+.zaoly-onboarding-tip,
+.zaoly-onboarding-scrim,
+.zaoly-onboarding-done {
+  --onboard-cobalt: var(--editor-accent, var(--accent, #1f44ff));
+  --onboard-cream: var(--bg0, #f3eee4);
+  --onboard-raised: var(--bg1, #fbf6ec);
+  --onboard-ink: var(--ink, #1e1b17);
+  --onboard-muted: var(--muted, #8c8578);
+  --onboard-line: var(--line, #c9bca1);
+  --onboard-warm: var(--editor-warm-gray, #2e2a24);
+}
+
+.zaoly-onboarding-scrim {
+  position: fixed;
+  inset: 0;
+  /* Above hub bar (40) + editor tool strip (39); host portals to document.body. */
+  z-index: 620;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background:
+    radial-gradient(
+      ellipse 70% 50% at 50% 32%,
+      color-mix(in srgb, var(--onboard-cobalt) 14%, transparent),
+      transparent 65%
+    ),
+    rgba(30, 27, 23, 0.72);
+  backdrop-filter: blur(12px);
+  animation: zaoly-onboard-fade 0.4s ease-out both;
+}
+
+.zaoly-onboarding-scrim__glow {
+  position: absolute;
+  inset: 16% 20% auto;
+  height: 44%;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse at center,
+    color-mix(in srgb, var(--onboard-cobalt) 22%, transparent),
+    transparent 70%
+  );
+  filter: blur(32px);
+  animation: zaoly-onboard-pulse 4.5s ease-in-out infinite alternate;
+}
+
+.zaoly-onboarding-scrim--soft {
+  background:
+    radial-gradient(
+      ellipse 60% 40% at 50% 45%,
+      color-mix(in srgb, var(--onboard-cobalt) 8%, transparent),
+      transparent 70%
+    ),
+    rgba(30, 27, 23, 0.32);
+  backdrop-filter: blur(5px);
+  z-index: 610;
+  pointer-events: none;
+}
+
+.zaoly-onboarding-scrim--soft .zaoly-onboarding-empty {
+  pointer-events: auto;
+}
+
+.zaoly-onboarding-welcome,
+.zaoly-onboarding-empty,
+.zaoly-onboarding-done {
+  position: relative;
+  width: min(28rem, calc(100vw - 2.5rem));
+  padding: 2rem 1.75rem 1.35rem;
+  border-radius: 0;
+  background: var(--onboard-raised);
+  color: var(--onboard-ink);
+  border: 1px solid var(--onboard-line);
+  box-shadow: 0 22px 44px -20px rgba(0, 0, 0, 0.55);
+  animation: zaoly-onboard-rise 0.45s ease-out both;
+  overflow: hidden;
+}
+
+.zaoly-onboarding-welcome::before,
+.zaoly-onboarding-empty::before,
+.zaoly-onboarding-done::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: var(--onboard-cobalt);
+}
+
+.zaoly-onboarding-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  margin-bottom: 1.15rem;
+  font-family: var(--editor-font-brand, Georgia, serif);
+  font-size: 1.15rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.zaoly-onboarding-title {
+  margin: 0 0 0.55rem;
+  font-size: clamp(1.45rem, 2.4vw, 1.75rem);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  font-weight: 600;
+}
+
+.zaoly-onboarding-body {
+  margin: 0 0 1.35rem;
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  color: var(--onboard-muted);
+}
+
+.zaoly-onboarding-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.zaoly-onboarding-action {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.zaoly-onboarding-action__hint {
+  font-size: 0.75rem;
+  color: var(--onboard-muted);
+  padding-inline: 0.15rem;
+}
+
+/* Primary on cobalt: white label (DS ships dark ink for coral accent).
+   Host portals to document.body — outside `.app-frame` corporate override. */
+.zaoly-onboarding-welcome .ds-btn--primary,
+.zaoly-onboarding-welcome .ds-btn.ds-btn--primary,
+.zaoly-onboarding-empty .ds-btn--primary,
+.zaoly-onboarding-empty .ds-btn.ds-btn--primary,
+.zaoly-onboarding-done .ds-btn--primary,
+.zaoly-onboarding-done .ds-btn.ds-btn--primary,
+.zaoly-onboarding-tip .ds-btn--primary,
+.zaoly-onboarding-tip .ds-btn.ds-btn--primary {
+  background: var(--onboard-cobalt, var(--editor-accent, #1f44ff)) !important;
+  color: var(--editor-accent-ink, #ffffff) !important;
+  border-color: transparent !important;
+}
+
+.zaoly-onboarding-welcome .ds-btn--primary .ds-btn__label,
+.zaoly-onboarding-welcome .ds-btn--primary .ds-btn__icon,
+.zaoly-onboarding-empty .ds-btn--primary .ds-btn__label,
+.zaoly-onboarding-empty .ds-btn--primary .ds-btn__icon,
+.zaoly-onboarding-done .ds-btn--primary .ds-btn__label,
+.zaoly-onboarding-done .ds-btn--primary .ds-btn__icon,
+.zaoly-onboarding-tip .ds-btn--primary .ds-btn__label,
+.zaoly-onboarding-tip .ds-btn--primary .ds-btn__icon {
+  color: inherit !important;
+}
+
+.zaoly-onboarding-explore {
+  margin-top: 0.35rem;
+  align-self: flex-start;
+  background: none;
+  border: none;
+  padding: 0.35rem 0.15rem;
+  color: var(--onboard-muted);
+  font: inherit;
+  font-size: 0.875rem;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+.zaoly-onboarding-explore:hover {
+  color: var(--onboard-ink);
+}
+
+.zaoly-onboarding-tip {
+  position: fixed;
+  z-index: 630;
+  width: min(20rem, calc(100vw - 1.5rem));
+  padding: 0.55rem 0.95rem 0.75rem;
+  border-radius: 0;
+  background: var(--onboard-warm);
+  color: var(--editor-warm-gray-fg, #f3eee4);
+  border: 1px solid color-mix(in srgb, var(--onboard-cobalt) 45%, transparent);
+  box-shadow: 0 16px 36px -18px rgba(0, 0, 0, 0.65);
+  animation: zaoly-onboard-rise 0.3s ease-out both;
+  touch-action: none;
+}
+
+.zaoly-onboarding-tip--bottom {
+  left: 50%;
+  /* Sit above canvas floating HUD (bottom: 20px) so select/insert tips stay readable. */
+  bottom: 4.75rem;
+  transform: translateX(-50%);
+}
+
+.zaoly-onboarding-tip--dragging {
+  animation: none;
+  cursor: grabbing;
+  user-select: none;
+}
+
+.zaoly-onboarding-tip__drag {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  width: 100%;
+  margin: 0 0 0.35rem;
+  padding: 0.15rem 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: grab;
+  touch-action: none;
+}
+
+.zaoly-onboarding-tip__drag:active {
+  cursor: grabbing;
+}
+
+.zaoly-onboarding-tip__drag-hint {
+  flex: 0 0 auto;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  color: color-mix(in srgb, var(--editor-warm-gray-fg, #f3eee4) 45%, transparent);
+  line-height: 1;
+}
+
+.zaoly-onboarding-tip__progress {
+  display: block;
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--editor-warm-gray-fg, #f3eee4) 65%, transparent);
+}
+
+.zaoly-onboarding-tip__text {
+  margin: 0 0 0.75rem;
+  font-size: 0.875rem;
+  line-height: 1.45;
+}
+
+.zaoly-onboarding-tip__nav {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: flex-end;
+}
+
+.zaoly-onboarding-highlights {
+  position: fixed;
+  inset: 0;
+  z-index: 625;
+  pointer-events: none;
+}
+
+.zaoly-onboarding-highlight {
+  position: fixed;
+  box-sizing: border-box;
+  border: 2px solid var(--onboard-cobalt, #1f44ff);
+  box-shadow:
+    0 0 0 3px color-mix(in srgb, var(--onboard-cobalt, #1f44ff) 35%, transparent),
+    0 0 28px color-mix(in srgb, var(--onboard-cobalt, #1f44ff) 55%, transparent);
+  animation: zaoly-onboard-highlight-pulse 1.6s ease-in-out infinite;
+}
+
+/* Insert tip: artboard drop zone reads as a bright hole after picking a palette atom. */
+.zaoly-onboarding-highlight--drop-zone {
+  border-style: dashed;
+  border-width: 2px;
+  background: color-mix(in srgb, var(--onboard-cream, #f3eee4) 55%, transparent);
+  box-shadow:
+    0 0 0 9999px color-mix(in srgb, #1e1b17 50%, transparent),
+    0 0 0 4px color-mix(in srgb, var(--onboard-cobalt, #1f44ff) 45%, transparent),
+    0 0 36px color-mix(in srgb, var(--onboard-cobalt, #1f44ff) 50%, transparent);
+  animation: zaoly-onboard-highlight-pulse 1.4s ease-in-out infinite;
+}
+
+/* Single target: dim the rest of the UI so the hole reads clearly. */
+.zaoly-onboarding-highlights--veil .zaoly-onboarding-highlight {
+  box-shadow:
+    0 0 0 9999px color-mix(in srgb, #1e1b17 45%, transparent),
+    0 0 0 3px color-mix(in srgb, var(--onboard-cobalt, #1f44ff) 40%, transparent),
+    0 0 28px color-mix(in srgb, var(--onboard-cobalt, #1f44ff) 60%, transparent);
+}
+
+.zaoly-onboarding-pulse {
+  outline: 2px solid var(--onboard-cobalt, #1f44ff) !important;
+  outline-offset: 3px;
+  animation: zaoly-onboard-anchor-pulse 1.4s ease-in-out infinite;
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes zaoly-onboard-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes zaoly-onboard-rise {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes zaoly-onboard-pulse {
+  from {
+    opacity: 0.55;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes zaoly-onboard-anchor-pulse {
+  0%,
+  100% {
+    outline-color: var(--onboard-cobalt, #1f44ff);
+  }
+  50% {
+    outline-color: color-mix(in srgb, var(--onboard-cobalt, #1f44ff) 35%, transparent);
+  }
+}
+
+@keyframes zaoly-onboard-highlight-pulse {
+  0%,
+  100% {
+    border-color: var(--onboard-cobalt, #1f44ff);
+    filter: brightness(1);
+  }
+  50% {
+    border-color: color-mix(in srgb, var(--onboard-cobalt, #1f44ff) 55%, #fff);
+    filter: brightness(1.08);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .zaoly-onboarding-scrim,
+  .zaoly-onboarding-welcome,
+  .zaoly-onboarding-empty,
+  .zaoly-onboarding-done,
+  .zaoly-onboarding-tip,
+  .zaoly-onboarding-scrim__glow,
+  .zaoly-onboarding-pulse,
+  .zaoly-onboarding-highlight {
+    animation: none !important;
+  }
+}

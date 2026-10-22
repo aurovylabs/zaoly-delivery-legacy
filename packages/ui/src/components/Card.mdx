@@ -1,0 +1,16 @@
+# Card
+
+Layer: `atoms`
+
+Composition surface (`ds-card`). Optional browse slots (`media`, `title`, `meta`,
+`actions`, `href`) for media/index tiles. Optional `clipInset` applies a
+corner-inset `clip-path` (`specs/domain/zaoly-ui-surface-clip.md`).
+
+Use `Card` + `CardActions` for browse tiles. Prefer `HubIndexCard` only for
+magazine hub headlines; prefer `EntityCard` only for catalog/token specimens.
+
+## Stories
+
+- Default
+- BottomSlant — `clipInset.bottomLeft.y = 12%`
+- MediaBrowse — media + title + meta + `CardActions`

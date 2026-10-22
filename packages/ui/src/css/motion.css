@@ -1,0 +1,54 @@
+/* design-system: motion utilities — prefer semantic --motion-* tokens */
+/* Knowledge: knowledge/zaoly-v2-motion-buttons.md */
+
+.ds-motion-enter {
+  animation: ds-enter var(--motion-enter) both;
+}
+
+.ds-motion-reveal {
+  animation: ds-reveal var(--motion-reveal) both;
+}
+
+.ds-motion-fade {
+  animation: ds-fade var(--motion-fade) both;
+}
+
+@keyframes ds-enter {
+  from {
+    opacity: 0;
+    transform: translateY(0.35rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes ds-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(0.5rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes ds-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ds-motion-enter,
+  .ds-motion-reveal {
+    animation-name: ds-fade;
+    animation-duration: var(--duration-fade);
+    animation-timing-function: var(--ease-linear);
+  }
+}

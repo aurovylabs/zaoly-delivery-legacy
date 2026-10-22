@@ -1,0 +1,26 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks'
+import * as Stories from './CardActions.stories'
+
+<Meta of={Stories} />
+
+# CardActions
+
+Equal-width action row for magazine / collection cards. Direct children stretch evenly across the container; nested `.ds-btn` fills each slot.
+
+## Usage
+
+<Canvas of={Stories.Default} />
+<Controls of={Stories.Default} />
+
+## Do
+
+- Wrap card footer actions (Open · Edit · Delete, product launch links).
+- Keep app magazine tile chrome outside this primitive; pass `className` for app hooks/tests.
+
+## Don't
+
+- Use for filter chip toolbars (`FilterRow`) or chat event footers (`EventFooter`).
+
+## Related
+
+Spec: `specs/domain/zaoly-ui-card-actions.md`

@@ -1,0 +1,28 @@
+import { Meta, Canvas } from '@storybook/addon-docs/blocks'
+import * as Stories from './BrandCorner.stories'
+
+<Meta of={Stories} />
+
+# BrandCorner
+
+Layer: `Molecules`
+
+Top-right Zaoly cutdown brand lockup for product shells. Default is **logo-only**; the product label expands left on hover/focus.
+
+## Usage
+
+<Canvas of={Stories.Default} />
+
+## Do
+
+- Pass the product name as `label`.
+- Slot into `AppFrame` via `brandCorner`.
+- Use `labelReveal="always"` only when the full lockup must stay visible.
+
+## Don't
+
+- Rebuild corner geometry per app — use `corners` only for deliberate cutdown overrides.
+
+## Related
+
+Spec: `specs/domain/zaoly-ui-app-shell.md`

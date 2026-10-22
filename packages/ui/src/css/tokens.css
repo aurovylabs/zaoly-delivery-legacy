@@ -1,0 +1,456 @@
+/* design-system: tokens — themes + scale. SoT TS: ../tokens/*.ts */
+/* Knowledge: knowledge/zaoly-v2-design-system.md */
+
+:root {
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --radius-sm: 2px;
+  --radius-md: 6px;
+  --radius-panel: 12px;
+  --radius-tile: 0.85rem;
+  --radius-pill: 999px;
+  --radius-sheet: 1.75rem;
+  /* Font stacks (faces) — size scale uses --type-* below */
+  --stack-display: 'Noto Sans JP', 'Noto Sans', system-ui, sans-serif;
+  --stack-body: 'Noto Sans JP', 'Noto Sans', system-ui, sans-serif;
+  --stack-mono: 'IBM Plex Mono', ui-monospace, monospace;
+
+  /* Type scale — specs/domain/zaoly-v2-typography.md */
+  --type-2xs: 0.62rem;
+  --type-xs: 0.65rem;
+  --type-sm: 0.72rem;
+  --type-md: 0.78rem;
+  --type-lg: 0.88rem;
+  --type-xl: 1rem;
+  --type-2xl: 1.15rem;
+  --type-3xl: 1.5rem;
+  --type-display: clamp(1.55rem, 3.6vw, 2.35rem);
+  --type-brand: clamp(2.8rem, 8vw, 4.5rem);
+
+  --weight-thin: 200;
+  --weight-light: 300;
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+
+  --track-label: 0.06em;
+  --track-meta: 0.04em;
+  --track-tight: -0.01em;
+  --track-display: -0.02em;
+
+  /* Motion primitives — SoT: tokens/motion.ts */
+  --duration-instant: 50ms;
+  --duration-fast: 120ms;
+  --duration-snappy: 160ms;
+  --duration-normal: 220ms;
+  --duration-moderate: 320ms;
+  --duration-slow: 420ms;
+  --duration-deliberate: 800ms;
+  --duration-fade: 100ms;
+  --duration-pulse: 1600ms;
+  --duration-orbit: 2400ms;
+
+  --ease-linear: linear;
+  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-enter: cubic-bezier(0, 0, 0.2, 1);
+  --ease-exit: cubic-bezier(0.4, 0, 1, 1);
+  --ease-emphasized: cubic-bezier(0.2, 0.9, 0.1, 1);
+  --ease-in-out: cubic-bezier(0.45, 0, 0.55, 1);
+
+  /* Semantic recipes */
+  --motion-hover: var(--duration-fast) var(--ease-standard);
+  --motion-press: var(--duration-instant) var(--ease-standard);
+  --motion-enter: var(--duration-normal) var(--ease-enter);
+  --motion-exit: var(--duration-snappy) var(--ease-exit);
+  --motion-reveal: var(--duration-slow) var(--ease-enter);
+  --motion-sheet: var(--duration-normal) var(--ease-emphasized);
+  --motion-meter: var(--duration-moderate) var(--ease-standard);
+  --motion-pulse: var(--duration-pulse) var(--ease-in-out);
+  --motion-orbit: var(--duration-orbit) var(--ease-in-out);
+  --motion-fade: var(--duration-fade) var(--ease-linear);
+
+  /* Responsive ladder mirrors — SoT: web.ui.responsive_* (paths.yaml) */
+  --responsive-sm-max: 640px;
+  --responsive-md-max: 900px;
+  --responsive-lg-min: 1200px;
+  --responsive-gutter: 1rem;
+
+  /* Web-system breakpoints (shadcn / Tailwind-aligned names) — specs/domain/web-system-tokens.md */
+  --breakpoint-sm: var(--responsive-sm-max);
+  --breakpoint-md: var(--responsive-md-max);
+  --breakpoint-lg: var(--responsive-lg-min);
+  --breakpoint-xl: 1600px;
+  --breakpoint-2xl: 1920px;
+
+  /* Elevation — SoT: tokens/shadows.ts */
+  --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+
+  /* Stacking — SoT: tokens/zIndex.ts */
+  --z-dropdown: 1000;
+  --z-sticky: 1100;
+  --z-nav-rail: 1200;
+  --z-modal: 1400;
+  --z-popover: 1500;
+  --z-toast: 1600;
+
+  /* Scrollbars — hairline, theme-aware via --ink */
+  --scrollbar-size: 4px;
+  --scrollbar-radius: 999px;
+  --scrollbar-track: transparent;
+  --scrollbar-thumb: color-mix(in srgb, var(--ink) 22%, transparent);
+  --scrollbar-thumb-hover: color-mix(in srgb, var(--ink) 38%, transparent);
+  --scrollbar-thumb-active: color-mix(in srgb, var(--ink) 50%, transparent);
+}
+
+/* Reduced motion: keep short fades; collapse choreography/positional timing */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --duration-instant: 0ms;
+    --duration-fast: 0ms;
+    --duration-snappy: 0ms;
+    --duration-normal: 0ms;
+    --duration-moderate: 0ms;
+    --duration-slow: 0ms;
+    --duration-deliberate: 0ms;
+    --duration-pulse: 0ms;
+    --duration-orbit: 0ms;
+    /* keep --duration-fade for state-change perception */
+    --motion-hover: var(--duration-fade) var(--ease-linear);
+    --motion-press: 0ms var(--ease-linear);
+    --motion-enter: var(--duration-fade) var(--ease-linear);
+    --motion-exit: var(--duration-fade) var(--ease-linear);
+    --motion-reveal: var(--duration-fade) var(--ease-linear);
+    --motion-sheet: var(--duration-fade) var(--ease-linear);
+    --motion-meter: var(--duration-fade) var(--ease-linear);
+    --motion-pulse: 0ms var(--ease-linear);
+    --motion-orbit: 0ms var(--ease-linear);
+    --motion-fade: var(--duration-fade) var(--ease-linear);
+  }
+}
+
+/* Default CSS = Zaoly light. Runtime sets data-theme from web.ui.theme */
+:root,
+[data-theme='zaoly'] {
+  --bg0: #f8f6f0;
+  --bg1: #ffffff;
+  --ink: #0f172a;
+  --fg: var(--ink);
+  --muted: #475569;
+  --accent: #ff6a3b;
+  --line: rgba(0, 0, 0, 0.12);
+  --danger: #ef4444;
+  --ok: #00ca55;
+  --warn: #fef14d;
+  --surface: rgba(255, 255, 255, 0.92);
+  --surface-2: rgba(255, 255, 255, 0.3);
+  --radius: 0;
+  --icon-sm: 14px;
+  --icon-md: 18px;
+  --role-foresight: #ff6a3b;
+  --role-research: #3080ff;
+  --role-waves: #b638ff;
+  --role-signals: #d5108a;
+  --role-sources: #00ca55;
+  --role-ops: #64748b;
+  --role-corpus: #ff6a3b;
+  --role-pipeline: #3080ff;
+  --font-display: var(--stack-display);
+  --font-body: var(--stack-body);
+  --font-mono: var(--stack-mono);
+  --section-title: #000000;
+  --track: color-mix(in srgb, var(--ink) 16%, transparent);
+  --field: #ffffff;
+  --overlay-scrim: color-mix(in srgb, #ffffff 22%, transparent);
+  --atmosphere-a: rgba(255, 106, 59, 0.12);
+  --atmosphere-b: rgba(182, 56, 255, 0.08);
+  /* Pipeline status — tokens/status.ts zaolyStatus. Creation Promote: color.status.pipeline.* */
+  --status-completed: #00ca55;
+  --status-enriched: #16a34a;
+  --status-category-ready: #22c55e;
+  --status-category-queued: #fef14d;
+  --status-enrich-queued: #ff6a3b;
+  --status-embed-queued: #ea580c;
+  --status-content-ready: #3080ff;
+  --status-skipped-near-dup: #94a3b8;
+  --status-failed-enrich: #ef4444;
+}
+
+[data-theme='zaoly-dark'] {
+  --bg0: #0f0f0f;
+  --bg1: #1a1a1a;
+  --ink: #ffffff;
+  --fg: var(--ink);
+  --muted: #a3a3a3;
+  --accent: #ff6a3b;
+  --line: rgba(255, 255, 255, 0.12);
+  --danger: #f87171;
+  --ok: #00ca55;
+  --warn: #fef14d;
+  --surface: rgba(26, 26, 26, 0.92);
+  --surface-2: rgba(38, 38, 38, 0.3);
+  --radius: 0;
+  --icon-sm: 14px;
+  --icon-md: 18px;
+  --role-foresight: #ff6a3b;
+  --role-research: #3080ff;
+  --role-waves: #b638ff;
+  --role-signals: #f256b6;
+  --role-sources: #00ca55;
+  --role-ops: #a3a3a3;
+  --role-corpus: #ff6a3b;
+  --role-pipeline: #3080ff;
+  --font-display: var(--stack-display);
+  --font-body: var(--stack-body);
+  --font-mono: var(--stack-mono);
+  --section-title: #ffffff;
+  --track: color-mix(in srgb, var(--ink) 16%, transparent);
+  --field: color-mix(in srgb, var(--ink) 7%, var(--bg1));
+  --overlay-scrim: color-mix(in srgb, #0f0f0f 20%, transparent);
+  --atmosphere-a: rgba(255, 106, 59, 0.16);
+  --atmosphere-b: rgba(182, 56, 255, 0.12);
+}
+
+[data-theme='forest'] {
+  --bg0: #0f1412;
+  --bg1: #1a221e;
+  --ink: #e8efe9;
+  --fg: var(--ink);
+  --muted: #9aab9e;
+  --accent: #c4a35a;
+  --line: rgba(232, 239, 233, 0.12);
+  --danger: #c45a5a;
+  --ok: #6a9b7a;
+  --warn: #d4a574;
+  --surface: rgba(0, 0, 0, 0.28);
+  --surface-2: rgba(26, 34, 30, 0.3);
+  --radius: 6px;
+  --role-foresight: #c4a35a;
+  --role-research: #7eb8c4;
+  --role-waves: #8a9bd4;
+  --role-signals: #c49a6a;
+  --role-sources: #6a9b7a;
+  --role-ops: #9aab9e;
+  --role-corpus: #c4a35a;
+  --role-pipeline: #7eb8c4;
+  --font-display: 'Bricolage Grotesque', Georgia, serif;
+  --font-body: 'IBM Plex Sans', system-ui, sans-serif;
+  --section-title: #ffffff;
+  --track: color-mix(in srgb, var(--ink) 16%, transparent);
+  --field: color-mix(in srgb, var(--ink) 6%, var(--bg1));
+  --overlay-scrim: color-mix(in srgb, #0f1412 20%, transparent);
+  --atmosphere-a: rgba(196, 163, 90, 0.18);
+  --atmosphere-b: rgba(106, 155, 122, 0.12);
+}
+
+/* zaoly-v2 light — clearer cream surfaces; soft panels via --radius-panel */
+[data-theme='zaoly-v2'] {
+  --bg0: #f6f4ee;
+  --bg1: #ffffff;
+  --ink: #0f172a;
+  --fg: var(--ink);
+  --muted: #475569;
+  --accent: #ff6a3b;
+  --line: rgba(0, 0, 0, 0.12);
+  --danger: #ef4444;
+  --ok: #00ca55;
+  --warn: #fef14d;
+  --surface: rgba(255, 255, 255, 0.96);
+  --surface-2: rgba(250, 249, 246, 0.85);
+  --radius: var(--radius-sm);
+  --icon-sm: 14px;
+  --icon-md: 18px;
+  --role-foresight: #ff6a3b;
+  --role-research: #3080ff;
+  --role-waves: #b638ff;
+  --role-signals: #d5108a;
+  --role-sources: #00ca55;
+  --role-ops: #64748b;
+  --role-corpus: #ff6a3b;
+  --role-pipeline: #3080ff;
+  --font-display: var(--stack-display);
+  --font-body: var(--stack-body);
+  --font-mono: var(--stack-mono);
+  --section-title: #000000;
+  --track: color-mix(in srgb, var(--ink) 16%, transparent);
+  --field: #ffffff;
+  --overlay-scrim: color-mix(in srgb, #ffffff 22%, transparent);
+  --atmosphere-a: rgba(255, 106, 59, 0.12);
+  --atmosphere-b: rgba(182, 56, 255, 0.08);
+}
+
+/* zaoly-v2 dark — clearer elevated surfaces than trial dark */
+[data-theme='zaoly-v2-dark'] {
+  --bg0: #0c0c0c;
+  --bg1: #161616;
+  --ink: #ffffff;
+  --fg: var(--ink);
+  --muted: #a3a3a3;
+  --accent: #ff6a3b;
+  --line: rgba(255, 255, 255, 0.12);
+  --danger: #f87171;
+  --ok: #00ca55;
+  --warn: #fef14d;
+  --surface: rgba(22, 22, 22, 0.96);
+  --surface-2: rgba(34, 34, 34, 0.55);
+  --radius: var(--radius-sm);
+  --icon-sm: 14px;
+  --icon-md: 18px;
+  --role-foresight: #ff6a3b;
+  --role-research: #3080ff;
+  --role-waves: #b638ff;
+  --role-signals: #f256b6;
+  --role-sources: #00ca55;
+  --role-ops: #a3a3a3;
+  --role-corpus: #ff6a3b;
+  --role-pipeline: #3080ff;
+  --font-display: var(--stack-display);
+  --font-body: var(--stack-body);
+  --font-mono: var(--stack-mono);
+  --section-title: #ffffff;
+  --track: color-mix(in srgb, var(--ink) 16%, transparent);
+  --field: color-mix(in srgb, var(--ink) 7%, var(--bg1));
+  --overlay-scrim: color-mix(in srgb, #0c0c0c 20%, transparent);
+  --atmosphere-a: rgba(255, 106, 59, 0.16);
+  --atmosphere-b: rgba(182, 56, 255, 0.12);
+}
+
+/* zaoly-ui ids share the v2 palettes (Storybook + product theme_choices). */
+[data-theme='zaoly-ui'] {
+  --bg0: #f6f4ee;
+  --bg1: #ffffff;
+  --ink: #0f172a;
+  --fg: var(--ink);
+  --muted: #475569;
+  --accent: #ff6a3b;
+  --line: rgba(0, 0, 0, 0.12);
+  --danger: #ef4444;
+  --ok: #00ca55;
+  --warn: #fef14d;
+  --surface: rgba(255, 255, 255, 0.96);
+  --surface-2: rgba(250, 249, 246, 0.85);
+  --radius: var(--radius-sm);
+  --icon-sm: 14px;
+  --icon-md: 18px;
+  --role-foresight: #ff6a3b;
+  --role-research: #3080ff;
+  --role-waves: #b638ff;
+  --role-signals: #d5108a;
+  --role-sources: #00ca55;
+  --role-ops: #64748b;
+  --role-corpus: #ff6a3b;
+  --role-pipeline: #3080ff;
+  --font-display: var(--stack-display);
+  --font-body: var(--stack-body);
+  --font-mono: var(--stack-mono);
+  --section-title: #000000;
+  --track: color-mix(in srgb, var(--ink) 16%, transparent);
+  --field: #ffffff;
+  --overlay-scrim: color-mix(in srgb, #ffffff 22%, transparent);
+  --atmosphere-a: rgba(255, 106, 59, 0.12);
+  --atmosphere-b: rgba(182, 56, 255, 0.08);
+}
+
+[data-theme='zaoly-ui-dark'] {
+  --bg0: #0c0c0c;
+  --bg1: #161616;
+  --ink: #ffffff;
+  --fg: var(--ink);
+  --muted: #a3a3a3;
+  --accent: #ff6a3b;
+  --line: rgba(255, 255, 255, 0.12);
+  --danger: #f87171;
+  --ok: #00ca55;
+  --warn: #fef14d;
+  --surface: rgba(22, 22, 22, 0.96);
+  --surface-2: rgba(34, 34, 34, 0.55);
+  --radius: var(--radius-sm);
+  --icon-sm: 14px;
+  --icon-md: 18px;
+  --role-foresight: #ff6a3b;
+  --role-research: #3080ff;
+  --role-waves: #b638ff;
+  --role-signals: #f256b6;
+  --role-sources: #00ca55;
+  --role-ops: #a3a3a3;
+  --role-corpus: #ff6a3b;
+  --role-pipeline: #3080ff;
+  --font-display: var(--stack-display);
+  --font-body: var(--stack-body);
+  --font-mono: var(--stack-mono);
+  --section-title: #ffffff;
+  --track: color-mix(in srgb, var(--ink) 16%, transparent);
+  --field: color-mix(in srgb, var(--ink) 7%, var(--bg1));
+  --overlay-scrim: color-mix(in srgb, #0c0c0c 20%, transparent);
+  --atmosphere-a: rgba(255, 106, 59, 0.16);
+  --atmosphere-b: rgba(182, 56, 255, 0.12);
+}
+
+/*
+ * Chrome aliases. Inspect/editor CSS used --surface-1 / --border with light-only
+ * fallbacks (#fff, black 12%). Those vars were never on the theme, so dark
+ * rails painted grey/white boxes. Map them to the real semantic tokens.
+ *
+ * Web-system (shadcn-near) pairs — specs/domain/web-system-tokens.md.
+ * Do not reassign --muted (text) or --accent (brand fill).
+ */
+:root,
+[data-theme='zaoly'],
+[data-theme='zaoly-dark'],
+[data-theme='zaoly-v2'],
+[data-theme='zaoly-v2-dark'],
+[data-theme='zaoly-ui'],
+[data-theme='zaoly-ui-dark'],
+[data-theme='forest'] {
+  --surface-1: var(--bg1);
+  --border: var(--line);
+  --paper: var(--bg1);
+  /* P72 / W-CHROME-TONES — synonym aliases of Layer 0 status (no new Brandion leaves) */
+  --success: var(--ok);
+  --warning: var(--warn);
+  --bad: var(--danger);
+
+  /* Semantic color pairs */
+  --background: var(--bg0);
+  --foreground: var(--ink);
+  --card: var(--surface);
+  --card-foreground: var(--ink);
+  --popover: var(--bg1);
+  --popover-foreground: var(--ink);
+  --primary: var(--accent);
+  --primary-foreground: #ffffff;
+  --brand-primary: var(--accent);
+  --secondary: var(--surface-2);
+  --secondary-foreground: var(--ink);
+  --muted-surface: color-mix(in srgb, var(--ink) 6%, var(--bg1));
+  --muted-foreground: var(--muted);
+  --accent-surface: color-mix(in srgb, var(--accent) 12%, var(--bg1));
+  --accent-foreground: var(--ink);
+  --destructive: var(--danger);
+  --destructive-foreground: #ffffff;
+  --input: var(--field);
+  --ring: color-mix(in srgb, var(--accent) 55%, transparent);
+  --ring-offset: var(--background);
+}
+
+:root,
+[data-theme='zaoly'],
+[data-theme='zaoly-v2'],
+[data-theme='zaoly-ui'] {
+  color-scheme: light;
+}
+
+[data-theme='zaoly-dark'],
+[data-theme='zaoly-v2-dark'],
+[data-theme='zaoly-ui-dark'],
+[data-theme='forest'] {
+  color-scheme: dark;
+}

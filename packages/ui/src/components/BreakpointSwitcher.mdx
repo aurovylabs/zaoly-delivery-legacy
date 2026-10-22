@@ -1,0 +1,31 @@
+# BreakpointSwitcher
+
+Layer: `molecules`
+
+Mobile / tablet / desktop segmented control for composition editor chrome. Apps may pass `print` via `options` (P85).
+
+**Spec:** `specs/domain/zaoly-ui-breakpoint-switcher.md`  
+**Related:** CanvasViewport — apps map `value` → preview size (print presets stay app-owned).
+
+## Stories
+
+- Default
+- Interactive
+- CustomLabels
+- WithPrint
+
+## Usage
+
+```tsx
+import { BreakpointSwitcher, type EditorBreakpoint } from '@zaoly/ui'
+
+const [bp, setBp] = useState<EditorBreakpoint>('desktop')
+
+<BreakpointSwitcher
+  value={bp}
+  onChange={setBp}
+  options={['mobile', 'tablet', 'desktop', 'print']}
+/>
+```
+
+Pixel widths stay in the consuming app — this is chrome only.

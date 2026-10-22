@@ -1,0 +1,78 @@
+# Build the production app image and publish to GHCR.
+# Image: paths.deliveryContainerImage → ghcr.io/aurovylabs/zaoly-delivery
+# Knowledge: knowledge/zaoly-delivery-repo.md · zaoly-community-distribution.md
+
+name: Publish delivery image
+
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - 'v*'
+
+env:
+  REGISTRY: ghcr.io
+  # Must match github.repository so GITHUB_TOKEN can create/push the package.
+  IMAGE_NAME: ${{ github.repository }}
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: docker/setup-buildx-action@v3
+
+      - uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Image metadata
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          tags: |
+            type=raw,value=latest,enable={{is_default_branch}}
+            type=raw,value=latest,enable=${{ github.event_name == 'workflow_dispatch' || startsWith(github.ref, 'refs/tags/v') }}
+            type=semver,pattern={{version}}
+            type=semver,pattern={{major}}.{{minor}}
+            type=sha,prefix=sha-,format=short
+
+      - name: Build and push
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: Dockerfile
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          build-args: |
+            INSTALL_PLAYWRIGHT=0
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      - name: Make package public (best-effort)
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          pkg="${IMAGE_NAME#*/}"
+          org="${IMAGE_NAME%%/*}"
+          echo "Package name: $pkg (from $IMAGE_NAME)"
+          for path in \
+            "/orgs/${org}/packages/container/${pkg}/visibility" \
+            "/user/packages/container/${pkg}/visibility"
+          do
+            if gh api --method PATCH -H "Accept: application/vnd.github+json" "$path" -f visibility=public; then
+              echo "Set public via $path"
+              exit 0
+            fi
+          done
+          echo "::warning::Could not set GHCR package public via API. Set visibility manually: https://github.com/orgs/${org}/packages/container/${pkg}/settings"

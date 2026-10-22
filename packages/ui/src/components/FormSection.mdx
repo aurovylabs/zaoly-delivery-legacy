@@ -1,0 +1,27 @@
+# FormSection
+
+Layer: `molecules`
+
+Quiet titled block for Dialog / editor bodies (title + field grid).
+
+**Spec:** `specs/domain/zaoly-ui-form-section.md`  
+**Origin:** Brandion token Add/Edit dialog (`.brandion-token-editor-section`).
+
+## Stories
+
+- Default / TwoColumn / AdvancedTone
+- Stacked (dialog body)
+
+## Usage
+
+```tsx
+import { FormSection, Field, Input } from '@zaoly/ui'
+
+<FormSection title="Identity" columns={2}>
+  <Field label="Path">
+    <Input />
+  </Field>
+</FormSection>
+```
+
+Domain token parsers stay in the app — this is chrome only.

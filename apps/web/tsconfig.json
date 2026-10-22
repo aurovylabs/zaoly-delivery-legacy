@@ -1,0 +1,34 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["dom", "dom.iterable", "es2022"],
+    "allowJs": false,
+    "skipLibCheck": true,
+    "strict": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "react-jsx",
+    "incremental": true,
+    "plugins": [{ "name": "next" }],
+    "paths": {
+      "@/*": ["./*"],
+      "@zaoly/contracts": ["../../packages/contracts/src/index.ts"],
+      "@zaoly/ui": ["./lib/zaoly-ui.ts"],
+      "@zaoly/ui/catalog-registry": ["./lib/zaoly-ui-catalog.ts"],
+      "@zaoly/ui/styles.css": ["../../packages/ui/src/styles.css"],
+      "@zaoly/ui-tokens": ["../../packages/ui-tokens/src/index.ts"]
+    }
+  },
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    ".next/dev/types/**/*.ts"
+  ],
+  "exclude": ["node_modules", "__tests__", "**/*.test.ts", "**/*.test.tsx"]
+}

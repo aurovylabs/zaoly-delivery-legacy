@@ -1,0 +1,110 @@
+/* Inspect layout glyphs — Lucide-adjacent optical language
+ * Spec: specs/domain/zaoly-ui-inspect-layout-glyphs.md
+ * Default 16px; geometry scales via SVG `size`, strokes stay hairline (non-scaling).
+ */
+
+.ds-inspect-glyph {
+  display: block;
+  flex-shrink: 0;
+  color: var(--ink);
+}
+
+.ds-inspect-glyph__frame {
+  fill: none;
+  stroke: color-mix(in srgb, var(--ink) 42%, transparent);
+  stroke-width: 1.5;
+  vector-effect: non-scaling-stroke;
+}
+
+.ds-inspect-glyph__frame--dashed {
+  stroke-dasharray: 2 1.5;
+  stroke: color-mix(in srgb, var(--ink) 38%, transparent);
+  vector-effect: non-scaling-stroke;
+}
+
+.ds-inspect-glyph__frame--inset {
+  fill: none;
+  stroke: color-mix(in srgb, var(--ink) 28%, transparent);
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+}
+
+.ds-inspect-glyph__frame--dotted {
+  fill: none;
+  stroke: color-mix(in srgb, var(--ink) 42%, transparent);
+  stroke-width: 1.5;
+  stroke-dasharray: 0.8 1.6;
+  stroke-linecap: round;
+  vector-effect: non-scaling-stroke;
+}
+
+/* Soft fill + ink stroke — reads with Lucide Icons, works light/dark */
+.ds-inspect-glyph__cell,
+.ds-inspect-glyph__cell--strong {
+  fill: color-mix(in srgb, var(--ink) 16%, transparent);
+  stroke: var(--ink);
+  stroke-width: 1.25;
+  vector-effect: non-scaling-stroke;
+}
+
+.ds-inspect-glyph__cell--soft {
+  fill: color-mix(in srgb, var(--ink) 10%, transparent);
+  stroke: color-mix(in srgb, var(--ink) 70%, transparent);
+  stroke-width: 1.15;
+  vector-effect: non-scaling-stroke;
+}
+
+.ds-inspect-glyph__cell--empty {
+  fill: transparent;
+  stroke: color-mix(in srgb, var(--ink) 22%, transparent);
+  stroke-width: 1;
+  stroke-dasharray: 1.5 1.25;
+  vector-effect: non-scaling-stroke;
+}
+
+.ds-inspect-glyph__dash {
+  fill: none;
+  stroke: color-mix(in srgb, var(--ink) 45%, transparent);
+  stroke-width: 1.25;
+  stroke-dasharray: 1.5 1.25;
+  stroke-linecap: round;
+  vector-effect: non-scaling-stroke;
+}
+
+.ds-inspect-glyph__accent {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+
+.ds-inspect-glyph-tile.is-active .ds-inspect-glyph__frame,
+.is-active .ds-inspect-glyph__frame {
+  stroke: color-mix(in srgb, var(--accent) 55%, var(--ink));
+}
+
+.ds-inspect-glyph-tile.is-active .ds-inspect-glyph__cell--strong,
+.is-active .ds-inspect-glyph__cell--strong {
+  fill: color-mix(in srgb, var(--accent) 14%, transparent);
+  stroke: var(--ink);
+}
+
+.ds-inspect-glyph-tile.is-active .ds-inspect-glyph__accent,
+.is-active .ds-inspect-glyph__accent {
+  stroke: var(--accent);
+}
+
+.ds-inspect-glyph__silhouette {
+  fill: color-mix(in srgb, var(--ink) 16%, transparent);
+  stroke: var(--ink);
+  stroke-width: 1.25;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+
+.ds-inspect-glyph__pip {
+  fill: color-mix(in srgb, var(--ink) 88%, transparent);
+  stroke: none;
+}

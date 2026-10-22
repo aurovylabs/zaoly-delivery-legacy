@@ -1,0 +1,34 @@
+# Local durable SoT for Zaoly compositions (and sibling PG tables).
+# Spec: specs/domain/zaoly-composition-persistence.md · knowledge/zaoly-postgres.md
+# Mailpit: knowledge/local-dev.md · catch-all SMTP UI http://localhost:8025
+services:
+  postgres:
+    image: postgres:17-alpine
+    container_name: zaoly-postgres
+    environment:
+      POSTGRES_USER: zaoly
+      POSTGRES_PASSWORD: zaoly
+      POSTGRES_DB: zaoly
+    ports:
+      - '5434:5432'
+    volumes:
+      - zaoly_pg:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U zaoly -d zaoly']
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  mailpit:
+    image: axllent/mailpit:v1.31.5
+    container_name: zaoly-mailpit
+    restart: unless-stopped
+    ports:
+      - '1025:1025'
+      - '8025:8025'
+    environment:
+      MP_SMTP_AUTH_ACCEPT_ANY: '1'
+      MP_SMTP_AUTH_ALLOW_INSECURE: '1'
+
+volumes:
+  zaoly_pg:

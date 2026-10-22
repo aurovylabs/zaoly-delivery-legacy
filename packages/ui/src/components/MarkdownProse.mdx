@@ -1,0 +1,12 @@
+import { Meta, Canvas, ArgTypes } from '@storybook/addon-docs/blocks'
+import * as MarkdownProseStories from './MarkdownProse.stories'
+
+<Meta of={MarkdownProseStories} />
+
+# MarkdownProse
+
+GFM renderer for GEO / LLM answer bodies (tables, headings, links). Spec: `specs/domain/zaoly-ui-markdown-prose.md`.
+
+<Canvas of={MarkdownProseStories.GeoAnswer} />
+
+<ArgTypes of={MarkdownProseStories.GeoAnswer} />

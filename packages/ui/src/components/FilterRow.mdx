@@ -1,0 +1,33 @@
+import { Meta, Canvas } from '@storybook/addon-docs/blocks'
+import * as Stories from './FilterRow.stories'
+
+<Meta of={Stories} />
+
+# FilterRow
+
+Layer: `Molecules`
+
+Magazine filter / chip band. Default `variant="magazine"` — bottom hairline + roomy Chip row. Prefer selected Chips over filled toggle strips.
+
+## Usage
+
+<Canvas of={Stories.Default} />
+
+## With label
+
+<Canvas of={Stories.WithLabel} />
+
+## Spec
+
+`specs/domain/zaoly-ui-filter-row.md`
+
+## Tokens consumed
+
+DS-DEPOSIT D5b — FilterRow consumes Brandion paths via Layer 0 CSS.
+
+See `knowledge/ds-deposit-component-semantic-map.md`.
+
+| Surface | CSS | Brandion path |
+|---------|-----|---------------|
+| * | `--muted` / `--space-2` | `color.muted` / `spacing.static.2` |
+| magazine | `--line` | `color.line` |

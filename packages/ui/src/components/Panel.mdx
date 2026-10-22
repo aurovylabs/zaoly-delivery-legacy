@@ -1,0 +1,41 @@
+import { Meta, Canvas } from '@storybook/addon-docs/blocks'
+import * as Stories from './Panel.stories'
+
+<Meta of={Stories} />
+
+# Panel
+
+Layer: `Molecules`
+
+Module shell. Default = bordered surface wash. Magazine stages use `variant="flush"` (no chrome) or `variant="editorial"` (top hairline, fill-free).
+
+## Default
+
+<Canvas of={Stories.Default} />
+
+## Flush / Editorial
+
+<Canvas of={Stories.Flush} />
+<Canvas of={Stories.Editorial} />
+
+## Do
+
+- Prefer `editorial` / `flush` on AUDION/CHECKION magazine covers and launch stages.
+- Keep default Panel for ECHON ops / workstation modules.
+
+## Don't
+
+- Soft-wash a magazine cover with default Panel.
+
+## Tokens consumed
+
+DS-DEPOSIT D5 — variants consume Brandion paths via Layer 0 CSS. Enums stay React API.
+
+See `knowledge/ds-deposit-component-semantic-map.md`.
+
+| Variant | CSS | Brandion path |
+|---------|-----|---------------|
+| default | `--radius-panel` / `--surface-2` / `--space-4` | `radius.panel` / `color.surface.raised` / `spacing.static.4` |
+| editorial / card | `--line` | `color.line` |
+| flush | — | chrome-free (no token paint) |
+

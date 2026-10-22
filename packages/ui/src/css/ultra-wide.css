@@ -1,0 +1,221 @@
+/* design-system: ultra-wide */
+/* Ultra-wide ladder — knobs: web.ui.ultra_wide_* (paths.yaml) · knowledge/overview-ultra-wide.md */
+@media (min-width: 1600px) {
+  .app-main {
+    max-width: min(100%, 1680px);
+    margin-inline: auto;
+    padding-right: var(--main-gutter);
+  }
+}
+
+@media (min-width: 1920px) {
+  .app-main {
+    max-width: min(100%, 2560px);
+  }
+}
+
+@media (min-width: 2560px) {
+  .app-main {
+    max-width: min(100%, 3400px);
+  }
+}
+
+@media (min-width: 3440px) {
+  .app-main {
+    max-width: min(100%, 4600px);
+  }
+}
+
+/* Cinema / multi-monitor: use the full stage */
+@media (min-width: 3840px) {
+  .app-main {
+    max-width: none;
+  }
+}
+
+/* Zaoly cutout back corner — always viewport top-left */
+.shell-back-corner {
+  --shell-back-pad-x: 1.1rem;
+  --shell-back-pad-y: 0.85rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 40;
+  pointer-events: none;
+}
+
+.shell-back-corner-box {
+  background: var(--ink);
+  color: var(--bg0);
+  border: 0;
+  box-shadow: none;
+  padding: var(--shell-back-pad-y) var(--shell-back-pad-x);
+}
+
+/* Zaoly cutout brand corner — always viewport top-right (independent of rail dock) */
+.brand-corner {
+  --brand-corner-pad-x: 1.1rem;
+  --brand-corner-pad-y: 0.85rem;
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 40;
+  pointer-events: none;
+}
+
+.brand-corner-box {
+  background: var(--ink);
+  color: var(--bg0);
+  border: 0;
+  box-shadow: none;
+  padding: var(--brand-corner-pad-y) var(--brand-corner-pad-x)
+    calc(var(--brand-corner-pad-y) + 0.15rem) var(--brand-corner-pad-x);
+}
+
+.brand-corner-inner {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0;
+  min-height: 1.75rem;
+}
+
+.brand-corner-divider {
+  width: 1px;
+  align-self: stretch;
+  min-height: 1.25rem;
+  background: color-mix(in srgb, var(--bg0) 35%, transparent);
+}
+
+.brand-corner-label {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 200;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 5px 0 25px;
+  /* Keep controls clear of the absolute brand corner */
+  padding-right: clamp(7.5rem, 18vw, 11rem);
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 0.75rem;
+}
+
+.topbar-brand {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  min-width: 0;
+}
+
+.page-title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 3rem;
+  font-weight: 100;
+  color: var(--ink);
+  line-height: 1.1;
+}
+
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  flex-shrink: 0;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.top-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.top-status strong {
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+
+.top-status-sep {
+  opacity: 0.5;
+}
+
+.status-dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: var(--ok);
+}
+
+.status-dot.level-warn {
+  background: var(--warn);
+}
+
+.status-dot.level-critical {
+  background: var(--danger);
+}
+
+.kpi-strip {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin: 0 0 1.25rem;
+}
+
+@media (max-width: 900px) {
+  .kpi-strip {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .app-frame {
+    /* Keep data-rail-edge padding; only tighten gutters on small screens */
+    --rail-gap: 1.25rem;
+    --main-gutter: 1rem;
+  }
+  .app-main {
+    padding: 0;
+    max-width: none;
+  }
+  .nav-rail[data-orientation='horizontal'] .rail-spacer {
+    display: none;
+  }
+  .rail-label {
+    display: none;
+  }
+}
+
+.kpi-card {
+  padding: 0.9rem 1rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-tile, var(--radius-panel));
+  background: color-mix(in oklab, var(--surface-2, var(--surface, #151515)) 92%, transparent);
+}
+
+.kpi-label {
+  margin: 0 0 0.35rem;
+  font-size: var(--type-xs, 0.65rem);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+}
+
+.kpi-value {
+  margin: 0;
+  font-family: var(--font-display, var(--font-body));
+  font-size: clamp(1.75rem, 3vw, 2.35rem);
+  font-weight: var(--weight-light, 300);
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+

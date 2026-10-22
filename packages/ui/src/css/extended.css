@@ -1,0 +1,508 @@
+/* design-system: extended — specs/domain/zaoly-v2-extended.md */
+
+.ds-divider--horizontal {
+  display: block;
+  width: 100%;
+  height: 0;
+  margin: var(--space-3) 0;
+  border: 0;
+  border-top: 1px solid var(--line);
+}
+
+.ds-divider--vertical {
+  display: inline-block;
+  width: 0;
+  align-self: stretch;
+  min-height: 1rem;
+  margin: 0 var(--space-2);
+  border-left: 1px solid var(--line);
+}
+
+.ds-check-label,
+.ds-switch-label {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: var(--type-sm);
+  color: var(--ink);
+}
+
+.ds-checkbox {
+  width: 0.9rem;
+  height: 0.9rem;
+  accent-color: var(--accent);
+  cursor: pointer;
+}
+
+.ds-switch {
+  position: relative;
+  width: 2.1rem;
+  height: 1.2rem;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-pill);
+  background: var(--field);
+  cursor: pointer;
+  transition: background var(--motion-hover), border-color var(--motion-hover);
+}
+
+.ds-switch-thumb {
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  width: calc(1.2rem - 4px);
+  height: calc(1.2rem - 4px);
+  border-radius: 50%;
+  background: var(--ink);
+  opacity: 0.45;
+  transition: transform var(--motion-hover), opacity var(--motion-hover), background var(--motion-hover);
+}
+
+.ds-switch--on {
+  border-color: color-mix(in srgb, var(--accent) 55%, var(--line));
+  background: color-mix(in srgb, var(--accent) 22%, var(--field));
+}
+
+.ds-switch--on .ds-switch-thumb {
+  transform: translateX(0.9rem);
+  background: var(--accent);
+  opacity: 1;
+}
+
+.ds-switch:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent) 40%, transparent);
+}
+
+.ds-switch:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.ds-tabs {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  min-width: 0;
+}
+
+.ds-tablist {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1);
+  border-bottom: 1px solid var(--line);
+  padding-bottom: var(--space-1);
+}
+
+.ds-tab {
+  margin: 0;
+  padding: 0.28rem 0.55rem;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  background: transparent;
+  color: var(--muted);
+  font-family: var(--font-body);
+  font-size: var(--type-sm);
+  font-weight: var(--weight-regular);
+  letter-spacing: var(--track-meta);
+  cursor: pointer;
+  transition: color var(--motion-hover), border-color var(--motion-hover);
+}
+
+.ds-tab--selected {
+  color: var(--ink);
+  border-bottom-color: var(--accent);
+}
+
+.ds-tab:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent) 40%, transparent);
+  border-radius: var(--radius-sm);
+}
+
+.ds-tab:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.ds-tabpanel {
+  min-width: 0;
+}
+
+.ds-skeleton {
+  display: block;
+  border-radius: var(--radius-sm);
+  background: color-mix(in srgb, var(--ink) 10%, var(--field));
+  animation: ds-skeleton-pulse var(--duration-orbit, 1.6s) var(--ease-in-out, ease-in-out) infinite;
+}
+
+.ds-skeleton--round {
+  border-radius: var(--radius-pill);
+}
+
+@keyframes ds-skeleton-pulse {
+  0%,
+  100% {
+    opacity: 0.55;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ds-skeleton {
+    animation: none;
+    opacity: 0.7;
+  }
+}
+
+.ds-spinner {
+  display: inline-block;
+  box-sizing: border-box;
+  border: 2px solid color-mix(in srgb, var(--ink) 18%, transparent);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: ds-spin var(--duration-moderate, 0.7s) linear infinite;
+}
+
+.ds-spinner--sm {
+  width: 0.9rem;
+  height: 0.9rem;
+}
+
+.ds-spinner--md {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+@keyframes ds-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ds-spinner {
+    animation: none;
+    border-top-color: var(--muted);
+  }
+}
+
+.ds-tooltip {
+  position: relative;
+  display: inline-flex;
+  vertical-align: middle;
+}
+
+.ds-tooltip-bubble {
+  z-index: 50;
+  max-width: 14rem;
+  padding: 0.28rem 0.45rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--bg1, var(--field));
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--type-xs);
+  font-weight: var(--weight-regular, 400);
+  letter-spacing: 0.01em;
+  line-height: 1.3;
+  text-transform: none;
+  white-space: normal;
+  box-sizing: border-box;
+  box-shadow: 0 6px 18px color-mix(in srgb, var(--ink) 12%, transparent);
+  pointer-events: none;
+}
+
+/* Non-portal fallback (stories without JS place): sit tightly above the anchor. */
+.ds-tooltip-bubble:not(.ds-tooltip-bubble--portal) {
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 0.25rem);
+  transform: translateX(-50%);
+}
+
+.ds-tooltip-bubble--portal {
+  position: fixed;
+  margin: 0;
+}
+
+.ds-dialog {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  max-width: min(28rem, calc(100vw - 2rem));
+}
+
+.ds-dialog::backdrop {
+  background: var(--overlay-scrim, color-mix(in srgb, var(--ink) 45%, transparent));
+}
+
+.ds-dialog-sheet {
+  background: var(--bg1, var(--field));
+  color: var(--ink);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-panel);
+  box-shadow: 0 16px 40px color-mix(in srgb, var(--ink) 18%, transparent);
+  overflow: hidden;
+}
+
+.ds-dialog-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-3) var(--space-2);
+  border-bottom: 1px solid var(--line);
+}
+
+.ds-dialog-title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: var(--type-xl);
+  font-weight: var(--weight-thin);
+  color: var(--section-title, var(--ink));
+}
+
+.ds-dialog-body {
+  padding: var(--space-3);
+  font-size: var(--type-md);
+  line-height: 1.45;
+}
+
+.ds-dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-3) var(--space-3);
+  border-top: 1px solid var(--line);
+}
+
+/* —— Avatar —— */
+.ds-avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  overflow: hidden;
+  background: color-mix(in srgb, var(--ink) 10%, var(--field, var(--bg1)));
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-weight: var(--weight-medium);
+  letter-spacing: var(--track-meta);
+  line-height: 1;
+  vertical-align: middle;
+}
+
+.ds-avatar--accented {
+  background: var(--avatar-accent, var(--accent));
+  color: var(--avatar-accent-contrast, var(--accent-contrast, #fff));
+}
+
+/* Magazine portraits (default) — sharp corners */
+.ds-avatar--square {
+  border-radius: var(--radius);
+}
+
+/* Dense list / table marks */
+.ds-avatar--round {
+  border-radius: var(--radius-pill);
+}
+
+.ds-avatar--sm {
+  width: 1.75rem;
+  height: 1.75rem;
+  font-size: var(--type-2xs);
+}
+
+.ds-avatar--md {
+  width: 2.25rem;
+  height: 2.25rem;
+  font-size: var(--type-xs);
+}
+
+.ds-avatar--lg {
+  width: 3rem;
+  height: 3rem;
+  font-size: var(--type-sm);
+}
+
+.ds-avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.ds-avatar-initials {
+  user-select: none;
+}
+
+/* —— Toast —— */
+.ds-toast-viewport {
+  position: fixed;
+  z-index: 90;
+  right: var(--space-4);
+  bottom: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  max-width: min(22rem, calc(100vw - 2rem));
+  pointer-events: none;
+}
+
+.ds-toast-live {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.ds-toast {
+  pointer-events: auto;
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: var(--bg1, var(--field));
+  color: var(--ink);
+  box-shadow: 0 10px 28px color-mix(in srgb, var(--ink) 14%, transparent);
+}
+
+.ds-toast--ok {
+  border-color: color-mix(in srgb, var(--ok) 45%, var(--line));
+}
+
+.ds-toast--error {
+  border-color: color-mix(in srgb, var(--danger, var(--bad, #c44)) 50%, var(--line));
+}
+
+.ds-toast-message {
+  margin: 0;
+  flex: 1 1 auto;
+  font-family: var(--font-body);
+  font-size: var(--type-sm);
+  line-height: 1.35;
+}
+
+.ds-toast-dismiss.ds-btn {
+  flex-shrink: 0;
+  min-width: 0;
+  padding: 0.1rem 0.35rem;
+  font-size: 1.1rem;
+  line-height: 1;
+}
+
+/* —— DataTable —— */
+.ds-table-wrap {
+  width: 100%;
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: var(--surface-2, var(--bg1));
+}
+
+.ds-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--font-body);
+  font-size: var(--type-sm);
+}
+
+.ds-table-caption {
+  padding: var(--space-2) var(--space-3);
+  text-align: left;
+  font-size: var(--type-xs);
+  color: var(--muted);
+  caption-side: top;
+}
+
+.ds-table-th,
+.ds-table-td {
+  padding: 0.45rem 0.75rem;
+  text-align: left;
+  border-bottom: 1px solid var(--line);
+  vertical-align: middle;
+}
+
+.ds-table-th {
+  background: color-mix(in srgb, var(--ink) 4%, transparent);
+  font-weight: var(--weight-medium);
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.ds-table-th--end,
+.ds-table-td--end {
+  text-align: right;
+}
+
+.ds-table-th--sortable {
+  padding: 0;
+}
+
+.ds-table-sort {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  width: 100%;
+  margin: 0;
+  padding: 0.45rem 0.75rem;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  text-align: inherit;
+}
+
+.ds-table-sort:hover,
+.ds-table-sort:focus-visible {
+  background: color-mix(in srgb, var(--ink) 6%, transparent);
+  outline: none;
+}
+
+.ds-table-sort-ind {
+  font-family: var(--font-mono);
+  font-size: var(--type-2xs);
+  opacity: 0.7;
+}
+
+.ds-table-tr:last-child .ds-table-td {
+  border-bottom: 0;
+}
+
+.ds-table-empty {
+  padding: var(--space-4);
+  text-align: center;
+}
+
+/* Sources product consumer — DataTable density */
+.sources-table-id {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  min-width: 0;
+}
+
+.sources-table-title {
+  display: block;
+  font-weight: var(--weight-medium);
+  color: var(--ink);
+}
+
+.sources-table-url {
+  display: block;
+  max-width: 18rem;
+}
+
+.sources-table .source-actions {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: var(--space-1);
+  justify-content: flex-end;
+}

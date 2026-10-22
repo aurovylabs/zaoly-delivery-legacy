@@ -1,0 +1,13 @@
+# KpiMetric
+
+Layer: `molecules`
+
+Shell-free magazine KPI readout (label + value + optional meta/unit).
+
+Spec: `specs/domain/zaoly-ui-kpi-metric.md` · Language map: `knowledge/metric-languages.md`
+
+## Layout
+
+Label → value (+ unit) → optional meta. No card chrome — nest inside `Panel variant="card"` on `WidgetGrid joined`.
+
+Use `density="hero"` for viewer / share teaser strips. Soft floating metrics stay on `LabTile`.

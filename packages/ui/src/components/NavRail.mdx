@@ -1,0 +1,29 @@
+import { Meta, Canvas } from '@storybook/addon-docs/blocks'
+import * as Stories from './NavRail.stories'
+
+<Meta of={Stories} />
+
+# NavRail
+
+Layer: `Organisms`
+
+Primary product navigation rail with logo, items, optional footer, and optional dockable snap edges.
+
+Horizontal docks (`top` / `bottom`) shrink-wrap width to content; vertical docks (`left` / `right`) shrink-wrap height. Below `900px` the rail locks to the bottom edge with elevated z-index.
+
+## Usage
+
+<Canvas of={Stories.Default} />
+
+## Do
+
+- Pass Lucide wrappers from `@zaoly/ui` icons as `item.icon`.
+- Use `dockable={false}` in Storybook and most app shells unless SnapDock is wired.
+
+## Don't
+
+- Encode product-specific route trees inside the primitive — pass `items` from the app.
+
+## Related
+
+Spec: `specs/domain/zaoly-ui-app-shell.md`

@@ -1,0 +1,381 @@
+/* design-system: field — specs/domain/zaoly-ui-field.md · zaoly-ui-forms.md */
+
+.ds-field {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-1);
+  min-width: 0;
+}
+
+.ds-field--inline {
+  flex-direction: row;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.ds-field-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 0.62rem;
+  font-weight: var(--weight-regular);
+  letter-spacing: var(--track-meta);
+  color: var(--accent);
+  text-transform: uppercase;
+  line-height: 1.2;
+}
+
+.ds-field-icon {
+  display: inline-flex;
+  flex-shrink: 0;
+  width: 1rem;
+  height: 1rem;
+  color: currentColor;
+}
+
+.ds-field-icon .ui-icon {
+  width: 1rem;
+  height: 1rem;
+}
+
+.ds-field-label .ds-text-label {
+  font-size: inherit;
+  font-weight: inherit;
+  letter-spacing: inherit;
+  color: inherit;
+  text-transform: inherit;
+  line-height: inherit;
+}
+
+.ds-field-hint {
+  margin: 0;
+}
+
+.ds-field-error {
+  margin: 0;
+  min-height: 0;
+  color: var(--danger, #b42318);
+  font-family: var(--font-body);
+  font-size: var(--type-xs);
+  letter-spacing: var(--track-meta);
+  line-height: 1.25;
+}
+
+.ds-field-error:empty {
+  display: none;
+}
+
+.ds-field--invalid .ds-field-label,
+.ds-field--invalid .ds-field-label .ds-text-label {
+  color: var(--danger, #b42318);
+}
+
+.ds-control--invalid.ds-input,
+.ds-control--invalid.search-input,
+.ds-control--invalid.ds-textarea,
+.ds-tag-input.ds-control--invalid,
+.ds-field--invalid .ds-input,
+.ds-field--invalid .ds-textarea,
+.ds-field--invalid .ds-select-trigger,
+.ds-field--invalid .ds-tag-input {
+  border-color: color-mix(in srgb, var(--danger, #b42318) 28%, transparent);
+  border-bottom-color: var(--danger, #b42318);
+}
+
+.ds-control--invalid.ds-input:focus-visible,
+.ds-control--invalid.ds-textarea:focus-visible,
+.ds-field--invalid .ds-input:focus-visible,
+.ds-field--invalid .ds-textarea:focus-visible,
+.ds-field--invalid .ds-select-trigger:focus-visible,
+.ds-field--invalid .ds-tag-input:focus-within {
+  border-color: color-mix(in srgb, var(--danger, #b42318) 28%, transparent);
+  border-bottom-color: var(--danger, #b42318);
+  box-shadow: none;
+}
+
+/* —— TagInput —— */
+
+.ds-tag-input {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-1);
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 100%;
+  padding: var(--space-1) 0.5rem;
+  background: transparent;
+  border: 1px solid color-mix(in srgb, var(--ink) 6%, transparent);
+  border-bottom: 1px solid var(--ink);
+  border-radius: var(--radius-sm);
+  transition:
+    border-color var(--motion-hover),
+    background var(--motion-hover);
+}
+
+.ds-tag-input:focus-within {
+  border-color: color-mix(in srgb, var(--accent) 16%, transparent);
+  border-bottom-color: var(--accent);
+}
+
+.ds-tag-input--disabled {
+  opacity: 0.45;
+  pointer-events: none;
+}
+
+.ds-tag-input-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ds-tag-input-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.1rem;
+}
+
+.ds-tag-input-item .ds-btn {
+  min-width: 1.25rem;
+  padding: 0 0.2rem;
+  line-height: 1;
+}
+
+.ds-tag-input-field {
+  flex: 1 1 6rem;
+  min-width: 6rem;
+  border: none !important;
+  border-bottom: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
+  padding-left: 0.25rem;
+  padding-right: 0.25rem;
+}
+
+/* —— Input / Textarea — light frame + firm bottom rule —— */
+
+.ds-input,
+.search-input,
+.ds-textarea {
+  appearance: none;
+  margin: 0;
+  box-sizing: border-box;
+  max-width: 100%;
+  background: transparent;
+  border: 1px solid color-mix(in srgb, var(--ink) 6%, transparent);
+  border-bottom: 1px solid var(--ink);
+  border-radius: var(--radius-sm);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-weight: var(--weight-regular);
+  font-size: var(--type-xs);
+  letter-spacing: var(--track-meta);
+  line-height: 1.25;
+  padding: 0.35rem 0.55rem;
+  transition:
+    border-color var(--motion-hover),
+    background var(--motion-hover);
+}
+
+.ds-textarea {
+  resize: vertical;
+  min-height: 4.5rem;
+  line-height: 1.35;
+}
+
+.ds-input::placeholder,
+.search-input::placeholder,
+.ds-textarea::placeholder {
+  color: var(--muted);
+  opacity: 0.85;
+}
+
+.ds-input:focus-visible,
+.search-input:focus-visible,
+.ds-textarea:focus-visible {
+  outline: none;
+  border-color: color-mix(in srgb, var(--accent) 16%, transparent);
+  border-bottom-color: var(--accent);
+  box-shadow: none;
+}
+
+.ds-input:disabled,
+.search-input:disabled,
+.ds-textarea:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.ds-input--sm,
+.ds-textarea--sm {
+  font-size: var(--type-xs);
+  padding: 0.35rem 0.55rem;
+}
+
+.ds-input--md,
+.ds-textarea--md {
+  font-size: var(--type-md);
+  padding: var(--space-2) 0.75rem;
+}
+
+.ds-input--block,
+.ds-textarea--block {
+  display: block;
+  width: 100%;
+}
+
+.ds-textarea--mono {
+  font-family: var(--font-mono, ui-monospace, SFMono-Regular, Menlo, monospace);
+  font-size: 0.9375rem;
+  line-height: 1.45;
+}
+
+.search-input {
+  display: block;
+  width: 100%;
+}
+
+.sources-toolbar .ds-input,
+.sources-toolbar .search-input {
+  margin: var(--space-3) 0 var(--space-1);
+}
+
+/* —— Custom Select (no native OS chrome) —— */
+
+.ds-select {
+  position: relative;
+  display: inline-flex;
+  vertical-align: middle;
+  max-width: 100%;
+}
+
+.ds-select-trigger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  margin: 0;
+  box-sizing: border-box;
+  min-width: 7.5rem;
+  max-width: 14rem;
+  background: transparent;
+  border: 1px solid color-mix(in srgb, var(--ink) 6%, transparent);
+  border-bottom: 1px solid var(--ink);
+  border-radius: var(--radius-sm);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-weight: var(--weight-regular);
+  font-size: var(--type-xs);
+  letter-spacing: var(--track-meta);
+  line-height: 1.25;
+  padding: 0.35rem 0.45rem 0.35rem 0.55rem;
+  cursor: pointer;
+  transition:
+    border-color var(--motion-hover),
+    background var(--motion-hover);
+}
+
+.wave-sort .ds-select-trigger {
+  max-width: none;
+  min-width: 8.5rem;
+}
+
+.ds-select-trigger--md {
+  font-size: var(--type-md);
+  padding: var(--space-2) 0.65rem;
+  min-width: 9rem;
+}
+
+.ds-select-trigger:focus-visible {
+  outline: none;
+  border-color: color-mix(in srgb, var(--accent) 16%, transparent);
+  border-bottom-color: var(--accent);
+  box-shadow: none;
+}
+
+.ds-select-trigger:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.ds-select--open .ds-select-trigger {
+  border-color: color-mix(in srgb, var(--accent) 16%, transparent);
+  border-bottom-color: var(--accent);
+}
+
+.ds-select-value {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-align: left;
+}
+
+.ds-select-caret {
+  flex-shrink: 0;
+  color: var(--muted);
+  transition: transform var(--motion-hover);
+}
+
+.ds-select--open .ds-select-caret {
+  transform: rotate(180deg);
+}
+
+.ds-select-menu {
+  position: absolute;
+  z-index: 40;
+  top: calc(100% + var(--space-1));
+  left: 0;
+  min-width: 100%;
+  max-width: min(18rem, 80vw);
+  max-height: 14rem;
+  overflow: auto;
+  margin: 0;
+  padding: var(--space-1);
+  list-style: none;
+  background: var(--bg1, var(--panel, var(--field)));
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  box-shadow: 0 8px 24px color-mix(in srgb, var(--ink) 12%, transparent);
+}
+
+/* Portaled menu — escapes overflow:hidden / overflow-x:auto ancestors (e.g. canvas HUD). */
+.ds-select-menu--portal {
+  position: fixed;
+  min-width: 0;
+  max-width: min(18rem, calc(100vw - 1rem));
+}
+
+.ds-select-option {
+  display: block;
+  margin: 0;
+  padding: 0.28rem 0.45rem;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body);
+  font-size: var(--type-xs);
+  letter-spacing: var(--track-meta);
+  color: var(--ink);
+  cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ds-select-option--active {
+  background: color-mix(in srgb, var(--ink) 6%, transparent);
+}
+
+.ds-select-option--selected {
+  color: var(--accent);
+  font-weight: var(--weight-medium);
+}
+
+.ds-select-option--disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}

@@ -1,0 +1,18 @@
+import { Meta, Canvas } from '@storybook/addon-docs/blocks'
+import * as Stories from './PrintCover.stories'
+
+<Meta of={Stories} />
+
+# Print Cover
+
+Layer: `Print`
+
+Magazin-Cover für PDF-Twins: Eyebrow, Headline, Accent-Rule, optional Fazit und KPI-Ringe.
+
+## Default
+
+<Canvas of={Stories.Default} />
+
+## Spec
+
+Plexon `knowledge/eqc-magazine-pdf.md` · Tokens mirrored from `pdf/magazine/tokens.ts`

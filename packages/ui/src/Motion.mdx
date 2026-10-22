@@ -1,0 +1,40 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks'
+import * as Stories from './Motion.stories'
+
+<Meta of={Stories} />
+
+# Motion
+
+## Overview
+
+Duration, easing, motion recipes.
+
+## Anatomy
+
+Primary export for this Atomic entry. Prefer design-system tokens and CSS vars.
+
+## Usage
+
+<Canvas of={Stories.Default} />
+
+<Controls of={Stories.Default} />
+
+## Do and Don't
+
+### Do
+
+- Use the documented props and sizes (`sm` default for controls).
+- Keep copy on type roles / tokens — no ad-hoc rem weights.
+
+### Don't
+
+- Do not invent one-off styles outside the design-system CSS layers.
+- Do not call live APIs from Storybook stories.
+
+## Accessibility
+
+Prefer roles, labels, and keyboard paths already used in product UI.
+
+## Related
+
+See `specs/domain/zaoly-ui-storybook-atomic.md` and sibling Atomic entries.

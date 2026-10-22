@@ -1,0 +1,19 @@
+import { Meta, Canvas } from '@storybook/addon-docs/blocks'
+import * as Stories from './PrintQuickCheck.stories'
+
+<Meta of={Stories} />
+
+# Print Quick Check
+
+Layer: `Print`
+
+Volles Magazin-Print-Template (HTML-Twin) für den Quick-Check-PDF. Kapitelrhythmus: Cover → Domain → Verteilungen → E-E-A-T → Moves.
+
+## Magazine deck
+
+<Canvas of={Stories.MagazineDeck} />
+
+## Related
+
+- Plexon PDF: `lib/assistant/reports/pdf/eqc-magazine-pdf.tsx`
+- Spec: plexon `knowledge/eqc-magazine-pdf.md`

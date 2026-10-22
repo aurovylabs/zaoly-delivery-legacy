@@ -1,0 +1,19 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks'
+import * as Stories from './TopStatus.stories'
+
+<Meta of={Stories} />
+
+# TopStatus
+
+Layer: `Molecules`
+
+Compact live status line for overview topbars (`ok` / `warn` / `critical`).
+
+## Usage
+
+<Canvas of={Stories.Default} />
+<Controls of={Stories.Default} />
+
+## Related
+
+Spec: `specs/domain/zaoly-ui-overview-surfaces.md`

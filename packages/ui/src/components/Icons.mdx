@@ -1,0 +1,42 @@
+import { Meta, Canvas } from '@storybook/addon-docs/blocks'
+import * as Stories from './Icons.stories'
+
+<Meta of={Stories} />
+
+# Icons
+
+Layer: `Foundation`
+
+Named `Icon*` exports from `@zaoly/ui` — fully custom (`ds-ui-icon`). No `lucide-react`.
+
+Spec: `specs/domain/zaoly-ui-icon-language.md` · Inventory: `knowledge/icon-catalog.md`
+
+## All icons
+
+Complete catalog (auto-collected from exports).
+
+<Canvas of={Stories.All} />
+
+## Box spacing
+
+Gap · **Padding** (inner ticks) · **Margin** (dashed outer + outward ticks) · Radius — used by CREATION Smart HUD length menus.
+
+<Canvas of={Stories.BoxSpacing} />
+
+## Table structure
+
+**Add row** (grid + bottom plus) · **Add column** (grid + side plus) — CREATION SiteTable HUD / Inspect.
+
+<Canvas of={Stories.TableStructure} />
+
+## Table segmented
+
+Density (compact / default / comfort) · Borders (none / row / all) — CREATION SiteTable HUD Wave C.
+
+<Canvas of={Stories.TableSegmented} />
+
+## Size ladder
+
+Hairline strokes stay sharp from 16 → 48 via `non-scaling-stroke`.
+
+<Canvas of={Stories.SizeLadder} />

@@ -1,0 +1,20 @@
+import { Meta, Canvas } from '@storybook/addon-docs/blocks'
+import * as Stories from './TokenKindGlyph.stories'
+
+<Meta of={Stories} />
+
+# TokenKindGlyph
+
+Layer: `molecules`
+
+Compact type metaphor (no resolved value) for Token Studio filter chips and structured token rows. Pair with `TokenPreview` when a digital value is available.
+
+**Spec:** `specs/domain/zaoly-ui-token-picker.md`
+
+## Catalog
+
+<Canvas of={Stories.Catalog} />
+
+## Studio type mapping
+
+<Canvas of={Stories.FromStudioTypes} />

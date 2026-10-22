@@ -1,0 +1,32 @@
+import { Meta, Canvas } from '@storybook/addon-docs/blocks'
+import * as Stories from './Flyout.stories'
+
+<Meta of={Stories} />
+
+# Flyout
+
+Layer: `Molecules`
+
+Icon-triggered panel under a ghost button. **Default surface is solid** (opaque + hairline + sharp radius). Frosted glass is opt-in via `surface="glass"`. No full-page overlay/scrim.
+
+## Usage
+
+<Canvas of={Stories.Default} />
+
+## Glass (opt-in)
+
+<Canvas of={Stories.Glass} />
+
+## Do
+
+- Use default solid for AUDION/CHECKION magazine topbars.
+- Keep product domain content in children; Flyout is shell only.
+
+## Don't
+
+- Default to glass on editorial surfaces.
+- Add a page-level scrim (use Dialog for true modals).
+
+## Spec
+
+`specs/domain/zaoly-ui-flyout.md`

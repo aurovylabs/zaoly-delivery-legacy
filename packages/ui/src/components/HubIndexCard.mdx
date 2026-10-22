@@ -1,0 +1,25 @@
+# HubIndexCard
+
+Layer: `molecules`
+
+Shared hub index tile — `Panel variant="card"` with title, meta, optional media, create variant.
+
+**Spec:** `specs/domain/zaoly-ui-hub-index-card.md`  
+**Origin:** Audion project / persona index cards
+
+## Stories
+
+- Default / WithMedia / Create
+
+```tsx
+import { HubIndexCard } from '@zaoly/ui'
+
+<HubIndexCard
+  href="/editor?sceneId=…"
+  title="Landing"
+  meta="Draft"
+  media={<iframe … />}
+/>
+
+<HubIndexCard variant="create" title="New composition" meta="…" onClick={openDialog} />
+```

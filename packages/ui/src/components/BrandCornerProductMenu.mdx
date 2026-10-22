@@ -1,0 +1,12 @@
+import { Meta } from '@storybook/addon-docs/blocks'
+import * as Stories from './BrandCornerProductMenu.stories'
+
+<Meta of={Stories} />
+
+# BrandCornerProductMenu
+
+Top-right **BrandCorner** plaque that opens a federated **product launcher** on click. Hover label-expand is unchanged; when the menu is open the label stays visible.
+
+Apps supply `items` (id, label, href) and `currentProductId`. Entitlements and registry URLs stay in Plexon — not in `@zaoly/ui`.
+
+See `specs/domain/zaoly-ui-product-switcher.md`.

@@ -1,0 +1,13 @@
+# SeriesChart
+
+Layer: `molecules`
+
+Multi-series line chart for shared categorical / time labels. Spec: `specs/domain/zaoly-ui-series-chart.md`.
+
+## Props
+- `series` — `{ id, label, points: { label, value | null }[] }[]`
+- `invertY` — rank charts (higher value plots lower)
+- Null values break the path (gap)
+
+## Stories
+Default · InvertY · WithGaps · Empty

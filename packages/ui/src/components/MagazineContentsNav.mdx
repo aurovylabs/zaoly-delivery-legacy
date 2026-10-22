@@ -1,0 +1,28 @@
+# MagazineContentsNav
+
+Layer: `molecules`
+
+Sticky magazine **Contents** navigation with optional scroll-compact behavior.
+
+**Spec:** `specs/domain/zaoly-ui-magazine-contents-nav.md`  
+**Origin:** Brandion Guideline Studio + Checkion Result/GEO section nav.
+
+## Stories
+
+- Default / Compact / WithExit
+- Brandion · Guideline Studio
+- Checkion · Result sections
+
+## Usage
+
+```tsx
+import { MagazineContentsNav } from '@zaoly/ui'
+
+<MagazineContentsNav
+  items={[{ id: 'tokens', index: '01', label: 'Tokens', href: '/g/1/tokens' }]}
+  activeId="tokens"
+  exit={<a href="/hub">Analysis Hub</a>}
+/>
+```
+
+Pass `renderItem` when the host router needs `next/link`.

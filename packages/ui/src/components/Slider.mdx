@@ -1,0 +1,15 @@
+# Slider
+
+Layer: `atoms`
+
+Tokenized interactive range — see `specs/domain/zaoly-ui-slider.md`.
+
+## Usage
+
+```tsx
+import { Slider } from '@zaoly/ui'
+
+<Slider value={pct} onChange={setPct} onCommit={save} aria-label="Score" />
+```
+
+Prefer wrapping with `Meter` / `MeterList` when a label + value readout is needed.

@@ -1,0 +1,98 @@
+import { Meta, Canvas } from '@storybook/addon-docs/blocks'
+import * as Stories from './InspectLayoutGlyphs.stories'
+
+<Meta of={Stories} />
+
+# Inspect Layout Glyphs
+
+Layer: `Foundation`
+
+Theme-aware SVG diagrams for inspect chrome: size modes (Hug / Fill / Fixed), media fit (Cover / Contain / …), and grid column / span presets.
+
+Fills use `--ink` (readable on light and dark). Accents use `--accent`. Frames use `--line`. Do not hardcode `#fff` or brand hex in consumers.
+
+Spec: `specs/domain/zaoly-ui-inspect-layout-glyphs.md`
+
+## Size modes
+
+<Canvas of={Stories.SizeModes} />
+
+## Media fit
+
+<Canvas of={Stories.MediaFit} />
+
+## Grid columns
+
+<Canvas of={Stories.GridColumns} />
+
+## Grid span
+
+<Canvas of={Stories.GridSpan} />
+
+## All families
+
+<Canvas of={Stories.AllFamilies} />
+
+## Vs Icons
+
+Optical parity with Foundation Lucide icons (`IconColumns`, `IconStretch`, `IconBox`, …).
+
+<Canvas of={Stories.VsIcons} />
+
+## Distribute & cell park
+
+<Canvas of={Stories.DistributeAndPark} />
+
+## Flow / wrap / auto-flow
+
+<Canvas of={Stories.FlowWrapAutoFlow} />
+
+## Position / overflow / border
+
+<Canvas of={Stories.PositionOverflowBorder} />
+
+## Background position & clip presets
+
+<Canvas of={Stories.BgPosAndClip} />
+
+## Self-park & nine-point
+
+<Canvas of={Stories.SelfParkAndNinePoint} />
+
+## Text / aspect / gap
+
+<Canvas of={Stories.TextAspectDisplay} />
+
+## Display modes
+
+Full CSS `display` catalog — consumer wiring optional.
+
+<Canvas of={Stories.DisplayModes} />
+
+## Catalog reserve
+
+Visibility, box-sizing, float, writing-mode, white-space, margin/padding, stack order — shipped in DS for later apps.
+
+<Canvas of={Stories.CatalogReserve} />
+
+## Catalog strip
+
+<Canvas of={Stories.Catalog} />
+
+## Size ladder
+
+Official tokens: `INSPECT_GLYPH_SIZE.sm|md|lg|xl` (16 / 24 / 32 / 48). Same geometry; SVG `size` scales the icon, strokes stay hairline for a sharp look.
+
+<Canvas of={Stories.SizeLadder} />
+
+## Large (48px)
+
+Full catalog review surface at docs / tile scale.
+
+<Canvas of={Stories.Large} />
+
+## Large (32px)
+
+Segmented-control / chip scale sample.
+
+<Canvas of={Stories.LargeMd} />

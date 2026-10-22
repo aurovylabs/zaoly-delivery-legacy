@@ -1,0 +1,1147 @@
+{
+  "$schema": "https://design-tokens.github.io/community-group/format/1.0.0/schema.json",
+  "color": {
+    "brand": {
+      "purple": {
+        "$type": "color",
+        "$value": {
+          "digital": {
+            "hex": "#b638ff"
+          }
+        }
+      },
+      "yellow": {
+        "$type": "color",
+        "$value": {
+          "digital": {
+            "hex": "#fef14d"
+          }
+        }
+      },
+      "pink": {
+        "$type": "color",
+        "$value": {
+          "digital": {
+            "hex": "#f256b6"
+          }
+        }
+      },
+      "pinkOnLight": {
+        "$type": "color",
+        "$value": {
+          "digital": {
+            "hex": "#d5108a"
+          }
+        }
+      },
+      "orange": {
+        "$type": "color",
+        "$value": {
+          "digital": {
+            "hex": "#ff6a3b"
+          }
+        }
+      },
+      "green": {
+        "$type": "color",
+        "$value": {
+          "digital": {
+            "hex": "#00ca55"
+          }
+        }
+      },
+      "blue": {
+        "$type": "color",
+        "$value": {
+          "digital": {
+            "hex": "#3080ff"
+          }
+        }
+      },
+      "black": {
+        "$type": "color",
+        "$value": {
+          "digital": {
+            "hex": "#000000"
+          }
+        }
+      },
+      "white": {
+        "$type": "color",
+        "$value": {
+          "digital": {
+            "hex": "#ffffff"
+          }
+        }
+      },
+      "neutral": {
+        "$type": "color",
+        "$value": {
+          "digital": {
+            "hex": "#f8f6f0"
+          }
+        }
+      },
+      "greyLight": {
+        "$type": "color",
+        "$value": {
+          "digital": {
+            "hex": "#d4d2d2"
+          }
+        }
+      }
+    },
+    "background": {
+      "$type": "color",
+      "$value": {
+        "digital": {
+          "hex": "#0f0f0f"
+        }
+      }
+    },
+    "surface": {
+      "base": {
+        "$type": "color",
+        "$value": {
+          "digital": {
+            "hex": "#1a1a1a"
+          }
+        }
+      },
+      "elevated": {
+        "$type": "color",
+        "$value": {
+          "digital": {
+            "rgba": "rgba(26, 26, 26, 0.92)"
+          }
+        }
+      },
+      "raised": {
+        "$type": "color",
+        "$value": {
+          "digital": {
+            "hex": "#262626"
+          }
+        }
+      }
+    },
+    "ink": {
+      "$type": "color",
+      "$value": {
+        "digital": {
+          "hex": "#ffffff"
+        }
+      }
+    },
+    "muted": {
+      "$type": "color",
+      "$value": {
+        "digital": {
+          "hex": "#a3a3a3"
+        }
+      }
+    },
+    "action": {
+      "primary": {
+        "$type": "color",
+        "$value": {
+          "digital": {
+            "hex": "#ff6a3b"
+          }
+        }
+      }
+    },
+    "line": {
+      "$type": "color",
+      "$value": {
+        "digital": {
+          "rgba": "rgba(255, 255, 255, 0.12)"
+        }
+      }
+    },
+    "status": {
+      "danger": {
+        "$type": "color",
+        "$value": {
+          "digital": {
+            "hex": "#f87171"
+          }
+        }
+      },
+      "ok": {
+        "$type": "color",
+        "$value": {
+          "digital": {
+            "hex": "#00ca55"
+          }
+        }
+      },
+      "warn": {
+        "$type": "color",
+        "$value": {
+          "digital": {
+            "hex": "#fef14d"
+          }
+        }
+      },
+      "pipeline": {
+        "completed": {
+          "$type": "color",
+          "$value": {
+            "digital": {
+              "hex": "#00ca55"
+            }
+          }
+        },
+        "enriched": {
+          "$type": "color",
+          "$value": {
+            "digital": {
+              "hex": "#16a34a"
+            }
+          }
+        },
+        "category_ready": {
+          "$type": "color",
+          "$value": {
+            "digital": {
+              "hex": "#22c55e"
+            }
+          }
+        },
+        "category_queued": {
+          "$type": "color",
+          "$value": {
+            "digital": {
+              "hex": "#fef14d"
+            }
+          }
+        },
+        "enrich_queued": {
+          "$type": "color",
+          "$value": {
+            "digital": {
+              "hex": "#ff6a3b"
+            }
+          }
+        },
+        "embed_queued": {
+          "$type": "color",
+          "$value": {
+            "digital": {
+              "hex": "#ea580c"
+            }
+          }
+        },
+        "content_ready": {
+          "$type": "color",
+          "$value": {
+            "digital": {
+              "hex": "#3080ff"
+            }
+          }
+        },
+        "skipped_near_dup": {
+          "$type": "color",
+          "$value": {
+            "digital": {
+              "hex": "#94a3b8"
+            }
+          }
+        },
+        "failed_enrich": {
+          "$type": "color",
+          "$value": {
+            "digital": {
+              "hex": "#ef4444"
+            }
+          }
+        }
+      }
+    },
+    "field": {
+      "$type": "color",
+      "$value": {
+        "digital": {
+          "hex": "#2a2a2a"
+        }
+      }
+    },
+    "inkStrong": {
+      "$type": "color",
+      "$value": {
+        "digital": {
+          "hex": "#ffffff"
+        }
+      }
+    },
+    "track": {
+      "$type": "color",
+      "$value": {
+        "digital": {
+          "rgba": "rgba(255, 255, 255, 0.16)"
+        }
+      }
+    },
+    "role": {
+      "foresight": {
+        "$type": "color",
+        "$value": {
+          "digital": {
+            "hex": "#ff6a3b"
+          }
+        }
+      },
+      "research": {
+        "$type": "color",
+        "$value": {
+          "digital": {
+            "hex": "#3080ff"
+          }
+        }
+      },
+      "waves": {
+        "$type": "color",
+        "$value": {
+          "digital": {
+            "hex": "#b638ff"
+          }
+        }
+      },
+      "signals": {
+        "$type": "color",
+        "$value": {
+          "digital": {
+            "hex": "#f256b6"
+          }
+        }
+      },
+      "sources": {
+        "$type": "color",
+        "$value": {
+          "digital": {
+            "hex": "#00ca55"
+          }
+        }
+      },
+      "ops": {
+        "$type": "color",
+        "$value": {
+          "digital": {
+            "hex": "#a3a3a3"
+          }
+        }
+      },
+      "corpus": {
+        "$type": "color",
+        "$value": {
+          "digital": {
+            "hex": "#ff6a3b"
+          }
+        }
+      },
+      "pipeline": {
+        "$type": "color",
+        "$value": {
+          "digital": {
+            "hex": "#3080ff"
+          }
+        }
+      }
+    },
+    "chart": {
+      "muted": {
+        "$type": "color",
+        "$value": {
+          "digital": {
+            "hex": "#a3a3a3"
+          }
+        }
+      },
+      "accent": {
+        "$type": "color",
+        "$value": {
+          "digital": {
+            "hex": "#ff6a3b"
+          }
+        }
+      },
+      "ok": {
+        "$type": "color",
+        "$value": {
+          "digital": {
+            "hex": "#00ca55"
+          }
+        }
+      },
+      "ink": {
+        "$type": "color",
+        "$value": {
+          "digital": {
+            "hex": "#ffffff"
+          }
+        }
+      },
+      "grid": {
+        "$type": "color",
+        "$value": {
+          "digital": {
+            "rgba": "rgba(255, 255, 255, 0.12)"
+          }
+        }
+      },
+      "tipBg": {
+        "$type": "color",
+        "$value": {
+          "digital": {
+            "hex": "#1a1a1a"
+          }
+        }
+      },
+      "tipBorder": {
+        "$type": "color",
+        "$value": {
+          "digital": {
+            "rgba": "rgba(255, 255, 255, 0.16)"
+          }
+        }
+      },
+      "tipFg": {
+        "$type": "color",
+        "$value": {
+          "digital": {
+            "hex": "#ffffff"
+          }
+        }
+      }
+    }
+  },
+  "spacing": {
+    "static": {
+      "1": {
+        "$type": "spacing",
+        "$value": {
+          "digital": "0.25rem"
+        }
+      },
+      "2": {
+        "$type": "spacing",
+        "$value": {
+          "digital": "0.5rem"
+        }
+      },
+      "3": {
+        "$type": "spacing",
+        "$value": {
+          "digital": "0.75rem"
+        }
+      },
+      "4": {
+        "$type": "spacing",
+        "$value": {
+          "digital": "1rem"
+        }
+      },
+      "5": {
+        "$type": "spacing",
+        "$value": {
+          "digital": "1.5rem"
+        }
+      },
+      "6": {
+        "$type": "spacing",
+        "$value": {
+          "digital": "2rem"
+        }
+      }
+    },
+    "padding": {
+      "xs": {
+        "$type": "spacing",
+        "$value": {
+          "digital": "0.25rem"
+        }
+      },
+      "sm": {
+        "$type": "spacing",
+        "$value": {
+          "digital": "0.5rem"
+        }
+      },
+      "md": {
+        "$type": "spacing",
+        "$value": {
+          "digital": "0.75rem"
+        }
+      },
+      "lg": {
+        "$type": "spacing",
+        "$value": {
+          "digital": "1rem"
+        }
+      },
+      "xl": {
+        "$type": "spacing",
+        "$value": {
+          "digital": "1.5rem"
+        }
+      },
+      "2xl": {
+        "$type": "spacing",
+        "$value": {
+          "digital": "2rem"
+        }
+      }
+    },
+    "margin": {
+      "xs": {
+        "$type": "spacing",
+        "$value": {
+          "digital": "0.25rem"
+        }
+      },
+      "sm": {
+        "$type": "spacing",
+        "$value": {
+          "digital": "0.5rem"
+        }
+      },
+      "md": {
+        "$type": "spacing",
+        "$value": {
+          "digital": "0.75rem"
+        }
+      },
+      "lg": {
+        "$type": "spacing",
+        "$value": {
+          "digital": "1rem"
+        }
+      },
+      "xl": {
+        "$type": "spacing",
+        "$value": {
+          "digital": "1.5rem"
+        }
+      },
+      "2xl": {
+        "$type": "spacing",
+        "$value": {
+          "digital": "2rem"
+        }
+      },
+      "page": {
+        "$type": "spacing",
+        "$value": {
+          "digital": "2rem"
+        }
+      },
+      "top": {
+        "$type": "spacing",
+        "$value": {
+          "digital": "1.5rem"
+        }
+      }
+    },
+    "gap": {
+      "xs": {
+        "$type": "spacing",
+        "$value": {
+          "digital": "0.25rem"
+        }
+      },
+      "sm": {
+        "$type": "spacing",
+        "$value": {
+          "digital": "0.5rem"
+        }
+      },
+      "md": {
+        "$type": "spacing",
+        "$value": {
+          "digital": "0.75rem"
+        }
+      },
+      "lg": {
+        "$type": "spacing",
+        "$value": {
+          "digital": "1rem"
+        }
+      },
+      "xl": {
+        "$type": "spacing",
+        "$value": {
+          "digital": "1.5rem"
+        }
+      },
+      "2xl": {
+        "$type": "spacing",
+        "$value": {
+          "digital": "2rem"
+        }
+      },
+      "tight": {
+        "$type": "spacing",
+        "$value": {
+          "digital": "0.5rem"
+        }
+      },
+      "modules": {
+        "$type": "spacing",
+        "$value": {
+          "digital": "1rem"
+        }
+      }
+    }
+  },
+  "radius": {
+    "control": {
+      "sm": {
+        "$type": "radius",
+        "$value": {
+          "digital": "2px"
+        }
+      },
+      "md": {
+        "$type": "radius",
+        "$value": {
+          "digital": "6px"
+        }
+      }
+    },
+    "panel": {
+      "$type": "radius",
+      "$value": {
+        "digital": "12px"
+      }
+    },
+    "pill": {
+      "$type": "radius",
+      "$value": {
+        "digital": "999px"
+      }
+    },
+    "sheet": {
+      "$type": "radius",
+      "$value": {
+        "digital": "1.75rem"
+      }
+    }
+  },
+  "typography": {
+    "family": {
+      "display": {
+        "$type": "typography",
+        "$value": {
+          "family": "'Noto Sans JP', 'Noto Sans', system-ui, sans-serif"
+        }
+      },
+      "body": {
+        "$type": "typography",
+        "$value": {
+          "family": "'Noto Sans JP', 'Noto Sans', system-ui, sans-serif"
+        }
+      },
+      "mono": {
+        "$type": "typography",
+        "$value": {
+          "family": "'IBM Plex Mono', ui-monospace, monospace"
+        }
+      }
+    },
+    "scale": {
+      "2xs": {
+        "$type": "typography",
+        "$value": {
+          "family": "'Noto Sans JP', 'Noto Sans', system-ui, sans-serif",
+          "digital": {
+            "size": "0.62rem"
+          }
+        }
+      },
+      "xs": {
+        "$type": "typography",
+        "$value": {
+          "family": "'Noto Sans JP', 'Noto Sans', system-ui, sans-serif",
+          "digital": {
+            "size": "0.65rem"
+          }
+        }
+      },
+      "sm": {
+        "$type": "typography",
+        "$value": {
+          "family": "'Noto Sans JP', 'Noto Sans', system-ui, sans-serif",
+          "digital": {
+            "size": "0.72rem"
+          }
+        }
+      },
+      "md": {
+        "$type": "typography",
+        "$value": {
+          "family": "'Noto Sans JP', 'Noto Sans', system-ui, sans-serif",
+          "digital": {
+            "size": "0.78rem"
+          }
+        }
+      },
+      "lg": {
+        "$type": "typography",
+        "$value": {
+          "family": "'Noto Sans JP', 'Noto Sans', system-ui, sans-serif",
+          "digital": {
+            "size": "0.88rem"
+          }
+        }
+      },
+      "xl": {
+        "$type": "typography",
+        "$value": {
+          "family": "'Noto Sans JP', 'Noto Sans', system-ui, sans-serif",
+          "digital": {
+            "size": "1rem"
+          }
+        }
+      },
+      "2xl": {
+        "$type": "typography",
+        "$value": {
+          "family": "'Noto Sans JP', 'Noto Sans', system-ui, sans-serif",
+          "digital": {
+            "size": "1.15rem"
+          }
+        }
+      },
+      "3xl": {
+        "$type": "typography",
+        "$value": {
+          "family": "'Noto Sans JP', 'Noto Sans', system-ui, sans-serif",
+          "digital": {
+            "size": "1.5rem"
+          }
+        }
+      },
+      "display": {
+        "$type": "typography",
+        "$value": {
+          "family": "'Noto Sans JP', 'Noto Sans', system-ui, sans-serif",
+          "digital": {
+            "size": "clamp(1.55rem, 3.6vw, 2.35rem)"
+          }
+        }
+      },
+      "brand": {
+        "$type": "typography",
+        "$value": {
+          "family": "'Noto Sans JP', 'Noto Sans', system-ui, sans-serif",
+          "digital": {
+            "size": "clamp(2.8rem, 8vw, 4.5rem)"
+          }
+        }
+      }
+    },
+    "weight": {
+      "thin": {
+        "$type": "typography",
+        "$value": {
+          "family": "'Noto Sans JP', 'Noto Sans', system-ui, sans-serif",
+          "weight": "200",
+          "digital": {
+            "weight": "200"
+          }
+        }
+      },
+      "light": {
+        "$type": "typography",
+        "$value": {
+          "family": "'Noto Sans JP', 'Noto Sans', system-ui, sans-serif",
+          "weight": "300",
+          "digital": {
+            "weight": "300"
+          }
+        }
+      },
+      "regular": {
+        "$type": "typography",
+        "$value": {
+          "family": "'Noto Sans JP', 'Noto Sans', system-ui, sans-serif",
+          "weight": "400",
+          "digital": {
+            "weight": "400"
+          }
+        }
+      },
+      "medium": {
+        "$type": "typography",
+        "$value": {
+          "family": "'Noto Sans JP', 'Noto Sans', system-ui, sans-serif",
+          "weight": "500",
+          "digital": {
+            "weight": "500"
+          }
+        }
+      },
+      "semibold": {
+        "$type": "typography",
+        "$value": {
+          "family": "'Noto Sans JP', 'Noto Sans', system-ui, sans-serif",
+          "weight": "600",
+          "digital": {
+            "weight": "600"
+          }
+        }
+      },
+      "bold": {
+        "$type": "typography",
+        "$value": {
+          "family": "'Noto Sans JP', 'Noto Sans', system-ui, sans-serif",
+          "weight": "700",
+          "digital": {
+            "weight": "700"
+          }
+        }
+      }
+    },
+    "tracking": {
+      "label": {
+        "$type": "typography",
+        "$value": {
+          "family": "'Noto Sans JP', 'Noto Sans', system-ui, sans-serif",
+          "digital": {
+            "letterSpacing": "0.06em"
+          }
+        }
+      },
+      "meta": {
+        "$type": "typography",
+        "$value": {
+          "family": "'Noto Sans JP', 'Noto Sans', system-ui, sans-serif",
+          "digital": {
+            "letterSpacing": "0.04em"
+          }
+        }
+      },
+      "tight": {
+        "$type": "typography",
+        "$value": {
+          "family": "'Noto Sans JP', 'Noto Sans', system-ui, sans-serif",
+          "digital": {
+            "letterSpacing": "-0.01em"
+          }
+        }
+      },
+      "display": {
+        "$type": "typography",
+        "$value": {
+          "family": "'Noto Sans JP', 'Noto Sans', system-ui, sans-serif",
+          "digital": {
+            "letterSpacing": "-0.02em"
+          }
+        }
+      }
+    },
+    "role": {
+      "display": {
+        "$type": "typography",
+        "$value": {
+          "family": "'Noto Sans JP', 'Noto Sans', system-ui, sans-serif",
+          "weight": "700",
+          "digital": {
+            "size": "clamp(1.55rem, 3.6vw, 2.35rem)",
+            "weight": "700",
+            "letterSpacing": "-0.02em"
+          }
+        }
+      },
+      "headline": {
+        "$type": "typography",
+        "$value": {
+          "family": "'Noto Sans JP', 'Noto Sans', system-ui, sans-serif",
+          "weight": "700",
+          "digital": {
+            "size": "1.5rem",
+            "weight": "700",
+            "letterSpacing": "-0.01em"
+          }
+        }
+      },
+      "title": {
+        "$type": "typography",
+        "$value": {
+          "family": "'Noto Sans JP', 'Noto Sans', system-ui, sans-serif",
+          "weight": "600",
+          "digital": {
+            "size": "1.15rem",
+            "weight": "600"
+          }
+        }
+      },
+      "body": {
+        "$type": "typography",
+        "$value": {
+          "family": "'Noto Sans JP', 'Noto Sans', system-ui, sans-serif",
+          "weight": "400",
+          "digital": {
+            "size": "0.78rem",
+            "weight": "400"
+          }
+        }
+      },
+      "label": {
+        "$type": "typography",
+        "$value": {
+          "family": "'Noto Sans JP', 'Noto Sans', system-ui, sans-serif",
+          "weight": "500",
+          "digital": {
+            "size": "0.72rem",
+            "weight": "500",
+            "letterSpacing": "0.06em"
+          }
+        }
+      },
+      "meta": {
+        "$type": "typography",
+        "$value": {
+          "family": "'Noto Sans JP', 'Noto Sans', system-ui, sans-serif",
+          "weight": "400",
+          "digital": {
+            "size": "0.65rem",
+            "weight": "400",
+            "letterSpacing": "0.04em"
+          }
+        }
+      },
+      "hint": {
+        "$type": "typography",
+        "$value": {
+          "family": "'Noto Sans JP', 'Noto Sans', system-ui, sans-serif",
+          "weight": "400",
+          "digital": {
+            "size": "0.62rem",
+            "weight": "400"
+          }
+        }
+      },
+      "mono": {
+        "$type": "typography",
+        "$value": {
+          "family": "'IBM Plex Mono', ui-monospace, monospace",
+          "weight": "400",
+          "digital": {
+            "size": "0.72rem",
+            "weight": "400"
+          }
+        }
+      },
+      "numeric": {
+        "$type": "typography",
+        "$value": {
+          "family": "'IBM Plex Mono', ui-monospace, monospace",
+          "weight": "500",
+          "digital": {
+            "size": "0.78rem",
+            "weight": "500"
+          }
+        }
+      }
+    },
+    "body": {
+      "family": {
+        "$type": "typography",
+        "$value": {
+          "family": "'Noto Sans JP', 'Noto Sans', system-ui, sans-serif",
+          "weight": "400",
+          "digital": {
+            "size": "0.78rem",
+            "weight": "400"
+          }
+        }
+      }
+    },
+    "heading": {
+      "h1": {
+        "$type": "typography",
+        "$value": {
+          "family": "'Noto Sans JP', 'Noto Sans', system-ui, sans-serif",
+          "weight": "700",
+          "digital": {
+            "size": "1.5rem",
+            "weight": "700",
+            "letterSpacing": "-0.01em"
+          }
+        }
+      }
+    }
+  },
+  "motion": {
+    "duration": {
+      "instant": {
+        "$type": "motion.duration",
+        "$value": {
+          "digital": "50ms"
+        }
+      },
+      "fast": {
+        "$type": "motion.duration",
+        "$value": {
+          "digital": "120ms"
+        }
+      },
+      "snappy": {
+        "$type": "motion.duration",
+        "$value": {
+          "digital": "160ms"
+        }
+      },
+      "normal": {
+        "$type": "motion.duration",
+        "$value": {
+          "digital": "220ms"
+        }
+      },
+      "moderate": {
+        "$type": "motion.duration",
+        "$value": {
+          "digital": "320ms"
+        }
+      },
+      "slow": {
+        "$type": "motion.duration",
+        "$value": {
+          "digital": "420ms"
+        }
+      },
+      "deliberate": {
+        "$type": "motion.duration",
+        "$value": {
+          "digital": "800ms"
+        }
+      },
+      "fade": {
+        "$type": "motion.duration",
+        "$value": {
+          "digital": "100ms"
+        }
+      },
+      "pulse": {
+        "$type": "motion.duration",
+        "$value": {
+          "digital": "1600ms"
+        }
+      },
+      "orbit": {
+        "$type": "motion.duration",
+        "$value": {
+          "digital": "2400ms"
+        }
+      }
+    },
+    "easing": {
+      "linear": {
+        "$type": "motion.easing",
+        "$value": {
+          "digital": "linear"
+        }
+      },
+      "standard": {
+        "$type": "motion.easing",
+        "$value": {
+          "digital": "cubic-bezier(0.4, 0, 0.2, 1)"
+        }
+      },
+      "enter": {
+        "$type": "motion.easing",
+        "$value": {
+          "digital": "cubic-bezier(0, 0, 0.2, 1)"
+        }
+      },
+      "exit": {
+        "$type": "motion.easing",
+        "$value": {
+          "digital": "cubic-bezier(0.4, 0, 1, 1)"
+        }
+      },
+      "emphasized": {
+        "$type": "motion.easing",
+        "$value": {
+          "digital": "cubic-bezier(0.2, 0.9, 0.1, 1)"
+        }
+      },
+      "inOut": {
+        "$type": "motion.easing",
+        "$value": {
+          "digital": "cubic-bezier(0.45, 0, 0.55, 1)"
+        }
+      }
+    }
+  },
+  "size": {
+    "icon": {
+      "sm": {
+        "$type": "size",
+        "$value": {
+          "digital": {
+            "min": "14px",
+            "preferred": "14px"
+          }
+        }
+      },
+      "md": {
+        "$type": "size",
+        "$value": {
+          "digital": {
+            "min": "18px",
+            "preferred": "18px"
+          }
+        }
+      }
+    }
+  },
+  "opacity": {
+    "overlay": {
+      "$type": "opacity",
+      "$value": {
+        "digital": "0.2"
+      }
+    }
+  },
+  "layout": {
+    "breakpoint": {
+      "sm": {
+        "$type": "layout.breakpoint",
+        "$value": {
+          "digital": {
+            "minWidth": "0px"
+          }
+        }
+      },
+      "md": {
+        "$type": "layout.breakpoint",
+        "$value": {
+          "digital": {
+            "minWidth": "641px"
+          }
+        }
+      },
+      "lg": {
+        "$type": "layout.breakpoint",
+        "$value": {
+          "digital": {
+            "minWidth": "1200px"
+          }
+        }
+      }
+    },
+    "container": {
+      "content": {
+        "$type": "layout.container",
+        "$value": {
+          "digital": {
+            "padding": "1rem"
+          }
+        }
+      }
+    }
+  }
+}

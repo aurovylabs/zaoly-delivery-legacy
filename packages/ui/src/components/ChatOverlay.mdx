@@ -1,0 +1,50 @@
+import { Meta, Canvas } from '@storybook/addon-docs/blocks'
+import * as Stories from './ChatOverlay.stories'
+
+<Meta of={Stories} />
+
+# ChatOverlay
+
+Layer: `Organisms`
+
+Domain-free chat flyout / overlay shell (`dock-end` | `center`). Body is a slot for a **composed** compact chat panel or a product iframe (Plexon `/assistant/embed`).
+
+Token surfaces (`--panel` / `--bg1`, `--line`, `--ink`, `--overlay-scrim`) follow host `data-theme` — use the Storybook theme toolbar to verify light/dark.
+
+## Dock end (primary)
+
+Side sheet `min(32rem, 100%)` — classical assistant flyout.
+
+<Canvas of={Stories.DockEnd} />
+
+## Center
+
+Modal sheet placement.
+
+<Canvas of={Stories.Center} />
+
+## Composed panel (native body)
+
+In-process panel in the body slot (Plexon hybrid same-origin pattern). Expand lives in `headerActions`.
+
+<Canvas of={Stories.ComposedPanel} />
+
+## Iframe slot
+
+Cross-app host pattern — iframe fills `.chat-overlay-body`.
+
+<Canvas of={Stories.IframeSlot} />
+
+## Do
+
+- Mount from product AppShell hosts (`PlatformAssistantHost`).
+- Keep assistant/domain message logic out of this package.
+
+## Don't
+
+- Put a second page title / expand chrome inside the body when the overlay header already owns them.
+- Hardcode light/dark colors on the sheet.
+
+## Spec
+
+`specs/domain/zaoly-ui-chat-overlay.md`

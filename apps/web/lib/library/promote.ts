@@ -1,0 +1,188 @@
+/**
+ * Phase 4 — apply a validated promote proposal as a GitHub PR.
+ * MUST NOT push `main`. MUST NOT call Coolify.
+ */
+
+import {
+  dryRunLibraryPromote,
+  type PromoteDryRunInput,
+  type PromoteDryRunResult,
+  type PromoteProposal,
+} from './promote-dry-run'
+import {
+  createFetchGithubPort,
+  parseOwnerRepo,
+  promoteBranchName,
+  type PromoteGithubPort,
+} from './github-promote'
+import { isAllowedPromoteGitPath } from './promote-files'
+import {
+  applyExtendToComponentSource,
+  ExtendUnrepresentableError,
+} from './promote-extend'
+import { paths } from '../paths'
+import {
+  githubApiUrl,
+  githubPromoteConfigured,
+  githubToken,
+  zaolyUiGithubRepo,
+} from '../runtime-config'
+
+export type PromoteApplyResult = PromoteDryRunResult
+
+export type ApplyPromoteDeps = {
+  github?: PromoteGithubPort
+}
+
+function fail(
+  code: 'github-unconfigured' | 'github-failed',
+  message: string,
+): PromoteApplyResult {
+  return { ok: false, error: message, issues: [{ code, message }] }
+}
+
+function commitMessage(proposal: PromoteProposal): string {
+  if (proposal.kind === 'P1') {
+    const type = proposal.files[0]?.type ?? 'primitive'
+    return `Promote P1 ${type} args (CREATION library promote)`
+  }
+  if (proposal.kind === 'P4') {
+    const type = proposal.files[0]?.type ?? 'primitive'
+    return `Promote P4 ${type} extend primitive (CREATION library promote)`
+  }
+  return `Promote P2 sanitized template fixture (CREATION library promote)`
+}
+
+export async function applyLibraryPromote(
+  input: PromoteDryRunInput,
+  deps: ApplyPromoteDeps = {},
+): Promise<PromoteApplyResult> {
+  const dry = dryRunLibraryPromote(input)
+  if (!dry.ok) return dry
+
+  const github = deps.github ?? (githubPromoteConfigured()
+    ? createFetchGithubPort({
+        token: githubToken(),
+        apiBase: githubApiUrl(),
+        apiVersion: paths.githubApiVersion,
+        userAgent: paths.githubPromoteUserAgent,
+      })
+    : undefined)
+
+  if (!github) {
+    return fail('github-unconfigured', 'GITHUB_TOKEN is not configured')
+  }
+
+  const proposal = dry.proposal
+  const materialized: { path: string; contents: string }[] = []
+  for (const file of proposal.files) {
+    if (!isAllowedPromoteGitPath(file.path)) {
+      return fail('github-failed', `Refusing to write ${file.path}`)
+    }
+    if (file.kind === 'extend-api') {
+      continue
+    }
+    if (!file.contents) {
+      return fail('github-failed', `Refusing to write ${file.path}`)
+    }
+    materialized.push({ path: file.path, contents: file.contents })
+  }
+
+  const id =
+    proposal.kind === 'P1' || proposal.kind === 'P4'
+      ? (proposal.files[0]?.nodeId ?? 'node')
+      : typeof (input.scene as { id?: unknown })?.id === 'string'
+        ? ((input.scene as { id: string }).id)
+        : 'scene'
+  if (proposal.kind !== 'P1' && proposal.kind !== 'P2' && proposal.kind !== 'P4') {
+    return fail('github-failed', 'Only P1/P2/P4 can write a PR')
+  }
+  const branch = promoteBranchName(proposal.kind, id)
+  const { owner, repo } = parseOwnerRepo(zaolyUiGithubRepo())
+  const base = paths.githubPromoteBaseBranch
+
+  try {
+    await github.ensureBranch({ owner, repo, base, branch })
+    const message = commitMessage(proposal)
+    for (const file of proposal.files) {
+      if (file.kind === 'extend-api') {
+        const source = await github.getFile({ owner, repo, branch, path: file.path })
+        if (!source) {
+          return fail('github-failed', `Missing library source ${file.path}`)
+        }
+        const type = file.type
+        const extendsList = (file.extends ?? []).map((ext) => ({
+          name: ext.name,
+          value: ext.value,
+          cssProperty: ext.cssProperty,
+          tsType: ext.tsType ?? `'${ext.value}'`,
+        }))
+        if (!type || extendsList.length === 0) {
+          return fail('github-failed', `P4 extend missing type or fields for ${file.path}`)
+        }
+        try {
+          const patched = applyExtendToComponentSource(source, type, extendsList)
+          await github.putFile({
+            owner,
+            repo,
+            branch,
+            path: file.path,
+            contents: patched,
+            message,
+          })
+        } catch (err) {
+          const messageText =
+            err instanceof ExtendUnrepresentableError
+              ? err.message
+              : err instanceof Error
+                ? err.message
+                : 'P4 patch failed'
+          return {
+            ok: false,
+            error: messageText,
+            issues: [{ code: 'extend-unrepresentable', message: messageText }],
+          }
+        }
+        continue
+      }
+    }
+    for (const file of materialized) {
+      await github.putFile({
+        owner,
+        repo,
+        branch,
+        path: file.path,
+        contents: file.contents,
+        message,
+      })
+    }
+    const pullRequest = await github.ensurePullRequest({
+      owner,
+      repo,
+      base,
+      branch,
+      title: message,
+      body: [
+        'Generated by CREATION library promote.',
+        '',
+        `- kind: ${proposal.kind}`,
+        `- zaolyUiSource: ${proposal.zaolyUiSource}`,
+        '',
+        'Do not merge without reviewing generator-shaped diffs.',
+        'This PR MUST NOT be auto-merged and MUST NOT deploy Storybook.',
+      ].join('\n'),
+    })
+
+    return {
+      ok: true,
+      proposal: {
+        ...proposal,
+        writesGit: true,
+        pullRequest,
+      },
+    }
+  } catch (err) {
+    const message = err instanceof Error ? err.message : 'GitHub promote failed'
+    return fail('github-failed', message)
+  }
+}

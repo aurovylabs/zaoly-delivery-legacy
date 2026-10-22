@@ -1,0 +1,45 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks'
+import * as Stories from './Accordion.stories'
+
+<Meta of={Stories} />
+
+# Accordion
+
+## Overview
+
+Magazine hairline disclosure for long briefing / dossier text. Single-open. Chevron and count chrome use brand `--accent`.
+
+## Anatomy
+
+- `.ds-accordion` root
+- `.ds-accordion-summary` + `.ds-accordion-chevron` (accent)
+- Collapsed `.ds-accordion-preview`
+- Expanded `.ds-accordion-panel`
+- Optional `.ds-accordion-footer`
+
+## Usage
+
+<Canvas of={Stories.Default} />
+
+<Controls of={Stories.Default} />
+
+## Do and Don't
+
+### Do
+
+- Use for scannable chapter stacks (knowledge, briefs, FAQ-like editorial).
+- Keep one panel open at a time.
+- Put counts in `SectionChrome` with `metaTone="accent"`.
+
+### Don't
+
+- Do not use the legacy MUI / glass admin accordion.
+- Do not put dense admin tables inside panels.
+
+## Accessibility
+
+Summary buttons expose `aria-expanded` / `aria-controls`. List semantics via `role="list"`.
+
+## Related
+
+`specs/domain/zaoly-ui-accordion.md` · `SectionChrome` (`metaTone`)

@@ -1,0 +1,44 @@
+/**
+ * Web-system semantic aliases — CSS var names that alias Layer 0 chrome.
+ * Spec: specs/domain/web-system-tokens.md
+ */
+export const webSystemAliases = {
+  background: 'var(--bg0)',
+  foreground: 'var(--ink)',
+  card: 'var(--surface)',
+  cardForeground: 'var(--ink)',
+  popover: 'var(--bg1)',
+  popoverForeground: 'var(--ink)',
+  primary: 'var(--accent)',
+  primaryForeground: '#ffffff',
+  secondary: 'var(--surface-2)',
+  secondaryForeground: 'var(--ink)',
+  mutedSurface: 'color-mix(in srgb, var(--ink) 6%, var(--bg1))',
+  mutedForeground: 'var(--muted)',
+  accentSurface: 'color-mix(in srgb, var(--accent) 12%, var(--bg1))',
+  accentForeground: 'var(--ink)',
+  destructive: 'var(--danger)',
+  destructiveForeground: '#ffffff',
+  border: 'var(--line)',
+  input: 'var(--field)',
+  ring: 'color-mix(in srgb, var(--accent) 55%, transparent)',
+  ringOffset: 'var(--background)',
+} as const
+
+export type WebSystemAlias = keyof typeof webSystemAliases
+
+export const brandionPromoteCssVar: Record<string, string> = {
+  'color.background': '--bg0',
+  'color.ink': '--ink',
+  'color.surface.base': '--bg1',
+  'color.surface.elevated': '--surface',
+  'color.surface.raised': '--surface-2',
+  'color.action.primary': '--accent',
+  'color.action.accent': '--accent',
+  'color.muted': '--muted',
+  'color.line': '--line',
+  'color.field': '--field',
+  'color.status.danger': '--danger',
+  'color.status.ok': '--ok',
+  'color.status.warn': '--warn',
+}

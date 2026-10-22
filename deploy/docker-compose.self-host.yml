@@ -1,0 +1,55 @@
+# Zaoly self-host — no weddy Traefik / external network required.
+# Ops: knowledge/self-host.md · profile matrix: knowledge/zaoly-hosted-vs-self-host.md
+# Usage (from repo root):
+#   cp deploy/.env.example deploy/.env   # fill secrets
+#   docker compose -f deploy/docker-compose.self-host.yml --env-file deploy/.env up -d --build
+
+name: zaoly-selfhost
+
+services:
+  zaoly:
+    build:
+      context: ..
+      dockerfile: Dockerfile
+      args:
+        INSTALL_PLAYWRIGHT: "0"
+    image: zaoly:latest
+    container_name: zaoly
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      NODE_ENV: production
+      HOSTNAME: 0.0.0.0
+      PORT: "3000"
+      ZAOLY_STANDALONE: "1"
+    ports:
+      - "${ZAOLY_HOST_PORT:-3000}:3000"
+    depends_on:
+      zaoly-postgres:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://127.0.0.1:3000/api/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 8
+      start_period: 40s
+
+  zaoly-postgres:
+    image: postgres:17-alpine
+    container_name: zaoly-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: zaoly
+      POSTGRES_PASSWORD: ${ZAOLY_POSTGRES_PASSWORD}
+      POSTGRES_DB: zaoly
+    volumes:
+      - zaoly-pg:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U zaoly -d zaoly"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  zaoly-pg:

@@ -1,0 +1,49 @@
+# LayersPanel
+
+Layer: `organisms`
+
+Scene structure tree for composition editors. Apps map domain nodes to `{ id, label, type?, hidden?, locked?, children? }`.
+
+Optional sibling reorder via ▲▼ (`onMoveUp` / `onMoveDown` / `onReorder`) and/or drag-and-drop (`onReorderDrop`). Optional hide/lock row toggles (`onToggleHidden` / `onToggleLocked`). Optional multi-select via `selectedIds` + `onSelect(id, mods)`.
+
+**Spec:** `specs/domain/zaoly-ui-layers-panel.md`  
+**Related:** `ComponentPalette` (left rail insert) · CREATION `editor-workspace.md`
+
+## Stories
+
+- Default
+- Nested selection
+- Empty
+- With sibling reorder
+- With hide and lock
+- With drag reorder
+
+## Usage
+
+```tsx
+import { LayersPanel } from '@zaoly/ui'
+
+<LayersPanel
+  title="Layers"
+  items={[
+    {
+      id: 'root',
+      label: 'Page',
+      type: 'Stack',
+      children: [
+        { id: 't1', label: 'Title', type: 'Text', hidden: false, locked: false },
+      ],
+    },
+  ]}
+  selectedId={selectedId}
+  selectedIds={selectedIds}
+  onSelect={(id, mods) => /* canvas SSOT; honor shift/meta/ctrl */}
+  onToggleHidden={(id) => /* flip chrome.hiddenIds */}
+  onToggleLocked={(id) => /* flip chrome.lockedIds */}
+  onReorderDrop={(id, targetId, position) => /* sibling reorder */}
+  onMoveUp={(id) => /* a11y fallback */}
+  onMoveDown={(id) => /* a11y fallback */}
+/>
+```
+
+Rename stays app-owned. DnD is siblings-only; ▲▼ remain the accessible path.

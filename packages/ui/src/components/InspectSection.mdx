@@ -1,0 +1,27 @@
+# InspectSection
+
+Layer: `molecules`
+
+Dense titled block for `PropertyInspector` (title + field stack).
+
+**Spec:** `specs/domain/zaoly-ui-inspect-section.md`  
+**Related:** FormSection (dialogs) — prefer InspectSection inside the inspect rail.
+
+## Stories
+
+- Default
+- Stacked in PropertyInspector
+
+## Usage
+
+```tsx
+import { InspectSection, PropertyInspector, TokenPicker } from '@zaoly/ui'
+
+<PropertyInspector title="Inspector">
+  <InspectSection title="Fill & stroke">
+    <TokenPicker label="Color" options={…} value={path} onChange={…} onClear={…} />
+  </InspectSection>
+</PropertyInspector>
+```
+
+Field catalogs stay in the app — this is chrome only.

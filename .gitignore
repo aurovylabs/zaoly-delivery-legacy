@@ -1,0 +1,31 @@
+node_modules
+.next
+dist
+*.tsbuildinfo
+.env
+.env.local
+.env.*.local
+.DS_Store
+coverage
+tmp
+.tmp/
+.build/
+.vscode
+.data
+packages/site-kit/storybook-static
+packages/site-kit/cdn-dist
+
+
+# Native Swift build output
+apps/macos/.build/
+apps/macos/build/
+apps/macos/.swiftpm/
+
+# Rust / Tauri build output
+target/
+apps/desktop/src-tauri/target/
+apps/desktop/src-tauri/gen/
+
+# SpecStory / local agent chat dumps
+.specstory/
+.community-export.json

@@ -1,0 +1,51 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks'
+import * as Stories from './Toast.stories'
+
+<Meta of={Stories} />
+
+# Toast
+
+## Overview
+
+Transient status messages via `ToastProvider` + `useToast().push()` — polite for info/ok, assertive for errors (WCAG 4.1.3).
+
+## Anatomy
+
+Viewport · polite live region · assertive live region · `.ds-toast` chips.
+
+## Usage
+
+<Canvas of={Stories.Default} />
+
+<Controls of={Stories.Default} />
+
+## Do and Don't
+
+### Do
+
+- Mount `ToastProvider` once at app root (product App already does).
+- Prefer `tone: 'error'` only for urgent failures.
+
+### Don't
+
+- Do not move focus into toasts.
+- Do not invent parallel snackbar markup.
+
+## Accessibility
+
+Live regions are pre-mounted empty; messages mutate children later. Errors stay until dismiss (duration 0).
+
+## Related
+
+Alert · Spinner · specs/domain/zaoly-ui-feedback-data.md
+
+## Tokens consumed
+
+DS-DEPOSIT D5 — tones consume Brandion paths via Layer 0 CSS. See `knowledge/ds-deposit-component-semantic-map.md`.
+
+| Tone | CSS | Brandion path |
+|------|-----|---------------|
+| ok | `--ok` | `color.status.ok` |
+| error | `--danger` | `color.status.danger` |
+| * | `--radius-md` / `--bg1` / `--ink` | `radius.control.md` / `color.surface.base` / `color.ink` |
+

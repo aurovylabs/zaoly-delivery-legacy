@@ -1,0 +1,47 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks'
+import * as Stories from './Text.stories'
+
+<Meta of={Stories} />
+
+# Text
+
+## Overview
+
+Atomic primitive `Text` from the Zaoly v2 design system.
+
+## Anatomy
+
+Primary export for this Atomic entry. Prefer design-system tokens and CSS vars.
+
+## Usage
+
+<Canvas of={Stories.Default} />
+
+<Controls of={Stories.Default} />
+
+## Do and Don't
+
+### Do
+
+- Use the documented props and sizes (`sm` default for controls).
+- Keep copy on type roles / tokens — no ad-hoc rem weights.
+
+### Don't
+
+- Do not invent one-off styles outside the design-system CSS layers.
+- Do not call live APIs from Storybook stories.
+
+## Accessibility
+
+Prefer roles, labels, and keyboard paths already used in product UI.
+
+## Related
+
+See `specs/domain/zaoly-ui-storybook-atomic.md` and sibling Atomic entries.
+
+## Tokens consumed
+
+DS-DEPOSIT D5 — roles consume `typography.role.*` plus scale/family/weight. See `knowledge/ds-deposit-component-semantic-map.md`.
+
+`body` → `typography.role.body` / `typography.scale.xl` / `color.ink`. `headline` → `typography.role.headline` / `color.ink`.
+

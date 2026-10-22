@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 620" fill="none" role="img" aria-labelledby="title desc">
+  <title id="title">Beispiel einer gestalteten Seite</title>
+  <desc id="desc">Editoriale Oberfläche mit großer Typografie, kobaltblauer Bildfläche und acidgrünen geometrischen Formen.</desc>
+  <rect width="760" height="620" fill="#FBF6EC"/>
+  <path d="M0 0H760V620H0Z" stroke="#C9BCA1"/>
+  <text x="48" y="55" fill="#1E1B17" font-family="Arial, sans-serif" font-size="14" font-weight="700" letter-spacing="3">STUDIO FORM</text>
+  <text x="540" y="55" fill="#57554C" font-family="Arial, sans-serif" font-size="12" letter-spacing="2">AUSGABE 001</text>
+  <path d="M48 77H712" stroke="#C9BCA1"/>
+  <text x="48" y="161" fill="#1E1B17" font-family="Georgia, serif" font-size="62" letter-spacing="-3">Neue Räume</text>
+  <text x="48" y="231" fill="#1E1B17" font-family="Georgia, serif" font-size="71" letter-spacing="-3">für Ideen.</text>
+  <text x="51" y="274" fill="#57554C" font-family="Arial, sans-serif" font-size="16">Ein System, das mit deiner Idee weiterwächst.</text>
+  <rect x="48" y="318" width="265" height="57" fill="#1F44FF"/>
+  <text x="70" y="354" fill="#FFFFFF" font-family="Arial, sans-serif" font-size="15" font-weight="700">Projekt entdecken</text>
+  <path d="M273 340L289 340M283 334L289 340L283 346" stroke="#FFFFFF" stroke-width="1.5"/>
+  <rect x="392" y="109" width="320" height="423" fill="#1F44FF"/>
+  <rect x="421" y="140" width="262" height="362" stroke="#D8DFFF" stroke-opacity=".7"/>
+  <path d="M421 257H683M421 382H683M508 140V502M596 140V502" stroke="#D8DFFF" stroke-opacity=".35"/>
+  <rect x="451" y="170" width="132" height="132" fill="#C6F24A"/>
+  <path d="M451 170L583 302M583 170L451 302" stroke="#1E1B17" stroke-width="2"/>
+  <circle cx="610" cy="325" r="47" stroke="#F3EEE4" stroke-width="2"/>
+  <path d="M568 367L652 283" stroke="#F3EEE4" stroke-width="2"/>
+  <text x="450" y="466" fill="#F3EEE4" font-family="Georgia, serif" font-size="47" letter-spacing="-2">FORM / 01</text>
+  <text x="48" y="486" fill="#1E1B17" font-family="Arial, sans-serif" font-size="13" font-weight="700" letter-spacing="2">KONZEPT → KOMPONENTE</text>
+  <text x="48" y="516" fill="#57554C" font-family="Arial, sans-serif" font-size="12">Typografie, Struktur, Interaktion.</text>
+  <path d="M48 563H712" stroke="#C9BCA1"/>
+  <text x="48" y="593" fill="#57554C" font-family="Arial, sans-serif" font-size="11" letter-spacing="1.7">DESIGN MIT SYSTEM</text>
+  <text x="676" y="593" fill="#57554C" font-family="Arial, sans-serif" font-size="11">01 / 03</text>
+</svg>

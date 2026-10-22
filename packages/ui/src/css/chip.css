@@ -1,0 +1,93 @@
+/* design-system: chip — specs/domain/zaoly-v2-chip.md */
+
+.ds-chip,
+.chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-1);
+  margin: 0;
+  background: transparent;
+  border: 1px solid var(--line);
+  color: var(--muted);
+  font-family: var(--font-body);
+  font-weight: var(--weight-regular);
+  font-size: var(--type-md);
+  line-height: 1.2;
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+  padding: 0.3rem 0.55rem;
+  transition:
+    background var(--motion-hover),
+    border-color var(--motion-hover),
+    color var(--motion-hover);
+}
+
+.ds-chip:focus-visible,
+.chip:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent) 40%, transparent);
+}
+
+.ds-chip:disabled,
+.chip:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.ds-chip:not(:disabled):not(.ds-chip--static):not(.static):hover,
+.chip:not(:disabled):not(.static):hover {
+  color: var(--ink);
+  background: color-mix(in srgb, var(--ink) 5%, transparent);
+}
+
+.ds-chip--md {
+  padding: 0.3rem 0.55rem;
+  font-size: var(--type-md);
+}
+
+.ds-chip--sm,
+.chip.dense {
+  padding: 0.16rem 0.4rem;
+  font-size: var(--type-xs);
+  letter-spacing: var(--track-meta);
+  line-height: 1.2;
+  border-radius: var(--radius-sm);
+}
+
+.ds-chip--selected,
+.chip.active {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.ds-chip--selected:not(:disabled):hover,
+.chip.active:not(:disabled):hover {
+  color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 10%, transparent);
+}
+
+.ds-chip--static,
+.chip.static {
+  cursor: default;
+}
+
+.ds-chip-row,
+.signals-filter-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1) 0.28rem;
+  min-width: 0;
+}
+
+.ds-toggle-group--icon {
+  flex-wrap: nowrap;
+  gap: 0.12rem;
+}
+
+.ds-toggle-group--icon .ds-chip--icon {
+  width: 1.65rem;
+  height: 1.65rem;
+  min-width: 1.65rem;
+  padding: 0;
+}

@@ -1,0 +1,47 @@
+{
+  "name": "@zaoly/site-kit",
+  "license": "AGPL-3.0-only",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./composition-codegen": "./src/composition-codegen/index.ts",
+    "./master-variants": "./src/master-variants/index.ts",
+    "./styles.css": "./src/styles.css",
+    "./c/*/*": "./src/compositions/c/*/*.tsx",
+    "./c/*": "./src/compositions/c/*/index.ts"
+  },
+  "scripts": {
+    "storybook": "storybook dev -p 6007 --disable-telemetry",
+    "build-storybook": "storybook build --disable-telemetry -o storybook-static",
+    "build:cdn": "vite build --config vite.cdn.config.ts --mode production",
+    "hydrate:variants": "tsx scripts/hydrate-named-variant-stories.mjs",
+    "hydrate:compositions": "tsx scripts/hydrate-composition-stories.mjs",
+    "test": "vitest run",
+    "test:cdn": "vitest run src/cdn-build.test.ts"
+  },
+  "peerDependencies": {
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
+  },
+  "devDependencies": {
+    "@storybook/addon-a11y": "^10.6.1",
+    "@storybook/addon-docs": "^10.6.1",
+    "@storybook/react-vite": "^10.6.1",
+    "@testing-library/react": "^16.3.3",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^6.1.2",
+    "jsdom": "^30.1.2",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "storybook": "^10.6.1",
+    "typescript": "7.0.2",
+    "tsx": "^4.23.15",
+    "vite": "^8.3.4",
+    "vitest": "5.0.3"
+  }
+}

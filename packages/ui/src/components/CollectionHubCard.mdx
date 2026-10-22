@@ -1,0 +1,33 @@
+# CollectionHubCard
+
+Layer: `molecules`
+
+Magazine Collection / capability-project hub card — kicker, badge, title, hint, metrics, multi-action footer.
+
+**Spec:** `specs/domain/zaoly-ui-collection-hub-card.md`  
+**Origin:** Brandion project tiles (CHECKION / PLEXON clones)
+
+## Stories
+
+- Default / Pending / Create
+
+```tsx
+import { CollectionHubCard, CollectionHubMetric, CardActions, Button } from '@zaoly/ui'
+
+<CollectionHubCard
+  kicker="example.com"
+  badge="In sync"
+  badgeStatus="in_sync"
+  title="North"
+  stats={<CollectionHubMetric icon={…} value="12" label="Analyses" />}
+  actions={
+    <CardActions>
+      <Button variant="ghost">Open</Button>
+    </CardActions>
+  }
+/>
+
+<CollectionHubCard variant="create" title="New project" hint="…" onClick={open} />
+```
+
+Layout: `HubIndexLayoutSwitch` + `ds-collection-hub-grid` / `ds-collection-hub-list`.

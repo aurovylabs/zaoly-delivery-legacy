@@ -1,0 +1,24 @@
+# MarkerCanvas
+
+Layer: `organisms`
+
+Media frame with **normalized** (0–1) rectangular markers for evidence / region review.
+
+**Spec:** `specs/domain/zaoly-ui-marker-canvas.md`  
+**Origin:** Brandion Findings document canvas / Detection Lab overlays (domain paint stays in the app).
+
+## Stories
+
+- MediaSlot · SelectedFail · Interactive · Empty · HiddenMarkers
+
+## Usage
+
+```tsx
+import { MarkerCanvas } from '@zaoly/ui'
+
+<MarkerCanvas
+  media={<canvas ref={ref} />}
+  markers={[{ id: 'r1', x: 0.1, y: 0.2, w: 0.3, h: 0.1, tone: 'fail' }]}
+  onMarkerActivate={setSelected}
+/>
+```

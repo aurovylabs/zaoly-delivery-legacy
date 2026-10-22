@@ -1,0 +1,33 @@
+/* Site Kit tokens — marketing/website surface (not product AppShell). */
+:root {
+  --site-ink: #1e1b17;
+  --site-muted: #8c8578;
+  --site-paper: #f3eee4;
+  --site-line: #c9bca1;
+  /* Zaoly CD cobalt — paths.brandPrimaryHex */
+  --site-accent: #1f44ff;
+  --site-accent-ink: #f3eee4;
+  --site-radius: 0;
+  --site-font: 'Noto Sans', 'Noto Sans JP', system-ui, sans-serif;
+  --site-space-1: 0.25rem;
+  --site-space-2: 0.5rem;
+  --site-space-3: 0.75rem;
+  --site-space-4: 1rem;
+  --site-space-5: 1.5rem;
+  --site-space-6: 2rem;
+  --site-space-8: 3rem;
+  --site-max: 72rem;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--site-font);
+  color: var(--site-ink);
+  background: var(--site-paper);
+}

@@ -1,0 +1,129 @@
+/* design-system: slider + meter — specs/domain/zaoly-ui-slider.md · zaoly-ui-meter.md */
+
+.ds-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  display: block;
+  height: 0.35rem;
+  margin: 0;
+  padding: 0;
+  border-radius: 999px;
+  background: linear-gradient(
+    to right,
+    color-mix(in srgb, var(--accent) 75%, var(--ink) 25%) 0%,
+    color-mix(in srgb, var(--accent) 75%, var(--ink) 25%) var(--ds-slider-pct, 0%),
+    color-mix(in srgb, var(--line) 80%, transparent) var(--ds-slider-pct, 0%),
+    color-mix(in srgb, var(--line) 80%, transparent) 100%
+  );
+  cursor: pointer;
+}
+
+.ds-slider--block {
+  width: 100%;
+}
+
+.ds-slider:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.ds-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 0.85rem;
+  height: 0.85rem;
+  border-radius: 50%;
+  border: 2px solid var(--paper, #fff);
+  background: color-mix(in srgb, var(--accent) 80%, var(--ink) 20%);
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--ink) 18%, transparent);
+  cursor: pointer;
+}
+
+.ds-slider::-moz-range-track {
+  height: 0.35rem;
+  border-radius: 999px;
+  background: transparent;
+}
+
+.ds-slider::-moz-range-thumb {
+  width: 0.85rem;
+  height: 0.85rem;
+  border-radius: 50%;
+  border: 2px solid var(--paper, #fff);
+  background: color-mix(in srgb, var(--accent) 80%, var(--ink) 20%);
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--ink) 18%, transparent);
+  cursor: pointer;
+}
+
+.ds-slider:focus-visible {
+  outline: none;
+}
+
+.ds-slider:focus-visible::-webkit-slider-thumb {
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--ink) 18%, transparent),
+    0 0 0 3px color-mix(in srgb, var(--accent) 35%, transparent);
+}
+
+.ds-slider:focus-visible::-moz-range-thumb {
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--ink) 18%, transparent),
+    0 0 0 3px color-mix(in srgb, var(--accent) 35%, transparent);
+}
+
+.ds-meter-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--space-4, 1rem);
+}
+
+.ds-meter {
+  min-width: 0;
+}
+
+.ds-meter-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--space-3, 0.75rem);
+  margin-bottom: 0.35rem;
+  font-family: var(--font-body);
+  font-size: var(--type-sm, 0.875rem);
+  color: var(--ink);
+}
+
+.ds-meter-label {
+  min-width: 0;
+}
+
+.ds-meter-label label {
+  cursor: pointer;
+}
+
+.ds-meter-hint {
+  color: var(--muted);
+  font-weight: inherit;
+}
+
+.ds-meter-value {
+  flex-shrink: 0;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ScrollArea — specs/domain/zaoly-ui-scroll-area.md */
+.ds-scroll-area--y {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.ds-scroll-area--x {
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.ds-scroll-area--both {
+  overflow: auto;
+}

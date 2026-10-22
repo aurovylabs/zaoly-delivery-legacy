@@ -1,0 +1,42 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks'
+import * as Stories from './Alert.stories'
+
+<Meta of={Stories} />
+
+# Alert
+
+## Overview
+Alert is a reusable ECHON interface building block.
+
+## Anatomy
+- Primary content and supporting state are exposed through its public props.
+
+## Usage
+<Canvas of={Stories.Default} />
+<Controls of={Stories.Default} />
+
+## Do and Don't
+### Do
+- Provide clear, meaningful content and labels.
+
+### Don't
+- Use it without its required context or accessible labels.
+
+## Accessibility
+Use semantic controls and expose meaningful labels for interactive content.
+
+## Related
+See the Atomic Storybook catalog for adjacent components.
+
+## Tokens consumed
+
+DS-DEPOSIT D5 — tones consume Brandion paths via Layer 0 CSS. Enums stay React API.
+
+See `knowledge/ds-deposit-component-semantic-map.md`.
+
+| Tone | CSS | Brandion path |
+|------|-----|---------------|
+| error | `--bad` (= `--danger`) | `color.status.danger` |
+| ok | `--ok` | `color.status.ok` |
+| info | `--muted` | `color.muted` |
+

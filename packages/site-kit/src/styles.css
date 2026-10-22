@@ -1,0 +1,325 @@
+@import './tokens.css';
+
+.site-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--site-space-2);
+  min-height: 2.5rem;
+  padding: 0.55rem 1.1rem;
+  border: 1px solid transparent;
+  border-radius: var(--site-radius);
+  font: inherit;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: none;
+  /* Longhands so Inspect inline paint (backgroundColor / color) wins cleanly. */
+  background-color: var(--site-btn-bg, transparent);
+  color: var(--site-btn-fg, inherit);
+  border-color: var(--site-btn-border, transparent);
+}
+:where(.site-btn--primary) {
+  --site-btn-bg: var(--site-accent);
+  --site-btn-fg: var(--site-accent-ink);
+  --site-btn-border: transparent;
+}
+:where(.site-btn--secondary) {
+  --site-btn-bg: transparent;
+  --site-btn-fg: var(--site-ink);
+  --site-btn-border: var(--site-line);
+}
+:where(.site-btn--ghost) {
+  --site-btn-bg: transparent;
+  --site-btn-fg: var(--site-muted);
+  --site-btn-border: transparent;
+}
+.site-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.site-text {
+  margin: 0;
+  font: inherit;
+  color: inherit;
+}
+/* :where → 0 specificity so Inspect fontSize / color / letterSpacing paint wins. */
+:where(.site-text--display) {
+  font-size: clamp(2rem, 5vw, 3.25rem);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+:where(.site-text--title) {
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1.25;
+}
+:where(.site-text--body) {
+  font-size: 1rem;
+  line-height: 1.55;
+  color: var(--site-muted);
+}
+:where(.site-text--label) {
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--site-muted);
+}
+
+.site-link {
+  color: inherit;
+  text-underline-offset: 0.15em;
+}
+
+.site-field,
+.site-select,
+.site-textarea {
+  width: 100%;
+  min-height: 2.5rem;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--site-line);
+  border-radius: var(--site-radius);
+  background: #fff;
+  font: inherit;
+  color: var(--site-ink);
+}
+.site-textarea {
+  min-height: 6rem;
+  resize: vertical;
+}
+
+.site-badge {
+  display: inline-flex;
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  background: color-mix(in srgb, var(--site-accent) 16%, transparent);
+  color: var(--site-ink);
+}
+
+.site-img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--site-radius, 0.5rem);
+  object-fit: cover;
+}
+
+.site-svg {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 0;
+  color: inherit;
+  max-width: 100%;
+}
+
+.site-svg > svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+}
+
+.site-container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--site-space-4);
+  width: 100%;
+  /* Longhand max-width so Inspect maxWidth / width paint can override. */
+  max-width: var(--site-max);
+  margin-inline: auto;
+  padding-inline: var(--site-space-5);
+}
+.site-container--row {
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.site-stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--site-space-4);
+  /* Flex item default min-width:auto lets hug content blow past a fixed parent. */
+  min-width: 0;
+  min-height: 0;
+  box-sizing: border-box;
+}
+.site-stack--row {
+  flex-direction: row;
+  flex-wrap: wrap;
+  /* Align/Justify come from Inspect → inline style (no hardcoded align-items). */
+}
+
+.site-grid {
+  display: grid;
+  gap: var(--site-space-5);
+  /* Fluid default — collapses tracks on narrow boards (Wave C). */
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr));
+  min-width: 0;
+  min-height: 0;
+  box-sizing: border-box;
+}
+
+.site-divider {
+  border: 0;
+  border-top: 1px solid var(--site-line);
+  margin: var(--site-space-5) 0;
+}
+
+.site-checkbox {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--site-space-2);
+  font-size: 0.95rem;
+  color: var(--site-ink);
+}
+.site-checkbox input {
+  margin: 0;
+}
+
+/* Content table — SiteTable / Row / Cell (specs/domain/site-table.md) */
+.site-table {
+  width: 100%;
+  max-width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  font: inherit;
+  color: var(--site-ink);
+  box-sizing: border-box;
+}
+.site-table__caption {
+  caption-side: top;
+  text-align: start;
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-bottom: var(--site-space-2);
+  color: var(--site-ink);
+}
+.site-table--compact .site-table-cell {
+  padding: 0.35rem 0.5rem;
+  font-size: 0.875rem;
+}
+.site-table--comfortable .site-table-cell {
+  padding: 0.85rem 1rem;
+}
+.site-table-cell {
+  padding: 0.6rem 0.75rem;
+  vertical-align: top;
+  text-align: start;
+  box-sizing: border-box;
+  min-width: 0;
+}
+.site-table--borders-none .site-table-cell {
+  border: 0;
+}
+.site-table--borders-row .site-table-cell {
+  border: 0;
+  border-bottom: 1px solid var(--site-line);
+}
+.site-table--borders-all .site-table-cell {
+  border: 1px solid var(--site-line);
+}
+.site-table-row--header .site-table-cell,
+.site-table thead .site-table-cell {
+  font-weight: 600;
+  color: var(--site-ink);
+  background: color-mix(in srgb, var(--site-line) 35%, transparent);
+}
+.site-table--striped tbody .site-table-row:nth-child(even) .site-table-cell {
+  background: color-mix(in srgb, var(--site-line) 22%, transparent);
+}
+.site-table-cell--center {
+  text-align: center;
+}
+.site-table-cell--end {
+  text-align: end;
+}
+
+
+/* Chart + Gauge — Site Kit atoms */
+.site-chart {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+  min-width: 8rem;
+  color: var(--site-ink);
+  box-sizing: border-box;
+}
+.site-chart__title {
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+.site-chart__empty {
+  font-size: 0.8125rem;
+  color: var(--site-muted);
+  padding: 1rem 0;
+}
+.site-chart__svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.site-chart__tick {
+  fill: var(--site-muted);
+  font-size: 8px;
+}
+.site-gauge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  width: 100%;
+  max-width: 12rem;
+  color: var(--site-ink);
+}
+.site-gauge__svg {
+  width: 100%;
+  max-width: 10rem;
+  height: auto;
+  display: block;
+}
+.site-gauge__track {
+  stroke: var(--site-line);
+  stroke-width: 8;
+  stroke-linecap: round;
+}
+.site-gauge__value {
+  stroke: var(--site-accent);
+  stroke-width: 8;
+  stroke-linecap: round;
+}
+.site-gauge--ok .site-gauge__value {
+  stroke: var(--ok, #6a9b7a);
+}
+.site-gauge--warn .site-gauge__value {
+  stroke: var(--warn, #c4a35a);
+}
+.site-gauge--bad .site-gauge__value {
+  stroke: var(--danger, #c45c5c);
+}
+.site-gauge__readout {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.15rem;
+}
+.site-gauge__number {
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.1;
+}
+.site-gauge__unit {
+  margin-left: 0.15rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--site-muted);
+}
+.site-gauge__label {
+  font-size: 0.75rem;
+  color: var(--site-muted);
+}

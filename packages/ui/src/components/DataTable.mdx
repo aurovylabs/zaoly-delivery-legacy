@@ -1,0 +1,40 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks'
+import * as Stories from './DataTable.stories'
+
+<Meta of={Stories} />
+
+# DataTable
+
+## Overview
+
+Semantic HTML table with optional column sort — specs/domain/zaoly-ui-feedback-data.md.
+
+## Anatomy
+
+`.ds-table-wrap` · caption · sortable `th` buttons · body rows / empty cell.
+
+## Usage
+
+<Canvas of={Stories.Default} />
+
+<Controls of={Stories.Default} />
+
+## Do and Don't
+
+### Do
+
+- Provide `getRowId` and stable column `id`s.
+- Use `sortValue` only on columns that should sort.
+
+### Don't
+
+- Do not pull TanStack/virtualization until product needs it.
+- Do not nest interactive controls without clear labels.
+
+## Accessibility
+
+Sortable headers expose `aria-sort`. Prefer caption for table purpose.
+
+## Related
+
+RankedList · Avatar · EmptyState · specs/domain/zaoly-ui-feedback-data.md

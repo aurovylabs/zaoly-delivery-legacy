@@ -1,0 +1,2752 @@
+/**
+ * Zaoly Corporate Design → app chrome
+ * Source: sibling `zaoly_creation_v2/Zaoly CREATION/zaoly-corporate-design/`
+ *   · foundations (9a) · app light (5a) · app dark (6a)
+ * Mapping twin: old editor `packages/editor/src/styles.css` + knowledge/corporate-chrome.md
+ *
+ * Overrides `@zaoly/ui` theme tokens so shell + editor read as Zaoly, not Zaoly coral.
+ */
+
+:root {
+  /* Editor-chrome aliases (parity with legacy Zaoly editor) */
+  --editor-bg: #e1d6c2;
+  --editor-panel: #f3eee4;
+  --editor-panel-muted: #fbf6ec;
+  --editor-border: #c9bca1;
+  --editor-text: #1e1b17;
+  --editor-text-secondary: #57554c;
+  --editor-muted: #8c8578;
+  --editor-accent: #1f44ff;
+  /* Cobalt fills → white label (WCAG); DS primary defaults to dark ink for coral */
+  --editor-accent-ink: #ffffff;
+  --primary-foreground: #ffffff;
+  --editor-live: #c6f24a;
+  /* WCAG: solid lime fills use near-black ink on top (not lime-on-dark tint) */
+  --editor-live-ink: #1e1b17;
+  --editor-danger: #c4372b;
+  --editor-ok: #c6f24a;
+  --editor-canvas-bg: #ffffff;
+  --editor-canvas-frame: #e1d6c2;
+  --editor-input-bg: #fbf6ec;
+  --editor-hover: rgba(30, 27, 23, 0.045);
+  --editor-shadow: 0 22px 44px -20px rgba(0, 0, 0, 0.55);
+  --editor-radius: 0;
+  --editor-seal-bg: #1f44ff;
+  --editor-seal-fg: #f3eee4;
+  /* Warm charcoal — darker chrome ground (hub bar / brand kit) */
+  --editor-warm-gray: #2e2a24;
+  --editor-warm-gray-fg: #f3eee4;
+  --warm-gray: var(--editor-warm-gray);
+  /* Fixed hub nav bar height — app-frame clears this */
+  --zaoly-hub-bar-h: 2.6rem;
+  /* geist/font sets --font-geist-sans / --font-geist-mono on <html> */
+  --editor-font: var(--font-geist-sans), 'Geist', var(--font-face-noto-sans-jp), system-ui, sans-serif;
+  --editor-font-mono: var(--font-geist-mono), 'Geist Mono', ui-monospace, monospace;
+  --editor-font-brand: Spectral, 'Noto Serif JP', Georgia, serif;
+  --editor-font-seal: 'Noto Serif JP', var(--font-face-noto-sans-jp), serif;
+
+  /* Map CD → @zaoly/ui system tokens (light / cream) */
+  --bg0: #f3eee4;
+  --bg1: #fbf6ec;
+  --ink: #1e1b17;
+  --fg: var(--ink);
+  --fg-muted: #57554c;
+  --muted: #8c8578;
+  --accent: #1f44ff;
+  --brand-primary: #1f44ff;
+  --color-brand-primary: #1f44ff;
+  --line: #c9bca1;
+  --danger: #c4372b;
+  --ok: #c6f24a;
+  --warn: #c6f24a;
+  --surface: #fbf6ec;
+  --surface-2: color-mix(in srgb, #f3eee4 70%, #ffffff);
+  --field: #ffffff;
+  --track: color-mix(in srgb, var(--ink) 14%, transparent);
+  --section-title: #1e1b17;
+  /* No suite atmosphere wash — flat cream ground */
+  --atmosphere-a: transparent;
+  --atmosphere-b: transparent;
+
+  /* Radius 0 always (CD edges) */
+  --radius: 0;
+  --radius-sm: 0;
+  --radius-md: 0;
+  --radius-lg: 0;
+  --radius-panel: 0;
+  --radius-control: 0;
+  --radius-sheet: 0;
+  --radius-tile: 0;
+  --radius-pill: 0;
+
+  /* Overlay elevation only */
+  --creation-elevation-shadow: var(--editor-shadow);
+  --creation-elevation-shadow-soft: 0 16px 32px -18px rgba(0, 0, 0, 0.4);
+  --creation-elevation-shadow-tight: 0 8px 18px -10px rgba(0, 0, 0, 0.35);
+
+  --stack-display: var(--editor-font);
+  --stack-body: var(--editor-font);
+  --stack-mono: var(--editor-font-mono);
+  --font-display: var(--stack-display);
+  --font-body: var(--stack-body);
+  --font-mono: var(--stack-mono);
+}
+
+:root,
+[data-theme='zaoly'],
+[data-theme='zaoly-v2'],
+[data-theme='zaoly-ui'] {
+  --bg0: #f3eee4;
+  --bg1: #fbf6ec;
+  --ink: #1e1b17;
+  --fg: var(--ink);
+  --fg-muted: #57554c;
+  --muted: #8c8578;
+  --accent: #1f44ff;
+  --brand-primary: #1f44ff;
+  --color-brand-primary: #1f44ff;
+  --line: #c9bca1;
+  --danger: #c4372b;
+  --ok: #c6f24a;
+  --warn: #c6f24a;
+  --surface: #fbf6ec;
+  --field: #ffffff;
+  --radius: 0;
+  --radius-sm: 0;
+  --radius-md: 0;
+  --radius-lg: 0;
+  --radius-panel: 0;
+  --radius-control: 0;
+  --radius-sheet: 0;
+  --radius-tile: 0;
+  --radius-pill: 0;
+  --editor-bg: #e1d6c2;
+  --editor-panel: #f3eee4;
+  --editor-panel-muted: #fbf6ec;
+  --editor-border: #c9bca1;
+  --editor-text: #1e1b17;
+  --editor-muted: #8c8578;
+  --editor-accent: #1f44ff;
+  --editor-accent-ink: #ffffff;
+  --primary-foreground: #ffffff;
+  --editor-canvas-frame: #e1d6c2;
+  --editor-input-bg: #fbf6ec;
+  --editor-seal-bg: #1f44ff;
+  --editor-seal-fg: #f3eee4;
+  --editor-warm-gray: #2e2a24;
+  --editor-warm-gray-fg: #f3eee4;
+  --warm-gray: var(--editor-warm-gray);
+  --atmosphere-a: transparent;
+  --atmosphere-b: transparent;
+  --creation-elevation-shadow: 0 22px 44px -20px rgba(0, 0, 0, 0.55);
+}
+
+[data-theme='zaoly-dark'],
+[data-theme='zaoly-v2-dark'],
+[data-theme='zaoly-ui-dark'] {
+  --bg0: #15120f;
+  --bg1: #201c17;
+  --ink: #ede6d8;
+  --fg: var(--ink);
+  --fg-muted: #b7ae9b;
+  --muted: #8a8171;
+  --accent: #3e63ff;
+  --brand-primary: #3e63ff;
+  --color-brand-primary: #3e63ff;
+  --line: #3a342c;
+  --danger: #ff7062;
+  --ok: #c6f24a;
+  --warn: #c6f24a;
+  --surface: #24201a;
+  --surface-2: #24201a;
+  --field: #24201a;
+  --track: color-mix(in srgb, var(--ink) 16%, transparent);
+  --section-title: #ede6d8;
+  --atmosphere-a: transparent;
+  --atmosphere-b: transparent;
+  --radius: 0;
+  --radius-sm: 0;
+  --radius-md: 0;
+  --radius-lg: 0;
+  --radius-panel: 0;
+  --radius-control: 0;
+  --radius-sheet: 0;
+  --radius-tile: 0;
+  --radius-pill: 0;
+
+  --editor-bg: #15120f;
+  --editor-panel: #201c17;
+  --editor-panel-muted: #24201a;
+  --editor-border: #3a342c;
+  --editor-text: #ede6d8;
+  --editor-text-secondary: #b7ae9b;
+  --editor-muted: #8a8171;
+  --editor-accent: #3e63ff;
+  --editor-accent-ink: #ffffff;
+  --primary-foreground: #ffffff;
+  --editor-live: #c6f24a;
+  /* WCAG: solid lime fills use near-black ink on top (not lime-on-dark tint) */
+  --editor-live-ink: #1e1b17;
+  --editor-danger: #ff7062;
+  --editor-canvas-bg: #24201a;
+  --editor-canvas-frame: #15120f;
+  --editor-input-bg: #24201a;
+  --editor-hover: rgba(237, 230, 216, 0.05);
+  --editor-shadow: 0 22px 44px -20px rgba(0, 0, 0, 0.85);
+  --editor-seal-bg: #3e63ff;
+  --editor-seal-fg: #f1ece0;
+  --editor-warm-gray: #24201a;
+  --editor-warm-gray-fg: #ede6d8;
+  --warm-gray: var(--editor-warm-gray);
+  --creation-elevation-shadow: var(--editor-shadow);
+  --creation-elevation-shadow-soft: 0 16px 32px -18px rgba(0, 0, 0, 0.7);
+  --creation-elevation-shadow-tight: 0 8px 18px -10px rgba(0, 0, 0, 0.55);
+}
+
+/* Flat CD ground — kill @zaoly/ui body/atmosphere radial washes */
+body {
+  background: var(--bg0) !important;
+  background-image: none !important;
+}
+
+.atmosphere {
+  display: none !important;
+  background: none !important;
+  background-image: none !important;
+  opacity: 0 !important;
+}
+
+.app-frame {
+  background: var(--bg0);
+}
+
+/* Canvas stage — Ma workbench tone */
+.app-frame.creation-app-frame--editor .creation-editor-canvas.ds-canvas-viewport,
+.app-frame.creation-app-frame--editor .ds-canvas-viewport {
+  background: var(--editor-canvas-frame);
+}
+
+/* Sharp chrome — kill leftover rounded fallbacks in app CSS */
+.app-frame .ds-button,
+.app-frame .ds-field,
+.app-frame .ds-chip,
+.app-frame .ds-dialog,
+.app-frame .ds-panel,
+.app-frame .brand-corner,
+.app-frame .brand-corner-mark,
+.zaoly-seal-mark {
+  border-radius: 0 !important;
+}
+
+/* Primary on cobalt: white label (DS ships dark ink for coral accent).
+   Auth screens (`.creation-login`) sit outside `.app-frame` — same contrast rule. */
+.app-frame .ds-btn--primary,
+.app-frame .ds-btn.ds-btn--primary,
+.creation-login .ds-btn--primary,
+.creation-login .ds-btn.ds-btn--primary {
+  background: var(--editor-accent, var(--accent)) !important;
+  color: var(--editor-accent-ink, #ffffff) !important;
+  border-color: transparent !important;
+}
+
+.app-frame .ds-btn--primary .ds-btn__label,
+.app-frame .ds-btn--primary .ds-btn__icon,
+.creation-login .ds-btn--primary .ds-btn__label,
+.creation-login .ds-btn--primary .ds-btn__icon {
+  color: inherit !important;
+}
+
+/* Product seal 造 — cobalt tile + cream glyph */
+.zaoly-seal-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  background: var(--editor-seal-bg);
+  color: var(--editor-seal-fg);
+  font-family: var(--editor-font-seal);
+  font-size: 15px;
+  line-height: 1;
+  font-weight: 600;
+}
+
+/* Hub chrome: full-width theme bar; only seal stays cobalt */
+.zaoly-hub-chrome {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 40;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  width: 100%;
+  pointer-events: none;
+}
+
+.zaoly-hub-chrome > * {
+  pointer-events: auto;
+}
+
+.zaoly-hub-chrome__brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex: 0 0 auto;
+  height: 100%;
+  padding-inline-end: 0.95rem;
+  margin-inline-end: 0.25rem;
+  color: var(--editor-warm-gray-fg);
+  user-select: none;
+}
+
+/* Logo only in blue — cobalt tile + cream glyph */
+.zaoly-hub-chrome__brand .zaoly-seal-mark {
+  background: var(--editor-seal-bg) !important;
+  color: var(--editor-seal-fg) !important;
+  width: 1.2rem !important;
+  height: 1.2rem !important;
+  font-size: 0.85rem !important;
+}
+
+.zaoly-hub-chrome__wordmark {
+  font-family: var(--editor-font-brand);
+  font-weight: 300;
+  font-size: 0.88rem;
+  letter-spacing: 0.16em;
+  line-height: 1;
+  text-transform: lowercase;
+  color: var(--editor-warm-gray-fg);
+  white-space: nowrap;
+}
+
+/* Warm charcoal hub bar — brandWarmGrayHex / --editor-warm-gray */
+.app-frame .creation-top-nav.creation-top-nav--bar,
+.zaoly-hub-chrome .creation-top-nav.creation-top-nav--bar {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-height: var(--zaoly-hub-bar-h, 2.6rem);
+  height: var(--zaoly-hub-bar-h, 2.6rem);
+  margin: 0;
+  padding: 0 clamp(1rem, 3vw, 2.5rem);
+  gap: 0.05rem;
+  border: 0 !important;
+  border-bottom: 0 !important;
+  border-radius: 0 !important;
+  background: var(--editor-warm-gray) !important;
+  background-color: var(--editor-warm-gray) !important;
+  color: var(--editor-warm-gray-fg) !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+.app-frame .creation-top-nav.creation-top-nav--bar .creation-top-nav__link,
+.zaoly-hub-chrome .creation-top-nav--bar .creation-top-nav__link {
+  gap: 0;
+  min-width: 0;
+  min-height: 100%;
+  height: 100%;
+  padding: 0 0.8rem;
+  border-radius: 0 !important;
+  color: color-mix(in srgb, var(--editor-warm-gray-fg) 72%, transparent) !important;
+  font-family: var(--editor-font);
+  font-size: 0.78rem;
+  font-weight: 300;
+  letter-spacing: 0.05em;
+  background: transparent !important;
+}
+
+.app-frame .creation-top-nav.creation-top-nav--bar .creation-top-nav__label,
+.zaoly-hub-chrome .creation-top-nav--bar .creation-top-nav__label {
+  font-weight: 300;
+}
+
+.app-frame .creation-top-nav.creation-top-nav--bar .creation-top-nav__link:hover,
+.zaoly-hub-chrome .creation-top-nav--bar .creation-top-nav__link:hover {
+  color: var(--editor-warm-gray-fg) !important;
+  background: color-mix(in srgb, var(--editor-warm-gray-fg) 8%, transparent) !important;
+}
+
+.app-frame .creation-top-nav.creation-top-nav--bar .creation-top-nav__link.is-active,
+.zaoly-hub-chrome .creation-top-nav--bar .creation-top-nav__link.is-active {
+  color: var(--editor-live-ink) !important;
+  font-weight: 500;
+  background: var(--editor-live) !important;
+  background-color: var(--editor-live) !important;
+}
+
+.app-frame .creation-top-nav.creation-top-nav--bar .creation-top-nav__settings,
+.zaoly-hub-chrome .creation-top-nav--bar .creation-top-nav__settings {
+  margin-inline-start: auto;
+  padding: 0 0.95rem;
+}
+
+/* BrandCorner plaque = seal only (no label hover, no product menu) */
+.app-frame .brand-corner.brand-corner--seal-only {
+  pointer-events: none;
+}
+
+.app-frame .brand-corner.brand-corner--seal-only .brand-corner-box {
+  padding: 0;
+  background: var(--editor-seal-bg);
+  color: var(--editor-seal-fg);
+  transition: none;
+}
+
+.app-frame .brand-corner.brand-corner--seal-only .brand-corner-header,
+.app-frame .brand-corner.brand-corner--seal-only .brand-corner-inner,
+.app-frame .brand-corner.brand-corner--seal-only .brand-corner-mark {
+  width: 2.75rem;
+  height: 2.75rem;
+  min-height: 2.75rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.app-frame .brand-corner.brand-corner--seal-only .zaoly-seal-mark {
+  width: 100% !important;
+  height: 100% !important;
+  font-size: 1.35rem !important;
+  background: transparent;
+  color: inherit;
+}
+
+.app-frame .brand-corner.brand-corner--seal-only .brand-corner-reveal,
+.app-frame .brand-corner.brand-corner--seal-only .brand-corner-label,
+.app-frame .brand-corner.brand-corner--seal-only .brand-corner-divider {
+  display: none !important;
+}
+
+.brand-corner-label {
+  font-family: var(--editor-font-brand);
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+
+/* Branded scrollbars */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--editor-border) var(--editor-panel-muted);
+}
+
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+*::-webkit-scrollbar-track {
+  background: var(--editor-panel-muted);
+}
+
+*::-webkit-scrollbar-thumb {
+  background: var(--editor-border);
+  border: 2px solid var(--editor-panel-muted);
+  border-radius: 0;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: var(--editor-muted);
+}
+
+/* ── BrandMark — seal + Spectral wordmark ── */
+.editor__brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  flex: 0 0 auto;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--editor-text);
+  padding-inline-end: 4px;
+  user-select: none;
+}
+
+.editor__brand .zaoly-seal-mark {
+  flex: none;
+}
+
+.editor__brand-wordmark {
+  font-family: var(--editor-font-brand);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  font-size: 0.95rem;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+/* Optional zen wordmark (editor compact uses base .editor__brand) */
+.editor__brand--zen {
+  gap: 0.7rem;
+}
+
+.editor__brand--zen .editor__brand-wordmark {
+  font-size: 1.55rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: lowercase;
+}
+
+.creation-editor-topbar-chrome .editor__brand::after,
+.creation-editor-toolbar .editor__brand::after {
+  content: '';
+  width: 1px;
+  height: 22px;
+  margin-inline-start: 4px;
+  background: color-mix(in srgb, var(--ink) 15%, transparent);
+  flex: 0 0 auto;
+  align-self: center;
+}
+
+/* Sharp edges — non-editor pills / HUD may still float; editor bar is full-width in globals. */
+.app-frame .creation-editor-topbar-chrome,
+.app-frame .creation-top-nav,
+.app-frame .creation-canvas-floating-hud {
+  border-radius: 0 !important;
+}
+
+.app-frame:not(.creation-app-frame--editor) .creation-top-nav:not(.creation-top-nav--bar),
+.app-frame .creation-canvas-floating-hud {
+  background: color-mix(in srgb, var(--editor-panel) 92%, transparent);
+  border-color: var(--editor-border);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: var(--editor-text);
+}
+
+/*
+ * Canvas floating HUD ink — globals hardcodes zinc-on-dark glass; CD surfaces the
+ * pill on cream/dark `--editor-panel`, so labels/buttons must use `--editor-text*`.
+ */
+.app-frame .creation-canvas-floating-hud__btn {
+  color: var(--editor-text);
+}
+
+.app-frame .creation-canvas-floating-hud__btn:hover {
+  background: var(--editor-hover);
+  color: var(--editor-text);
+}
+
+.app-frame .creation-canvas-floating-hud__btn--on {
+  background: color-mix(in srgb, var(--editor-accent) 16%, transparent);
+  color: var(--editor-text);
+}
+
+.app-frame .creation-canvas-floating-hud__btn--danger:hover {
+  background: color-mix(in srgb, var(--editor-danger) 16%, transparent);
+  color: var(--editor-danger);
+}
+
+.app-frame .creation-canvas-floating-hud__btn--detach {
+  color: color-mix(in srgb, #9333ea 70%, var(--editor-text));
+}
+
+.app-frame .creation-canvas-floating-hud__btn--detach:hover {
+  background: color-mix(in srgb, #9333ea 12%, transparent);
+  color: color-mix(in srgb, #9333ea 85%, var(--editor-text));
+}
+
+.app-frame .creation-canvas-floating-hud__node-tag {
+  color: var(--editor-text);
+  border-right-color: color-mix(in srgb, var(--editor-border) 80%, transparent);
+}
+
+.app-frame .creation-canvas-floating-hud__node-icon {
+  color: var(--editor-accent);
+}
+
+.app-frame .creation-canvas-floating-hud__divider {
+  background: color-mix(in srgb, var(--editor-border) 90%, transparent);
+}
+
+.app-frame .creation-canvas-floating-hud__key,
+.app-frame .creation-canvas-floating-hud__hint {
+  color: var(--editor-text-secondary);
+  opacity: 1;
+}
+
+.app-frame .creation-canvas-floating-hud__segmented {
+  background: color-mix(in srgb, var(--editor-text) 6%, transparent);
+}
+
+.app-frame .creation-canvas-floating-hud__instance-pill {
+  background: color-mix(in srgb, #9333ea 12%, transparent);
+  color: color-mix(in srgb, #7e22ce 75%, var(--editor-text));
+  border-color: color-mix(in srgb, #9333ea 32%, var(--editor-border));
+}
+
+.app-frame .creation-canvas-floating-hud__token-menu,
+.app-frame .creation-canvas-floating-hud__overflow-menu,
+.app-frame .creation-canvas-floating-hud__craft-popover {
+  background: color-mix(in srgb, var(--editor-panel) 98%, transparent);
+  border-color: var(--editor-border);
+  color: var(--editor-text);
+  box-shadow: var(--editor-shadow);
+}
+
+.app-frame .creation-canvas-floating-hud__token-menu-head {
+  color: var(--editor-text-secondary);
+}
+
+.app-frame .creation-canvas-floating-hud__token-menu-value,
+.app-frame .creation-canvas-floating-hud__size-mode-seg-btn,
+.app-frame .creation-canvas-floating-hud__size-mode-preset,
+.app-frame .creation-canvas-floating-hud__overflow-menu button {
+  color: var(--editor-text);
+}
+
+.app-frame .creation-canvas-floating-hud__size-mode-seg {
+  background: color-mix(in srgb, var(--editor-text) 6%, transparent);
+}
+
+.app-frame .creation-canvas-floating-hud__size-mode-seg-btn:hover:not(:disabled),
+.app-frame .creation-canvas-floating-hud__size-mode-preset:hover:not(:disabled),
+.app-frame .creation-canvas-floating-hud__overflow-menu button:hover:not(:disabled) {
+  background: var(--editor-hover);
+  color: var(--editor-text);
+}
+
+.app-frame .creation-canvas-floating-hud__size-mode-seg-btn.is-on,
+.app-frame .creation-canvas-floating-hud__size-mode-preset.is-on {
+  background: color-mix(in srgb, var(--editor-accent) 18%, transparent);
+  color: var(--editor-text);
+}
+
+.app-frame .creation-canvas-floating-hud__size-mode-preset {
+  border-color: var(--editor-border);
+  background: color-mix(in srgb, var(--editor-panel-muted) 80%, transparent);
+}
+
+.app-frame .creation-canvas-floating-hud__overflow-section {
+  border-bottom-color: var(--editor-border);
+}
+
+.app-frame .creation-canvas-floating-hud__overflow-label {
+  color: var(--editor-muted);
+}
+
+.app-frame .creation-canvas-floating-hud__overflow-danger {
+  color: var(--editor-danger) !important;
+}
+
+/* Hub bar: warm charcoal; seal alone keeps brand blue */
+.app-frame.creation-app-frame--hub-chrome .creation-top-nav.creation-top-nav--bar {
+  background: var(--editor-warm-gray) !important;
+  background-color: var(--editor-warm-gray) !important;
+  color: var(--editor-warm-gray-fg) !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+.app-frame.creation-app-frame--hub-chrome .zaoly-hub-chrome__brand .zaoly-seal-mark {
+  background: var(--editor-seal-bg) !important;
+  color: var(--editor-seal-fg) !important;
+}
+
+/* Editor tool strip under hub nav — cream strip, hairline only (no pill elevation). */
+.app-frame.creation-app-frame--editor .topbar {
+  background: var(--editor-panel);
+  border-bottom-color: var(--editor-border);
+}
+
+.app-frame.creation-app-frame--editor .zaoly-hub-chrome {
+  z-index: 41;
+}
+
+.app-frame.creation-app-frame--editor .creation-editor-topbar-chrome {
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  background: transparent !important;
+}
+
+/* Icon buttons — canon .btn-icon hover / active */
+.app-frame .creation-editor-topbar-chrome .ds-btn:not(:has(.ds-btn__label)),
+.app-frame .creation-editor-toolbar .ds-btn:not(:has(.ds-btn__label)) {
+  width: 28px;
+  height: 28px;
+  min-width: 28px;
+  min-height: 28px;
+  border-radius: 0 !important;
+  border: 1px solid transparent;
+}
+
+.app-frame .creation-editor-topbar-chrome .ds-btn:not(:has(.ds-btn__label)):hover:not(:disabled),
+.app-frame .creation-editor-toolbar .ds-btn:not(:has(.ds-btn__label)):hover:not(:disabled) {
+  background: var(--editor-hover);
+  border-color: var(--editor-border);
+}
+
+.app-frame .creation-editor-topbar-chrome .ds-btn[aria-pressed='true']:not(:has(.ds-btn__label)),
+.app-frame .creation-editor-topbar-chrome .ds-btn.is-active:not(:has(.ds-btn__label)) {
+  border-color: var(--editor-accent);
+  color: var(--editor-accent);
+  background: color-mix(in srgb, var(--editor-accent) 12%, transparent);
+}
+
+/* Rails / panels — uppercase meta titles like canon .editor__panel-title */
+.app-frame .creation-editor-rail {
+  background: var(--editor-panel);
+  border-color: var(--editor-border);
+  border-radius: 0 !important;
+  z-index: 20;
+}
+
+.app-frame .creation-editor-rail--floating {
+  box-shadow: var(--creation-elevation-shadow);
+}
+
+.app-frame .creation-editor-rail__title,
+.app-frame .creation-editor-rail__header {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--editor-muted);
+}
+
+.app-frame .creation-editor-rail__header {
+  border-bottom: 1px solid var(--editor-border);
+  background: var(--editor-panel-muted);
+}
+
+/* Fallback (non-trail) toolbar — flat bar like canon .editor__toolbar */
+.app-frame .creation-editor-toolbar {
+  min-height: 40px;
+  padding: 4px 12px;
+  gap: 8px;
+  justify-content: flex-start;
+  background: var(--editor-panel);
+  border-bottom: 1px solid var(--editor-border);
+  box-shadow: 0 1px 0 rgba(20, 24, 31, 0.04);
+  position: relative;
+  z-index: 20;
+}
+
+/* ── Property Inspector / right rail — challenge corners + CD density ── */
+.app-frame.creation-app-frame--editor .creation-editor-right,
+.app-frame.creation-app-frame--editor .creation-editor-right .ds-property-inspector,
+.app-frame.creation-app-frame--editor .creation-editor-right .ds-property-inspector__body {
+  background: var(--editor-panel);
+  color: var(--editor-text);
+  border-color: var(--editor-border);
+}
+
+.app-frame.creation-app-frame--editor .creation-editor-right *,
+.app-frame.creation-app-frame--editor .creation-editor-left .ds-property-inspector *,
+.app-frame.creation-app-frame--editor .creation-inspect-state *,
+.app-frame.creation-app-frame--editor .ds-inspect-section,
+.app-frame.creation-app-frame--editor .ds-inspect-tabs__tab,
+.app-frame.creation-app-frame--editor .ds-token-picker__current,
+.app-frame.creation-app-frame--editor .ds-token-picker__promote,
+.app-frame.creation-app-frame--editor .ds-token-picker__color,
+.app-frame.creation-app-frame--editor .ds-token-picker__list,
+.app-frame.creation-app-frame--editor .ds-color-picker__trigger,
+.app-frame.creation-app-frame--editor .ds-color-picker__panel,
+.app-frame.creation-app-frame--editor .ds-color-picker__swatch,
+.app-frame.creation-app-frame--editor .ds-input,
+.app-frame.creation-app-frame--editor .ds-textarea,
+.app-frame.creation-app-frame--editor .ds-select-trigger,
+.app-frame.creation-app-frame--editor .ds-btn,
+.app-frame.creation-app-frame--editor .ds-chip,
+.app-frame.creation-app-frame--editor .ds-toggle-group,
+.app-frame.creation-app-frame--editor .ds-toggle-group__btn,
+.app-frame.creation-app-frame--editor [class*='creation-inspect-'] {
+  border-radius: 0 !important;
+}
+
+/* Section titles — canon .editor__panel-title */
+.app-frame.creation-app-frame--editor .ds-inspect-section {
+  border-bottom-color: var(--editor-border);
+  padding: 0.55rem 0.75rem 0.7rem;
+}
+
+.app-frame.creation-app-frame--editor .ds-inspect-section__title {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--editor-muted);
+}
+
+/* Design | CSS tabs — underline accent, no soft fill */
+.app-frame.creation-app-frame--editor .ds-inspect-tabs {
+  border-bottom-color: var(--editor-border);
+  background: var(--editor-panel-muted);
+}
+
+.app-frame.creation-app-frame--editor .ds-inspect-tabs__tab {
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--editor-muted);
+}
+
+.app-frame.creation-app-frame--editor .ds-inspect-tabs__tab:hover {
+  color: var(--editor-text);
+  background: var(--editor-hover);
+}
+
+.app-frame.creation-app-frame--editor .ds-inspect-tabs__tab--selected {
+  color: var(--editor-text);
+  border-bottom-color: var(--editor-accent);
+}
+
+/* State chips → sharp segment row */
+.app-frame.creation-app-frame--editor .creation-inspect-state {
+  margin: 0;
+  padding: 0.4rem 0.75rem 0.5rem;
+  border-bottom: 1px solid var(--editor-border);
+  gap: 0.35rem;
+}
+
+.app-frame.creation-app-frame--editor .creation-inspect-state__bar {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0;
+  border: 1px solid var(--editor-border);
+  background: var(--editor-panel-muted);
+}
+
+.app-frame.creation-app-frame--editor .creation-inspect-state__chip {
+  border: none;
+  border-right: 1px solid var(--editor-border);
+  background: transparent;
+  color: var(--editor-muted);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 0.35rem 0.25rem;
+}
+
+.app-frame.creation-app-frame--editor .creation-inspect-state__chip:last-child {
+  border-right: none;
+}
+
+.app-frame.creation-app-frame--editor .creation-inspect-state__chip:hover {
+  color: var(--editor-text);
+  background: var(--editor-hover);
+}
+
+.app-frame.creation-app-frame--editor .creation-inspect-state__chip--on {
+  color: var(--editor-accent);
+  background: color-mix(in srgb, var(--editor-accent) 12%, transparent);
+  font-weight: 600;
+  border-color: transparent;
+}
+
+.app-frame.creation-app-frame--editor .creation-inspect-state__banner {
+  border: 1px solid color-mix(in srgb, var(--editor-live) 45%, var(--editor-border));
+  background: color-mix(in srgb, var(--editor-live) 14%, transparent);
+  color: var(--editor-text);
+}
+
+.app-frame.creation-app-frame--editor .creation-inspect-state__reset {
+  color: var(--editor-accent);
+}
+
+/* Fields / pickers — hairline + cream input wells */
+.app-frame.creation-app-frame--editor .ds-property-inspector .ds-input,
+.app-frame.creation-app-frame--editor .ds-property-inspector .ds-textarea,
+.app-frame.creation-app-frame--editor .ds-property-inspector .ds-select-trigger,
+.app-frame.creation-app-frame--editor .ds-property-inspector .ds-token-picker__current {
+  background: var(--editor-input-bg);
+  border: 1px solid var(--editor-border);
+  border-bottom-color: var(--editor-border);
+  color: var(--editor-text);
+  min-height: 1.65rem;
+}
+
+.app-frame.creation-app-frame--editor .ds-property-inspector .ds-input:hover,
+.app-frame.creation-app-frame--editor .ds-property-inspector .ds-textarea:hover,
+.app-frame.creation-app-frame--editor .ds-property-inspector .ds-select-trigger:hover,
+.app-frame.creation-app-frame--editor .ds-property-inspector .ds-token-picker__current:hover,
+.app-frame.creation-app-frame--editor .ds-property-inspector .ds-input:focus-visible,
+.app-frame.creation-app-frame--editor .ds-property-inspector .ds-textarea:focus-visible,
+.app-frame.creation-app-frame--editor .ds-property-inspector .ds-select-trigger:focus-visible,
+.app-frame.creation-app-frame--editor .ds-property-inspector .ds-token-picker__current:focus-within,
+.app-frame.creation-app-frame--editor .ds-property-inspector .ds-select--open .ds-select-trigger {
+  border-color: var(--editor-accent);
+  border-bottom-color: var(--editor-accent);
+}
+
+.app-frame.creation-app-frame--editor .ds-inspect-density .ds-field-label,
+.app-frame.creation-app-frame--editor .ds-token-picker__label {
+  color: var(--editor-muted);
+  font-size: 11px;
+}
+
+/* Icon mode / fit / span buttons — square tiles */
+.app-frame.creation-app-frame--editor .creation-inspect-fit-btn,
+.app-frame.creation-app-frame--editor .creation-inspect-span-btn,
+.app-frame.creation-app-frame--editor .creation-inspect-size-mode-btn,
+.app-frame.creation-app-frame--editor .creation-inspect-media-pos__btn,
+.app-frame.creation-app-frame--editor .creation-inspect-box-model__expand {
+  border: 1px solid var(--editor-border);
+  background: var(--editor-panel-muted);
+  color: var(--editor-text);
+}
+
+/*
+ * Inspect glyph highlights — acid lime (CD live), not cobalt accent.
+ * Resting glyphs stay ink; only the former blue active/accent strokes go lime.
+ */
+.app-frame.creation-app-frame--editor .ds-inspect-glyph__accent {
+  stroke: var(--editor-live);
+}
+
+.app-frame.creation-app-frame--editor .ds-inspect-glyph-tile.is-active .ds-inspect-glyph__frame,
+.app-frame.creation-app-frame--editor .is-active .ds-inspect-glyph__frame,
+.app-frame.creation-app-frame--editor .creation-inspect-grid-preset-btn.is-active .ds-inspect-glyph__frame,
+.app-frame.creation-app-frame--editor .creation-inspect-span-btn.is-active .ds-inspect-glyph__frame,
+.app-frame.creation-app-frame--editor .creation-inspect-size-mode-btn.is-active .ds-inspect-glyph__frame,
+.app-frame.creation-app-frame--editor .creation-inspect-fit-btn.is-active .ds-inspect-glyph__frame,
+.app-frame.creation-app-frame--editor .creation-inspect-media-pos__btn.is-active .ds-inspect-glyph__frame {
+  stroke: color-mix(in srgb, var(--editor-live) 72%, var(--ink));
+}
+
+.app-frame.creation-app-frame--editor .ds-inspect-glyph-tile.is-active .ds-inspect-glyph__cell--strong,
+.app-frame.creation-app-frame--editor .is-active .ds-inspect-glyph__cell--strong {
+  fill: color-mix(in srgb, var(--editor-live) 22%, transparent);
+  stroke: var(--ink);
+}
+
+.app-frame.creation-app-frame--editor .ds-inspect-glyph-tile.is-active .ds-inspect-glyph__accent,
+.app-frame.creation-app-frame--editor .is-active .ds-inspect-glyph__accent {
+  stroke: var(--editor-live);
+}
+
+.app-frame.creation-app-frame--editor .creation-inspect-media-pos__btn.is-active .ds-inspect-glyph__pip {
+  fill: var(--editor-live);
+}
+
+.app-frame.creation-app-frame--editor .creation-inspect-clip-slant__preset-btn.is-active .ds-inspect-glyph__silhouette {
+  fill: color-mix(in srgb, var(--editor-live) 35%, transparent);
+  stroke: var(--ink);
+}
+
+/* Active inspect chips — outer border stays cobalt; glyph strokes stay lime above */
+.app-frame.creation-app-frame--editor .creation-inspect-grid-preset-btn.is-active,
+.app-frame.creation-app-frame--editor .creation-inspect-span-btn.is-active,
+.app-frame.creation-app-frame--editor .creation-inspect-size-mode-btn.is-active,
+.app-frame.creation-app-frame--editor .creation-inspect-fit-btn.is-active,
+.app-frame.creation-app-frame--editor .creation-inspect-media-pos__btn.is-active {
+  border-color: var(--accent);
+  color: var(--ink);
+  background: color-mix(in srgb, var(--accent) 10%, transparent);
+}
+
+/* ── Kit Playground (`/kit`) — Zaoly CD chrome ── */
+.app-frame .creation-kit-playground,
+.app-frame .creation-kit-playground *,
+.app-frame .creation-kit-playground *::before,
+.app-frame .creation-kit-playground *::after {
+  border-radius: 0 !important;
+}
+
+.app-frame .creation-kit-playground {
+  color: var(--editor-text);
+  font-family: var(--editor-font);
+}
+
+.app-frame .creation-kit-playground__sidebar,
+.app-frame .creation-kit-playground__editor,
+.app-frame .creation-kit-playground__preview {
+  background: var(--editor-panel) !important;
+  border-color: var(--editor-border) !important;
+}
+
+.app-frame .creation-kit-playground__pane-label,
+.app-frame .creation-kit-playground__preview-header {
+  background: var(--editor-panel-muted) !important;
+  border-color: var(--editor-border) !important;
+  color: var(--editor-muted) !important;
+}
+
+.app-frame .creation-kit-nav__item--active,
+.app-frame .creation-kit-detail-tab--active,
+.app-frame .creation-kit-viewport-toggle--active,
+.app-frame .creation-kit-props__tree-item--active {
+  color: var(--editor-live-ink) !important;
+  background: var(--editor-live) !important;
+  background-color: var(--editor-live) !important;
+  border-color: var(--editor-live) !important;
+}
+
+.app-frame .creation-kit-preview-canvas {
+  background-color: var(--editor-canvas-frame) !important;
+}
+
+.app-frame .creation-kit-preview-frame {
+  background: var(--editor-canvas-bg) !important;
+  border-color: var(--editor-border) !important;
+}
+
+.app-frame .creation-kit-atom-source,
+.app-frame .creation-kit-seed-diff,
+.app-frame .creation-kit-handoff__atom-source,
+.app-frame .creation-kit-handoff__tokens,
+.app-frame .creation-kit-props__tokens {
+  background: var(--editor-panel-muted) !important;
+  border-color: var(--editor-border) !important;
+}
+
+.app-frame .creation-kit-handoff__code,
+.app-frame .creation-kit-token-row {
+  background: var(--editor-input-bg) !important;
+}
+
+.app-frame .creation-kit-playground__resize:hover,
+.app-frame .creation-kit-playground__resize:focus-visible {
+  background: var(--editor-live) !important;
+}
+
+/* ── Compositions hub (`/compositions`) — Zaoly CD chrome ── */
+.app-frame .creation-compositions-hub,
+.app-frame .creation-compositions-hub *,
+.app-frame .creation-compositions-hub *::before,
+.app-frame .creation-compositions-hub *::after {
+  border-radius: 0 !important;
+}
+
+.app-frame .creation-compositions-hub {
+  color: var(--editor-text);
+  font-family: var(--editor-font);
+}
+
+.app-frame .creation-compositions-hub .ds-panel {
+  background: var(--editor-panel) !important;
+  border-color: var(--editor-border) !important;
+  color: var(--editor-text);
+}
+
+.app-frame .creation-compositions-hub .ds-hub-index-layout-switch {
+  border-color: var(--editor-border) !important;
+  background: var(--editor-panel-muted) !important;
+  border-radius: 0 !important;
+}
+
+.app-frame .creation-compositions-hub .ds-hub-index-layout-switch button {
+  border-radius: 0 !important;
+  color: var(--editor-muted);
+  font-weight: 300;
+}
+
+.app-frame .creation-compositions-hub .ds-hub-index-layout-switch button.is-active {
+  background: var(--editor-live) !important;
+  color: var(--editor-live-ink) !important;
+}
+
+.app-frame .creation-compositions-hub .ds-hub-index-card__panel.ds-panel.ds-panel--card {
+  background: var(--editor-panel-muted) !important;
+  border: 1px solid var(--editor-border) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  overflow: hidden;
+}
+
+.app-frame .creation-compositions-hub .ds-hub-index-card:hover .ds-hub-index-card__panel,
+.app-frame .creation-compositions-hub .ds-hub-index-card:focus-visible .ds-hub-index-card__panel {
+  border-color: var(--editor-accent) !important;
+  background: color-mix(in srgb, var(--editor-accent) 6%, var(--editor-panel-muted)) !important;
+}
+
+.app-frame .creation-compositions-hub .ds-hub-index-card__panel--create.ds-panel.ds-panel--card {
+  border-style: dashed !important;
+  border-color: var(--editor-border) !important;
+  background: var(--editor-panel) !important;
+}
+
+.app-frame .creation-compositions-hub .ds-hub-index-card--create:hover .ds-hub-index-card__panel--create,
+.app-frame .creation-compositions-hub .ds-hub-index-card--create:focus-visible .ds-hub-index-card__panel--create {
+  border-color: var(--editor-live) !important;
+  background: color-mix(in srgb, var(--editor-live) 10%, var(--editor-panel)) !important;
+}
+
+.app-frame .creation-compositions-hub .ds-hub-index-card__title {
+  color: var(--editor-text);
+  font-family: var(--editor-font-brand);
+  font-weight: 500;
+}
+
+.app-frame .creation-compositions-hub .ds-hub-index-card__meta {
+  color: var(--editor-muted);
+  font-weight: 300;
+}
+
+.app-frame .creation-compositions-hub .ds-hub-index-card__media {
+  overflow: hidden;
+  min-width: 0;
+  max-width: none; /* still full-bleed via negative margins */
+}
+
+.app-frame .creation-compositions-hub .ds-hub-index-card__media > * {
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.app-frame .creation-compositions-hub .creation-composition-card-preview {
+  border-radius: 0 !important;
+  background: var(--editor-canvas-frame) !important;
+  border-color: var(--editor-border) !important;
+  overflow: hidden !important;
+  contain: paint;
+}
+
+.app-frame .creation-compositions-hub .creation-composition-card__menu {
+  border-radius: 0 !important;
+  background: color-mix(in srgb, var(--editor-panel) 88%, transparent) !important;
+  border: 1px solid var(--editor-border) !important;
+  color: var(--editor-text) !important;
+}
+
+.app-frame .creation-compositions-hub .creation-composition-card__menu:hover {
+  border-color: var(--editor-accent) !important;
+  background: var(--editor-panel) !important;
+}
+
+.app-frame .creation-compositions-hub .creation-projects-create input,
+.app-frame .creation-compositions-hub .creation-projects-create select {
+  border-radius: 0 !important;
+  border: 1px solid var(--editor-border);
+  background: var(--editor-input-bg);
+  color: var(--editor-text);
+}
+
+/* ── Users / Admin hub (`/admin/users`) — Zaoly CD chrome ── */
+.app-frame .zaoly-users-hub,
+.app-frame .zaoly-users-hub *,
+.app-frame .zaoly-users-hub *::before,
+.app-frame .zaoly-users-hub *::after,
+.app-frame .zaoly-admin-hub,
+.app-frame .zaoly-admin-hub *,
+.app-frame .zaoly-admin-hub *::before,
+.app-frame .zaoly-admin-hub *::after {
+  border-radius: 0 !important;
+}
+
+.app-frame .zaoly-users-hub,
+.app-frame .zaoly-admin-hub {
+  color: var(--editor-text);
+  font-family: var(--editor-font);
+  display: grid;
+  gap: 1.75rem;
+  width: 100%;
+  max-width: none;
+  box-sizing: border-box;
+}
+
+.app-frame .zaoly-admin-hub__subnav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 1.5rem;
+  margin: 0 0 0.5rem;
+  padding: 0 0 0.85rem;
+  border-bottom: 1px solid color-mix(in srgb, var(--editor-text) 18%, transparent);
+}
+
+.app-frame .zaoly-admin-hub__subnav-link {
+  color: var(--editor-muted, var(--editor-text));
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  padding-block: 0.15rem;
+  border-bottom: 1px solid transparent;
+}
+
+.app-frame .zaoly-admin-hub__subnav-link:hover {
+  color: var(--editor-text);
+}
+
+.app-frame .zaoly-admin-hub__subnav-link.is-active {
+  color: var(--editor-text);
+  border-bottom-color: var(--editor-text);
+}
+
+.app-frame .zaoly-admin-hub__section {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.app-frame .zaoly-admin-hub__section .section-chrome {
+  border-bottom: none;
+  margin: 0;
+  padding: 0;
+}
+
+.app-frame .zaoly-admin-hub__stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(7rem, 1fr));
+  gap: 1rem 1.25rem;
+  margin: 0;
+  padding: 1rem 0 0;
+  border-top: 1px solid color-mix(in srgb, var(--editor-text) 12%, transparent);
+}
+
+.app-frame .zaoly-admin-hub__stats dt {
+  margin: 0;
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--editor-muted, var(--editor-text));
+}
+
+.app-frame .zaoly-admin-hub__stats dd {
+  margin: 0.35rem 0 0;
+  font-size: 1.75rem;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.1;
+}
+
+.app-frame .zaoly-admin-hub__tiles {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  gap: 0.75rem;
+}
+
+.app-frame .zaoly-admin-hub__tile {
+  display: grid;
+  gap: 0.4rem;
+  align-content: start;
+  padding: 1rem 1.1rem;
+  border: 1px solid color-mix(in srgb, var(--editor-text) 22%, transparent);
+  color: inherit;
+  text-decoration: none;
+  background: transparent;
+  transition: border-color 120ms ease, background-color 120ms ease;
+}
+
+.app-frame .zaoly-admin-hub__tile:hover {
+  border-color: var(--editor-text);
+  background: color-mix(in srgb, var(--editor-text) 4%, transparent);
+}
+
+.app-frame .zaoly-admin-hub__tile-title {
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+.app-frame .zaoly-admin-hub__tile-help {
+  font-size: 0.8125rem;
+  line-height: 1.4;
+  color: var(--editor-muted, var(--editor-text));
+}
+
+.app-frame .zaoly-admin-hub__tile-cta {
+  margin-top: 0.35rem;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+.app-frame .zaoly-admin-hub__flags {
+  list-style: none;
+  margin: 0;
+  padding: 0.85rem 0 0;
+  border-top: 1px solid color-mix(in srgb, var(--editor-text) 12%, transparent);
+  display: grid;
+  gap: 0.75rem;
+}
+
+.app-frame .zaoly-admin-hub__flags li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.app-frame .zaoly-admin-hub__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.app-frame .zaoly-impersonation-banner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin: 0 0 1rem;
+  padding: 0.65rem 0.85rem;
+  border: 1px solid var(--editor-text);
+  color: var(--editor-text);
+  font-family: var(--editor-font);
+  font-size: 0.875rem;
+}
+
+.app-frame .zaoly-users-hub .ds-settings-band,
+.app-frame .zaoly-users-hub .ds-settings-band__body,
+.app-frame .zaoly-users-hub .zaoly-users-hub__invite,
+.app-frame .zaoly-users-hub .zaoly-users-hub__invite-url,
+.app-frame .zaoly-users-hub .zaoly-users-hub__smtp,
+.app-frame .zaoly-users-hub .zaoly-users-hub__smtp-grid,
+.app-frame .zaoly-users-hub .zaoly-users-hub__list,
+.app-frame .zaoly-users-hub .zaoly-users-hub__row {
+  width: 100%;
+  max-width: none;
+  box-sizing: border-box;
+}
+
+.app-frame .zaoly-users-hub .ds-settings-band__body {
+  align-items: stretch;
+}
+
+.app-frame .zaoly-users-hub .ds-settings-band__help {
+  max-width: none;
+}
+
+.app-frame .zaoly-users-hub .ds-section-chrome,
+.app-frame .zaoly-users-hub .section-chrome,
+.app-frame .zaoly-users-hub .section-chrome-quiet {
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.app-frame .zaoly-users-hub__invite .ds-chip--selected,
+.app-frame .zaoly-users-hub__invite .ds-chip.active {
+  background: var(--editor-live) !important;
+  color: var(--editor-live-ink) !important;
+  border-color: var(--editor-live) !important;
+}
+
+.app-frame .zaoly-users-hub .ds-chip--selected {
+  background: var(--editor-accent) !important;
+  color: var(--editor-accent-ink) !important;
+  border-color: transparent !important;
+}
+
+.app-frame .zaoly-users-hub__error {
+  margin: 0;
+  color: var(--danger);
+}
+
+.app-frame .zaoly-token-studio,
+.app-frame .zaoly-token-studio *,
+.app-frame .zaoly-token-studio *::before,
+.app-frame .zaoly-token-studio *::after {
+  border-radius: 0 !important;
+}
+
+.app-frame .zaoly-token-studio .zaoly-token-studio__allow-radius {
+  border-radius: var(--token-radius, 0) !important;
+}
+
+.app-frame .zaoly-token-studio .zaoly-token-studio__radius-module.zaoly-token-studio__allow-radius {
+  border-radius: 0 !important;
+  border-bottom-right-radius: var(--token-radius, 0) !important;
+}
+
+.app-frame .zaoly-token-studio {
+  color: var(--editor-text);
+  font-family: var(--editor-font);
+  display: grid;
+  gap: 2rem;
+  width: 100%;
+  max-width: none;
+  box-sizing: border-box;
+}
+
+.app-frame .zaoly-token-studio .ds-panel--editorial,
+.app-frame .zaoly-token-studio .ds-panel--card {
+  width: 100%;
+}
+
+.app-frame .zaoly-token-studio .ds-section-chrome,
+.app-frame .zaoly-token-studio .section-chrome,
+.app-frame .zaoly-token-studio .section-chrome-quiet {
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.app-frame .zaoly-token-studio__masthead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+  width: 100%;
+}
+
+.app-frame .zaoly-token-studio__toolbar {
+  display: grid;
+  gap: 0.85rem;
+  width: 100%;
+  margin-top: 1.25rem;
+}
+
+.app-frame .zaoly-token-studio__filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.app-frame .zaoly-token-studio__filters--status {
+  margin-top: 0.35rem;
+  padding-top: 0.35rem;
+  border-top: 1px solid color-mix(in srgb, var(--editor-text) 10%, transparent);
+}
+
+.app-frame .zaoly-token-studio__chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.app-frame .zaoly-token-studio .ds-chip--selected {
+  background: var(--editor-live) !important;
+  color: var(--editor-live-ink) !important;
+  border-color: var(--editor-live) !important;
+}
+
+.app-frame .zaoly-token-studio__view-switch {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.app-frame .zaoly-token-studio__export {
+  display: grid;
+  gap: 0.85rem;
+  width: 100%;
+  min-width: 0;
+}
+
+.app-frame .zaoly-token-studio__export-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 0.75rem;
+  width: 100%;
+}
+
+.app-frame .zaoly-token-studio__export-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  align-items: center;
+}
+
+.app-frame .zaoly-token-studio__import-input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.app-frame .zaoly-token-studio__import-diff {
+  display: grid;
+  gap: 0.65rem;
+  padding: 0.75rem 0.9rem;
+  border: 1px solid color-mix(in srgb, var(--editor-text) 14%, transparent);
+  background: color-mix(in srgb, var(--editor-text) 4%, var(--bg1, #f7f4ee));
+  color: var(--editor-text);
+  font-size: 0.85rem;
+}
+
+.app-frame .zaoly-token-studio__import-diff p {
+  margin: 0;
+}
+
+.app-frame .zaoly-token-studio__export-code {
+  margin: 0;
+  padding: 1rem 1.1rem;
+  overflow: auto;
+  max-height: min(70vh, 42rem);
+  width: 100%;
+  min-width: 0;
+  border: 1px solid color-mix(in srgb, var(--editor-text) 14%, transparent);
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--editor-text) 3%, transparent),
+      transparent 2.5rem
+    ),
+    color-mix(in srgb, var(--editor-text) 4%, var(--bg1, #f7f4ee));
+  color: var(--editor-text);
+  font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+  font-size: 0.78rem;
+  line-height: 1.55;
+  white-space: pre;
+  tab-size: 2;
+}
+
+.app-frame .zaoly-token-studio__export-code code {
+  display: block;
+  font: inherit;
+  color: inherit;
+}
+
+.app-frame .zaoly-token-studio__error {
+  margin: 0;
+  color: var(--danger);
+}
+
+.app-frame .zaoly-token-studio__deck,
+.app-frame .zaoly-token-studio__chapter,
+.app-frame .zaoly-token-studio__grid {
+  width: 100%;
+  min-width: 0;
+}
+
+.app-frame .zaoly-token-studio__deck {
+  display: grid;
+  gap: 2.5rem;
+}
+
+.app-frame .zaoly-token-studio__chapter {
+  display: grid;
+  gap: 1.5rem;
+  padding-block: 0.35rem 1.75rem;
+  border-block-end: 1px solid color-mix(in srgb, var(--editor-text) 14%, transparent);
+}
+
+.app-frame .zaoly-token-studio__chapter:last-child {
+  border-block-end: none;
+  padding-block-end: 0;
+}
+
+.app-frame .zaoly-token-studio__chapter-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 0.85rem 1.25rem;
+}
+
+.app-frame .zaoly-token-studio__chapter-head > .ds-section-chrome {
+  flex: 1 1 12rem;
+  min-width: 0;
+}
+
+.app-frame .zaoly-token-studio__group-draft {
+  display: grid;
+  gap: 0.55rem;
+  min-width: min(100%, 16rem);
+  padding: 0.65rem 0.75rem;
+  border: 1px solid color-mix(in srgb, var(--editor-text) 14%, transparent);
+  background: color-mix(in srgb, var(--editor-surface, var(--editor-bg)) 92%, var(--editor-text));
+}
+
+.app-frame .zaoly-token-studio__group-draft-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.app-frame .zaoly-token-studio__family {
+  display: grid;
+  gap: 1rem;
+  padding: 1.1rem 1.15rem 1.25rem;
+  border: 1px solid color-mix(in srgb, var(--editor-text) 16%, transparent);
+  background: color-mix(in srgb, var(--editor-bg) 88%, var(--editor-text));
+  box-shadow: inset 0 1px 0 color-mix(in srgb, #fff 6%, transparent);
+}
+
+.app-frame .zaoly-token-studio__family-head,
+.app-frame .zaoly-token-studio__cluster-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin: 0;
+}
+
+.app-frame .zaoly-token-studio__family-head {
+  padding-block-end: 0.55rem;
+  border-block-end: 1px solid color-mix(in srgb, var(--editor-text) 12%, transparent);
+}
+
+.app-frame .zaoly-token-studio__family-title {
+  margin: 0;
+  font-family: var(--editor-font);
+  font-size: 1.05rem;
+  font-weight: 650;
+  letter-spacing: -0.015em;
+  color: var(--editor-text);
+}
+
+.app-frame .zaoly-token-studio__cluster-title {
+  margin: 0;
+  font-family: var(--editor-font-mono);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  text-transform: none;
+  color: var(--editor-text-secondary);
+}
+
+.app-frame .zaoly-token-studio__family-meta,
+.app-frame .zaoly-token-studio__cluster-meta {
+  font-family: var(--editor-font-mono);
+  font-size: 0.65rem;
+  color: var(--editor-text-secondary);
+}
+
+.app-frame .zaoly-token-studio__cluster {
+  display: grid;
+  gap: 0.65rem;
+}
+
+.app-frame .zaoly-token-studio__cluster:not(:first-of-type) {
+  padding-block-start: 0.75rem;
+  border-block-start: 1px solid color-mix(in srgb, var(--editor-text) 8%, transparent);
+}
+
+.app-frame .zaoly-token-studio__family > .zaoly-token-studio__grid--create + .zaoly-token-studio__cluster {
+  padding-block-start: 0.75rem;
+  border-block-start: 1px solid color-mix(in srgb, var(--editor-text) 8%, transparent);
+}
+
+.app-frame .zaoly-token-studio__grid--create {
+  margin-block: 0.15rem 0.1rem;
+}
+
+.app-frame .zaoly-token-studio__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(13.5rem, 1fr));
+  gap: 1rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  align-items: stretch;
+}
+
+.app-frame .zaoly-token-studio .ds-hub-index-card {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.app-frame .zaoly-token-studio .ds-hub-index-card__panel.ds-panel.ds-panel--card {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  width: 100%;
+  background: var(--editor-panel);
+  border: 1px solid var(--editor-border);
+  min-height: 0;
+  height: 100%;
+  justify-content: flex-start;
+  gap: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.app-frame .zaoly-token-studio .ds-hub-index-card:hover .ds-hub-index-card__panel,
+.app-frame .zaoly-token-studio .ds-hub-index-card:focus-visible .ds-hub-index-card__panel {
+  border-color: var(--editor-text);
+}
+
+.app-frame .zaoly-token-studio .ds-hub-index-card.is-selected .ds-hub-index-card__panel {
+  background: var(--editor-live);
+  color: var(--editor-live-ink);
+  border-color: var(--editor-live);
+}
+
+.app-frame .zaoly-token-studio .ds-hub-index-card__panel--create.ds-panel.ds-panel--card {
+  background: var(--editor-warm-gray);
+  color: var(--editor-warm-gray-fg);
+  border-color: var(--editor-warm-gray);
+  min-height: 12rem;
+  padding: 1.25rem;
+  justify-content: flex-end;
+  gap: 0.75rem;
+}
+
+.app-frame .zaoly-token-studio .ds-hub-index-card--create:hover .ds-hub-index-card__panel--create,
+.app-frame .zaoly-token-studio .ds-hub-index-card--create:focus-visible .ds-hub-index-card__panel--create {
+  background: var(--editor-live);
+  color: var(--editor-live-ink);
+  border-color: var(--editor-live);
+}
+
+.app-frame .zaoly-token-studio .ds-hub-index-card__title {
+  flex: 0 0 auto;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  overflow: hidden;
+  font-family: var(--editor-font-brand);
+  font-weight: 400;
+  letter-spacing: -0.03em;
+  font-size: 1.15rem;
+  line-height: 1.2;
+  min-height: calc(1.15rem * 1.2 * 2);
+  overflow-wrap: anywhere;
+  max-width: none;
+  padding: 0.85rem 1rem 0.35rem;
+}
+
+.app-frame .zaoly-token-studio .ds-hub-index-card__meta {
+  flex: 1 1 auto;
+  display: grid;
+  align-content: start;
+  gap: 0.35rem;
+  font-family: var(--editor-font-mono);
+  font-size: 0.68rem;
+  line-height: 1.35;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  opacity: 0.78;
+  padding: 0 1rem 1rem;
+  min-height: calc(0.68rem * 1.35 * 2);
+  overflow: hidden;
+}
+
+.app-frame .zaoly-token-studio .ds-hub-index-card__meta > span {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  overflow: hidden;
+  overflow-wrap: anywhere;
+}
+
+.app-frame .zaoly-token-studio__card-slot {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  min-width: 0;
+  height: 100%;
+}
+
+.app-frame .zaoly-token-studio__card-slot > .ds-hub-index-card {
+  flex: 1 1 auto;
+}
+
+.app-frame .zaoly-token-studio__status {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  align-items: center;
+  padding-inline: 0.15rem;
+}
+
+.app-frame .zaoly-token-studio__badge {
+  display: inline-flex;
+  align-items: center;
+  margin: 0;
+  padding: 0.12rem 0.35rem;
+  border: 1px solid color-mix(in srgb, var(--editor-text) 18%, transparent);
+  background: transparent;
+  color: var(--editor-text);
+  font: inherit;
+  letter-spacing: 0.06em;
+  line-height: 1.2;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.app-frame .zaoly-token-studio__badge:focus-visible {
+  outline: 2px solid var(--editor-live);
+  outline-offset: 2px;
+}
+
+.app-frame .zaoly-token-studio__badge--fixture {
+  opacity: 0.72;
+}
+
+.app-frame .zaoly-token-studio__badge--override {
+  border-color: var(--editor-live);
+  color: var(--editor-live-ink);
+  background: var(--editor-live);
+}
+
+.app-frame .zaoly-token-studio__badge--custom {
+  border-color: color-mix(in srgb, var(--editor-text) 35%, transparent);
+  background: color-mix(in srgb, var(--editor-text) 8%, transparent);
+}
+
+.app-frame .zaoly-token-studio__badge--unresolved {
+  border-color: var(--danger, #b42318);
+  color: var(--danger, #b42318);
+  background: color-mix(in srgb, var(--danger, #b42318) 10%, transparent);
+}
+
+.app-frame .zaoly-token-studio__card-slot[data-unresolved='true'] .ds-hub-index-card__panel {
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--danger, #b42318) 45%, transparent);
+}
+
+.app-frame .zaoly-token-studio__fixture-was {
+  display: block;
+  opacity: 0.7;
+  text-transform: none;
+  letter-spacing: 0.02em;
+  overflow-wrap: anywhere;
+}
+
+.app-frame .zaoly-token-studio__fixture-baseline {
+  display: grid;
+  gap: 0.25rem;
+  margin: 0 0 0.75rem;
+  padding: 0.55rem 0.65rem;
+  border: 1px solid color-mix(in srgb, var(--editor-text) 14%, transparent);
+  background: color-mix(in srgb, var(--editor-text) 4%, transparent);
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.app-frame .zaoly-token-studio__fixture-baseline code {
+  font-family: var(--editor-font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.02em;
+  text-transform: none;
+  overflow-wrap: anywhere;
+}
+
+.app-frame .zaoly-token-studio .ds-hub-index-card__media {
+  flex: 0 0 auto;
+  margin: 0;
+  width: 100%;
+  max-width: 100%;
+  aspect-ratio: 16 / 10;
+  height: auto;
+  min-height: 0;
+  overflow: hidden;
+  background: var(--editor-canvas-frame);
+}
+
+.app-frame .zaoly-token-studio .ds-hub-index-card__media > * {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 100%;
+  height: 100%;
+  min-height: 0;
+}
+
+.app-frame .zaoly-token-studio__swatch,
+.app-frame .zaoly-token-studio__shadow-sheet,
+.app-frame .zaoly-token-studio__glow-sheet,
+.app-frame .zaoly-token-studio__effect-sheet,
+.app-frame .zaoly-token-studio__motion-sheet,
+.app-frame .zaoly-token-studio__space-stage,
+.app-frame .zaoly-token-studio__space-sheet,
+.app-frame .zaoly-token-studio__radius-stage,
+.app-frame .zaoly-token-studio__opacity-stage,
+.app-frame .zaoly-token-studio__glyph-stage {
+  width: 100%;
+  max-width: 100%;
+  height: 100%;
+  min-height: 0;
+  box-sizing: border-box;
+}
+
+.app-frame .zaoly-token-studio__space-stage,
+.app-frame .zaoly-token-studio__radius-stage,
+.app-frame .zaoly-token-studio__opacity-stage,
+.app-frame .zaoly-token-studio__glyph-stage {
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+}
+
+.app-frame .zaoly-token-studio__radius-stage span,
+.app-frame .zaoly-token-studio__opacity-stage span {
+  display: block;
+  width: 3.5rem;
+  height: 3.5rem;
+  background: var(--editor-panel);
+  border: 1px solid var(--editor-border);
+}
+
+.app-frame .zaoly-token-studio__shadow-sheet {
+  /* Always light paper — dark theme panels kill soft elevation casts. */
+  --space-unit: 1rem;
+  --shadow-paper: #f3eee4;
+  --shadow-plate: #fbf6ec;
+  --shadow-ink: #1e1b17;
+  position: relative;
+  overflow: visible;
+  display: grid;
+  place-items: center;
+  padding: 1.5rem;
+  background-color: var(--shadow-paper);
+  background-image:
+    linear-gradient(
+      to right,
+      color-mix(in srgb, var(--shadow-ink) 8%, transparent) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      to bottom,
+      color-mix(in srgb, var(--shadow-ink) 8%, transparent) 1px,
+      transparent 1px
+    );
+  background-size: var(--space-unit) var(--space-unit);
+  background-position: 0 0;
+}
+
+.app-frame .zaoly-token-studio__shadow-ghost,
+.app-frame .zaoly-token-studio__shadow-plate {
+  grid-area: 1 / 1;
+  display: block;
+  width: 3.75rem;
+  height: 3.75rem;
+  box-sizing: border-box;
+}
+
+.app-frame .zaoly-token-studio__shadow-ghost {
+  border: 1px solid color-mix(in srgb, var(--shadow-ink) 32%, transparent);
+  background: transparent;
+}
+
+.app-frame .zaoly-token-studio__shadow-plate {
+  background: var(--shadow-plate);
+  border: 1px solid color-mix(in srgb, var(--shadow-ink) 18%, transparent);
+  box-shadow: var(--token-shadow, none);
+}
+
+.app-frame .zaoly-token-studio__glow-sheet {
+  --space-unit: 1rem;
+  --glow-paper: #201c17;
+  --glow-ink: #ede6d8;
+  position: relative;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+  padding: 1.5rem;
+  background-color: var(--glow-paper);
+  background-image:
+    linear-gradient(
+      to right,
+      color-mix(in srgb, var(--glow-ink) 8%, transparent) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      to bottom,
+      color-mix(in srgb, var(--glow-ink) 8%, transparent) 1px,
+      transparent 1px
+    );
+  background-size: var(--space-unit) var(--space-unit);
+}
+
+.app-frame .zaoly-token-studio__glow-plate {
+  display: block;
+  width: 3.75rem;
+  height: 3.75rem;
+  box-sizing: border-box;
+  background: #fbf6ec;
+  border: 1px solid color-mix(in srgb, #ede6d8 22%, transparent);
+  box-shadow: var(--token-glow, none);
+}
+
+.app-frame .zaoly-token-studio__effect-sheet {
+  --space-unit: 1rem;
+  --effect-paper: #f3eee4;
+  --effect-ink: #1e1b17;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+  padding: 1.25rem;
+  background-color: var(--effect-paper);
+  background-image:
+    linear-gradient(
+      to right,
+      color-mix(in srgb, var(--effect-ink) 8%, transparent) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      to bottom,
+      color-mix(in srgb, var(--effect-ink) 8%, transparent) 1px,
+      transparent 1px
+    );
+  background-size: var(--space-unit) var(--space-unit);
+}
+
+.app-frame .zaoly-token-studio__effect-specimen {
+  display: grid;
+  grid-template-columns: repeat(3, 1.15rem);
+  gap: 0.35rem;
+  align-items: end;
+  height: 3.5rem;
+}
+
+.app-frame .zaoly-token-studio__effect-specimen span {
+  display: block;
+  width: 1.15rem;
+  border: 1px solid color-mix(in srgb, var(--effect-ink) 18%, transparent);
+}
+
+.app-frame .zaoly-token-studio__effect-specimen span:nth-child(1) {
+  height: 2.1rem;
+  background: #1f44ff;
+}
+
+.app-frame .zaoly-token-studio__effect-specimen span:nth-child(2) {
+  height: 3.5rem;
+  background: #c6f24a;
+}
+
+.app-frame .zaoly-token-studio__effect-specimen span:nth-child(3) {
+  height: 2.7rem;
+  background: #2e2a24;
+}
+
+.app-frame .zaoly-token-studio__motion-sheet {
+  --space-unit: 1rem;
+  --motion-paper: #f3eee4;
+  --motion-ink: #1e1b17;
+  position: relative;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+  padding: 1.25rem;
+  background-color: var(--motion-paper);
+  background-image:
+    linear-gradient(
+      to right,
+      color-mix(in srgb, var(--motion-ink) 8%, transparent) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      to bottom,
+      color-mix(in srgb, var(--motion-ink) 8%, transparent) 1px,
+      transparent 1px
+    );
+  background-size: var(--space-unit) var(--space-unit);
+}
+
+.app-frame .zaoly-token-studio__motion-track {
+  grid-area: 1 / 1;
+  width: 6.5rem;
+  height: 1px;
+  background: color-mix(in srgb, var(--motion-ink) 28%, transparent);
+}
+
+.app-frame .zaoly-token-studio__motion-plate {
+  grid-area: 1 / 1;
+  display: block;
+  width: 2.25rem;
+  height: 2.25rem;
+  box-sizing: border-box;
+  background: #2e2a24;
+  border: 1px solid color-mix(in srgb, #f3eee4 12%, transparent);
+  animation: zaoly-token-motion-nudge var(--token-motion-duration, 240ms)
+    var(--token-motion-easing, ease) infinite alternate;
+}
+
+@keyframes zaoly-token-motion-nudge {
+  from {
+    transform: translateX(-1.5rem);
+  }
+  to {
+    transform: translateX(1.5rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .app-frame .zaoly-token-studio__motion-plate {
+    animation: none;
+    transform: none;
+  }
+}
+
+.app-frame .zaoly-token-studio__space-stage {
+  justify-items: start;
+  align-items: end;
+}
+
+.app-frame .zaoly-token-studio__space-stage span {
+  display: block;
+  height: 0.7rem;
+  max-width: 100%;
+  background: var(--editor-accent);
+}
+
+.app-frame .zaoly-token-studio__space-sheet {
+  --space-unit: 1rem;
+  --corner-x: round(nearest, 50%, var(--space-unit));
+  --corner-y: round(nearest, 50%, var(--space-unit));
+  position: relative;
+  overflow: hidden;
+  background-color: var(--editor-canvas-frame);
+  background-image:
+    linear-gradient(
+      to right,
+      color-mix(in srgb, var(--editor-text) 16%, transparent) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      to bottom,
+      color-mix(in srgb, var(--editor-text) 16%, transparent) 1px,
+      transparent 1px
+    );
+  background-size: var(--space-unit) var(--space-unit);
+  background-position: 0 0;
+}
+
+.app-frame .zaoly-token-studio__space-map {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: calc(var(--corner-x) + var(--token-space, 0.5rem));
+  height: calc(var(--corner-y) + var(--token-space, 0.5rem));
+  box-sizing: border-box;
+  padding: 0 var(--token-space, 0.5rem) var(--token-space, 0.5rem) 0;
+  background: var(--editor-accent);
+}
+
+.app-frame .zaoly-token-studio__space-module {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: color-mix(in srgb, var(--editor-text) 18%, var(--editor-canvas-frame));
+}
+
+/* Selected: lime paints the spacing pad; the static module stays contrast ink. */
+.app-frame .zaoly-token-studio .ds-hub-index-card.is-selected .zaoly-token-studio__space-map {
+  background: var(--editor-live);
+}
+
+.app-frame .zaoly-token-studio .ds-hub-index-card.is-selected .zaoly-token-studio__space-module {
+  background: var(--editor-live-ink);
+}
+
+.app-frame .zaoly-token-studio__size-map {
+  position: absolute;
+  top: calc(var(--corner-y) - var(--token-size, 1rem));
+  left: calc(var(--corner-x) - var(--token-size, 1rem));
+  width: var(--token-size, 1rem);
+  height: var(--token-size, 1rem);
+  background: var(--editor-accent);
+}
+
+.app-frame .zaoly-token-studio .ds-hub-index-card.is-selected .zaoly-token-studio__size-map {
+  background: var(--editor-live);
+}
+
+.app-frame .zaoly-token-studio__radius-map {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: var(--corner-x);
+  height: var(--corner-y);
+}
+
+.app-frame .zaoly-token-studio__radius-module {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: var(--editor-accent);
+}
+
+.app-frame .zaoly-token-studio .ds-hub-index-card.is-selected .zaoly-token-studio__radius-module {
+  background: var(--editor-live);
+}
+
+.app-frame .zaoly-token-studio__opacity-sheet {
+  background-image:
+    repeating-conic-gradient(
+      from 90deg at 50% 50%,
+      color-mix(in srgb, var(--editor-text) 18%, var(--editor-canvas-frame)) 0% 25%,
+      var(--editor-canvas-frame) 0% 50%
+    ),
+    linear-gradient(
+      to right,
+      color-mix(in srgb, var(--editor-text) 16%, transparent) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      to bottom,
+      color-mix(in srgb, var(--editor-text) 16%, transparent) 1px,
+      transparent 1px
+    );
+  background-size:
+    calc(var(--space-unit) * 2) calc(var(--space-unit) * 2),
+    var(--space-unit) var(--space-unit),
+    var(--space-unit) var(--space-unit);
+  background-position: 0 0;
+}
+
+.app-frame .zaoly-token-studio__opacity-map {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: var(--corner-x);
+  height: var(--corner-y);
+  background: var(--editor-accent);
+  opacity: var(--token-opacity, 0.4);
+}
+
+.app-frame .zaoly-token-studio .ds-hub-index-card.is-selected .zaoly-token-studio__opacity-map {
+  background: var(--editor-live);
+}
+
+.app-frame .zaoly-token-studio__type-sheet {
+  /* Typography: same 1rem sheet, quieter wash so line-height rules stay primary. */
+  background-image:
+    linear-gradient(
+      to right,
+      color-mix(in srgb, var(--editor-text) 7%, transparent) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      to bottom,
+      color-mix(in srgb, var(--editor-text) 7%, transparent) 1px,
+      transparent 1px
+    );
+}
+
+.app-frame .zaoly-token-studio__type-map {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  align-content: center;
+  justify-content: stretch;
+  padding: 0.75rem 1rem;
+  box-sizing: border-box;
+}
+
+.app-frame .zaoly-token-studio__type-specimen {
+  --type-line: calc(1em * var(--token-type-leading, 1.2));
+  display: block;
+  width: 100%;
+  font-family: var(--token-type-family, inherit);
+  font-weight: var(--token-type-weight, 400);
+  font-size: var(--token-type-size, 1rem);
+  line-height: var(--token-type-leading, 1.2);
+  letter-spacing: -0.03em;
+  white-space: pre-line;
+  text-align: left;
+  color: var(--editor-text);
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent calc(var(--type-line) - 1px),
+    color-mix(in srgb, var(--editor-accent) 70%, transparent) calc(var(--type-line) - 1px),
+    color-mix(in srgb, var(--editor-accent) 70%, transparent) var(--type-line)
+  );
+  background-position: 0 0;
+  background-size: 100% var(--type-line);
+}
+
+.app-frame .zaoly-token-studio .ds-hub-index-card.is-selected .zaoly-token-studio__type-specimen {
+  color: var(--editor-live-ink);
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent calc(var(--type-line) - 1px),
+    color-mix(in srgb, var(--editor-live-ink) 55%, transparent) calc(var(--type-line) - 1px),
+    color-mix(in srgb, var(--editor-live-ink) 55%, transparent) var(--type-line)
+  );
+}
+
+.zaoly-token-studio-dialog,
+.zaoly-token-studio-dialog *,
+.zaoly-token-studio-dialog *::before,
+.zaoly-token-studio-dialog *::after {
+  border-radius: 0 !important;
+}
+
+.zaoly-token-studio-dialog .zaoly-token-studio__allow-radius {
+  border-radius: var(--token-radius, 0) !important;
+}
+
+.zaoly-token-studio-dialog .zaoly-token-studio__radius-module.zaoly-token-studio__allow-radius {
+  border-radius: 0 !important;
+  border-bottom-right-radius: var(--token-radius, 0) !important;
+}
+
+.zaoly-token-studio-dialog .zaoly-token-studio__dialog-body {
+  display: grid;
+  gap: 0.65rem;
+}
+
+.zaoly-token-studio-dialog .zaoly-token-studio__dialog-kicker {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin: 0;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 0.68rem;
+  font-family: var(--editor-font-mono);
+}
+
+.zaoly-token-studio-dialog .zaoly-token-studio__dialog-preview .zaoly-token-studio__swatch,
+.zaoly-token-studio-dialog .zaoly-token-studio__dialog-preview .zaoly-token-studio__shadow-sheet,
+.zaoly-token-studio-dialog .zaoly-token-studio__dialog-preview .zaoly-token-studio__glow-sheet,
+.zaoly-token-studio-dialog .zaoly-token-studio__dialog-preview .zaoly-token-studio__effect-sheet,
+.zaoly-token-studio-dialog .zaoly-token-studio__dialog-preview .zaoly-token-studio__motion-sheet,
+.zaoly-token-studio-dialog .zaoly-token-studio__dialog-preview .zaoly-token-studio__space-stage,
+.zaoly-token-studio-dialog .zaoly-token-studio__dialog-preview .zaoly-token-studio__space-sheet,
+.zaoly-token-studio-dialog .zaoly-token-studio__dialog-preview .zaoly-token-studio__radius-stage,
+.zaoly-token-studio-dialog .zaoly-token-studio__dialog-preview .zaoly-token-studio__opacity-stage,
+.zaoly-token-studio-dialog .zaoly-token-studio__dialog-preview .zaoly-token-studio__glyph-stage {
+  min-height: 4.25rem;
+  height: 4.25rem;
+}
+
+.zaoly-token-studio-dialog .zaoly-token-studio__dialog-preview .zaoly-token-studio__shadow-plate {
+  box-shadow: var(--token-shadow, none) !important;
+}
+
+.zaoly-token-studio-dialog .zaoly-token-studio__dialog-preview .zaoly-token-studio__glow-plate {
+  box-shadow: var(--token-glow, none) !important;
+}
+
+.zaoly-token-studio-dialog .zaoly-token-studio__fields,
+.app-frame .zaoly-token-studio__edit-dock .zaoly-token-studio__fields {
+  display: grid;
+  gap: 0.5rem;
+  width: 100%;
+  grid-template-columns: minmax(0, 1fr);
+}
+
+/* Nominal wheels / bezier: always full control width (no content-shrink). */
+.zaoly-token-studio-dialog .zaoly-token-studio__fields > .ds-field,
+.app-frame .zaoly-token-studio__edit-dock .zaoly-token-studio__fields > .ds-field {
+  align-items: stretch;
+  width: 100%;
+  min-width: 0;
+}
+
+.zaoly-token-studio-dialog .zaoly-token-studio__fields > .ds-field > :not(.ds-field-label),
+.app-frame .zaoly-token-studio__edit-dock .zaoly-token-studio__fields > .ds-field > :not(.ds-field-label) {
+  width: 100%;
+  min-width: 0;
+}
+
+.zaoly-token-studio-dialog .zaoly-token-studio__color-field,
+.app-frame .zaoly-token-studio__edit-dock .zaoly-token-studio__color-field {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.zaoly-token-studio-dialog .zaoly-token-studio__color-formats,
+.app-frame .zaoly-token-studio__edit-dock .zaoly-token-studio__color-formats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+}
+
+.zaoly-token-studio-dialog .zaoly-token-studio__color-row,
+.app-frame .zaoly-token-studio__edit-dock .zaoly-token-studio__color-row {
+  display: grid;
+  grid-template-columns: 2.25rem minmax(0, 1fr);
+  gap: 0.4rem;
+  align-items: center;
+}
+
+.zaoly-token-studio-dialog .zaoly-token-studio__filters,
+.app-frame .zaoly-token-studio__edit-dock .zaoly-token-studio__filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.app-frame .zaoly-token-studio__card-slot.is-pinned .ds-hub-index-card__media {
+  transform: translateY(-2px);
+  transition: transform 160ms cubic-bezier(0.2, 0, 0, 1);
+}
+
+.app-frame .zaoly-token-studio__card-slot:not(.is-pinned) .ds-hub-index-card:hover .ds-hub-index-card__media {
+  transform: translateY(-2px);
+  transition: transform 160ms cubic-bezier(0.2, 0, 0, 1);
+}
+
+.app-frame .zaoly-token-studio__edit-dock {
+  position: fixed;
+  z-index: 40;
+  width: min(20rem, calc(100vw - 2rem));
+  max-height: min(28rem, calc(100vh - 2rem));
+  overflow: auto;
+  display: grid;
+  gap: 0.75rem;
+  padding: 0.85rem 0.9rem 1rem;
+  box-sizing: border-box;
+  background: var(--editor-panel);
+  color: var(--editor-text);
+  border: 1px solid var(--editor-border);
+  border-radius: 0 !important;
+  box-shadow: var(--editor-shadow);
+}
+
+.app-frame .zaoly-token-studio__edit-dock,
+.app-frame .zaoly-token-studio__edit-dock *,
+.app-frame .zaoly-token-studio__edit-dock *::before,
+.app-frame .zaoly-token-studio__edit-dock *::after {
+  border-radius: 0 !important;
+}
+
+.app-frame .zaoly-token-studio__edit-dock-head {
+  display: grid;
+  gap: 0.55rem;
+}
+
+.app-frame .zaoly-token-studio__edit-dock-title {
+  margin: 0.15rem 0 0;
+  font-family: var(--editor-font-brand);
+  font-weight: 400;
+  letter-spacing: -0.03em;
+  font-size: 1.05rem;
+  overflow-wrap: anywhere;
+}
+
+.app-frame .zaoly-token-studio__edit-dock-title-btn {
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  letter-spacing: inherit;
+  text-align: left;
+  cursor: text;
+  overflow-wrap: anywhere;
+}
+
+.app-frame .zaoly-token-studio__edit-dock-title-btn:hover,
+.app-frame .zaoly-token-studio__edit-dock-title-btn:focus-visible {
+  color: var(--zaoly-acid, #c6f24a);
+  outline: none;
+}
+
+.app-frame .zaoly-token-studio__edit-dock-title-input.ds-input {
+  width: 100%;
+  font-family: var(--editor-font-mono, ui-monospace, monospace);
+  font-size: 0.85rem;
+}
+
+.app-frame .zaoly-token-studio__edit-dock .zaoly-token-studio__dialog-kicker {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin: 0;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 0.68rem;
+  font-family: var(--editor-font-mono);
+  opacity: 0.78;
+}
+
+.app-frame .zaoly-token-studio__edit-dock-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.app-frame .zaoly-token-studio__snap,
+.zaoly-token-studio-dialog .zaoly-token-studio__snap {
+  display: grid;
+  gap: 0.35rem;
+  width: 100%;
+  min-width: 0;
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.app-frame .zaoly-token-studio__wheel,
+.zaoly-token-studio-dialog .zaoly-token-studio__wheel {
+  position: relative;
+  width: 100%;
+  min-width: 0;
+  height: 3.1rem;
+  overflow: hidden;
+  touch-action: none;
+  user-select: none;
+  cursor: grab;
+  border: 1px solid var(--editor-border);
+  background:
+    linear-gradient(
+      90deg,
+      var(--editor-panel) 0%,
+      transparent 28%,
+      transparent 72%,
+      var(--editor-panel) 100%
+    ),
+    color-mix(in srgb, var(--editor-text) 4%, var(--editor-panel));
+  border-radius: 0 !important;
+}
+
+.app-frame .zaoly-token-studio__wheel.is-dragging {
+  cursor: grabbing;
+}
+
+.app-frame .zaoly-token-studio__wheel:focus-visible {
+  outline: 1px solid var(--editor-accent);
+  outline-offset: 1px;
+}
+
+.app-frame .zaoly-token-studio__wheel-notch {
+  position: absolute;
+  z-index: 2;
+  left: 50%;
+  top: 0.25rem;
+  bottom: 0.25rem;
+  width: 1px;
+  transform: translateX(-50%);
+  background: var(--editor-accent);
+  pointer-events: none;
+}
+
+.app-frame .zaoly-token-studio__wheel-notch::before,
+.app-frame .zaoly-token-studio__wheel-notch::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  width: 0.45rem;
+  height: 0.45rem;
+  transform: translateX(-50%);
+  background: var(--editor-accent);
+}
+
+.app-frame .zaoly-token-studio__wheel-notch::before {
+  top: 0;
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+}
+
+.app-frame .zaoly-token-studio__wheel-notch::after {
+  bottom: 0;
+  clip-path: polygon(50% 0, 0 100%, 100% 100%);
+}
+
+.app-frame .zaoly-token-studio__wheel-scale {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 0;
+  pointer-events: none;
+}
+
+.app-frame .zaoly-token-studio__wheel-tick {
+  position: absolute;
+  left: 0;
+  bottom: 0.4rem;
+  width: var(--wheel-step, 36px);
+  transform: translateX(calc(var(--tick-offset, 0) * var(--wheel-step, 36px) - 50%));
+  display: grid;
+  justify-items: center;
+  gap: 0.2rem;
+  opacity: 0.42;
+  font-family: var(--editor-font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.02em;
+  color: var(--editor-text);
+}
+
+.app-frame .zaoly-token-studio__wheel-tick.is-active {
+  opacity: 1;
+  color: var(--editor-accent);
+}
+
+.app-frame .zaoly-token-studio__wheel-mark {
+  display: block;
+  width: 1px;
+  height: 0.7rem;
+  background: currentColor;
+}
+
+.app-frame .zaoly-token-studio__wheel-tick.is-active .zaoly-token-studio__wheel-mark {
+  height: 1rem;
+}
+
+.app-frame .zaoly-token-studio__wheel-label {
+  white-space: nowrap;
+}
+
+.app-frame .zaoly-token-studio__compose,
+.zaoly-token-studio-dialog .zaoly-token-studio__compose {
+  display: grid;
+  gap: 0.4rem;
+}
+
+.app-frame .zaoly-token-studio__compose-presets,
+.app-frame .zaoly-token-studio__compose-link,
+.zaoly-token-studio-dialog .zaoly-token-studio__compose-presets,
+.zaoly-token-studio-dialog .zaoly-token-studio__compose-link {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+}
+
+/* Light paper island inside the dark edit dock — force dark ink (do not inherit --editor-text). */
+.app-frame .zaoly-token-studio__expr-input,
+.zaoly-token-studio-dialog .zaoly-token-studio__expr-input {
+  display: flex;
+  align-items: stretch;
+  min-width: 0;
+  width: 100%;
+  border: 1px solid color-mix(in oklab, #1a1712 22%, transparent);
+  background: #f3eee4;
+  color: #1a1712;
+}
+
+.app-frame .zaoly-token-studio__expr-badge,
+.zaoly-token-studio-dialog .zaoly-token-studio__expr-badge {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  min-width: 2rem;
+  padding-inline: 0.35rem;
+  border-right: 1px solid color-mix(in oklab, #1a1712 18%, transparent);
+  background: var(--zaoly-acid, #c6f24a);
+  color: #1a1712;
+  font: 700 0.72rem/1 var(--editor-font-mono, ui-monospace, monospace);
+  letter-spacing: 0.02em;
+}
+
+.app-frame .zaoly-token-studio__expr-input-control.ds-input,
+.app-frame .zaoly-token-studio__expr-input-control,
+.zaoly-token-studio-dialog .zaoly-token-studio__expr-input-control.ds-input,
+.zaoly-token-studio-dialog .zaoly-token-studio__expr-input-control {
+  flex: 1 1 auto;
+  min-width: 0;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  color: #1a1712 !important;
+  -webkit-text-fill-color: #1a1712 !important;
+  caret-color: #1a1712;
+  font-family: var(--editor-font-mono, ui-monospace, monospace) !important;
+  font-size: 0.78rem !important;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+.app-frame .zaoly-token-studio__expr-input-control::placeholder,
+.zaoly-token-studio-dialog .zaoly-token-studio__expr-input-control::placeholder {
+  color: color-mix(in oklab, #1a1712 45%, transparent) !important;
+  -webkit-text-fill-color: color-mix(in oklab, #1a1712 45%, transparent) !important;
+  opacity: 1;
+}
+
+.app-frame .zaoly-token-studio__edit-dock .zaoly-token-studio__compose-resolve,
+.app-frame .zaoly-token-studio__compose-resolve,
+.zaoly-token-studio-dialog .zaoly-token-studio__compose-resolve {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  min-width: 0;
+  color: color-mix(in oklab, var(--editor-text, #ede6d8) 72%, transparent);
+  font: 500 0.72rem/1.3 var(--editor-font-mono, ui-monospace, monospace);
+}
+
+.app-frame .zaoly-token-studio__compose-resolve code,
+.zaoly-token-studio-dialog .zaoly-token-studio__compose-resolve code {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font: inherit;
+}
+
+.app-frame .zaoly-token-studio__compose-resolve--invalid,
+.zaoly-token-studio-dialog .zaoly-token-studio__compose-resolve--invalid {
+  color: var(--zaoly-danger, #b42318);
+}
+
+.app-frame .zaoly-token-studio__compose-resolve-swatch,
+.zaoly-token-studio-dialog .zaoly-token-studio__compose-resolve-swatch {
+  flex: 0 0 auto;
+  width: 0.9rem;
+  height: 0.9rem;
+  border: 1px solid color-mix(in oklab, var(--zaoly-ink, #1a1712) 18%, transparent);
+  background: transparent;
+}
+
+.app-frame .zaoly-token-studio__bezier,
+.zaoly-token-studio-dialog .zaoly-token-studio__bezier {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.app-frame .zaoly-token-studio__bezier-presets,
+.zaoly-token-studio-dialog .zaoly-token-studio__bezier-presets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+}
+
+.app-frame .zaoly-token-studio__bezier-pad,
+.zaoly-token-studio-dialog .zaoly-token-studio__bezier-pad {
+  width: 100%;
+  aspect-ratio: 1;
+  max-height: 12rem;
+  display: block;
+  touch-action: none;
+  user-select: none;
+  background: color-mix(in srgb, var(--editor-text) 4%, var(--editor-panel));
+  border: 1px solid var(--editor-border);
+  border-radius: 0 !important;
+  cursor: crosshair;
+}
+
+.app-frame .zaoly-token-studio__bezier-pad.is-dragging,
+.zaoly-token-studio-dialog .zaoly-token-studio__bezier-pad.is-dragging {
+  cursor: grabbing;
+}
+
+.app-frame .zaoly-token-studio__bezier-frame,
+.zaoly-token-studio-dialog .zaoly-token-studio__bezier-frame {
+  fill: transparent;
+  stroke: color-mix(in srgb, var(--editor-text) 22%, transparent);
+  stroke-width: 0.8;
+}
+
+.app-frame .zaoly-token-studio__bezier-diagonal,
+.zaoly-token-studio-dialog .zaoly-token-studio__bezier-diagonal {
+  stroke: color-mix(in srgb, var(--editor-text) 18%, transparent);
+  stroke-width: 0.7;
+  stroke-dasharray: 2 2;
+}
+
+.app-frame .zaoly-token-studio__bezier-curve,
+.zaoly-token-studio-dialog .zaoly-token-studio__bezier-curve {
+  stroke: var(--editor-accent);
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.app-frame .zaoly-token-studio__bezier-arm,
+.zaoly-token-studio-dialog .zaoly-token-studio__bezier-arm {
+  stroke: color-mix(in srgb, var(--editor-text) 40%, transparent);
+  stroke-width: 0.9;
+}
+
+.app-frame .zaoly-token-studio__bezier-handle,
+.zaoly-token-studio-dialog .zaoly-token-studio__bezier-handle {
+  fill: var(--editor-panel);
+  stroke: var(--editor-accent);
+  stroke-width: 1.4;
+  cursor: grab;
+}
+
+.app-frame .zaoly-token-studio__bezier-handle.is-active,
+.zaoly-token-studio-dialog .zaoly-token-studio__bezier-handle.is-active {
+  fill: var(--editor-accent);
+  stroke: var(--editor-accent);
+  cursor: grabbing;
+}

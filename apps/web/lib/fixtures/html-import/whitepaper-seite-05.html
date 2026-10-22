@@ -1,0 +1,381 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Whitepaper · Seite 05 · Reading Routes</title>
+  <style>
+    * { box-sizing: border-box; }
+    :root {
+      --paper: #F7F6F2;
+      --ink: #000000;
+      --muted: #454545;
+      --rule: #D8D4CE;
+      --accent: #E2007A;
+      --page-w: 794px;
+      --page-h: 1123px;
+      --gutter: 67px;
+      --noto: "Noto Sans", "Noto Sans Display", sans-serif;
+      --plex: "IBM Plex Sans", "Plex", sans-serif;
+    }
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: #ffffff;
+      color: var(--ink);
+      font-family: var(--noto);
+    }
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      padding: 24px 0;
+    }
+    .page {
+      display: flex;
+      flex-direction: column;
+      width: var(--page-w);
+      min-height: var(--page-h);
+      height: var(--page-h);
+      margin: 0;
+      padding: 48px var(--gutter) 40px;
+      background: var(--paper);
+      overflow: hidden;
+      gap: 0;
+    }
+    .masthead {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      width: 100%;
+      margin-bottom: 56px;
+    }
+    .masthead-left {
+      display: flex;
+      flex-direction: row;
+      align-items: baseline;
+      gap: 24px;
+    }
+    .brand {
+      margin: 0;
+      font-family: var(--noto);
+      font-weight: 500;
+      font-size: 11px;
+      letter-spacing: 0.02em;
+      color: var(--ink);
+    }
+    .eyebrow {
+      margin: 0;
+      font-family: var(--plex);
+      font-weight: 400;
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink);
+    }
+    .masthead-right {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 12px;
+    }
+    .event {
+      margin: 0;
+      font-family: var(--plex);
+      font-weight: 400;
+      font-size: 9px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--ink);
+    }
+    .accent-bar {
+      width: 8px;
+      height: 28px;
+      background: var(--accent);
+      border-radius: 0;
+      flex-shrink: 0;
+    }
+    .columns {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 40px;
+      width: 100%;
+      flex: 1 1 auto;
+      min-height: 0;
+    }
+    .lede {
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+      width: 320px;
+      flex-shrink: 0;
+    }
+    .title {
+      margin: 0;
+      font-family: var(--noto);
+      font-weight: 500;
+      font-size: 59px;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+    }
+    .lede-copy {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .lede-copy p {
+      margin: 0;
+      font-family: var(--noto);
+      font-weight: 300;
+      font-size: 14px;
+      line-height: 1.45;
+      color: var(--ink);
+      max-width: 300px;
+    }
+    .routes {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      width: 340px;
+      flex-shrink: 0;
+      margin-top: 118px;
+    }
+    .route {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 10px 0 12px;
+      border-bottom: 1px solid var(--rule);
+    }
+    .route-copy {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      min-width: 0;
+      flex: 1 1 auto;
+    }
+    .route-title {
+      margin: 0;
+      font-family: var(--noto);
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 1.2;
+      color: var(--ink);
+    }
+    .route-question {
+      margin: 0;
+      font-family: var(--noto);
+      font-weight: 300;
+      font-size: 11px;
+      line-height: 1.3;
+      color: var(--muted);
+    }
+    .route-pages {
+      margin: 0;
+      font-family: var(--plex);
+      font-weight: 400;
+      font-size: 11px;
+      line-height: 1.2;
+      color: var(--ink);
+      white-space: nowrap;
+      flex-shrink: 0;
+      padding-top: 2px;
+    }
+    .scope {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      gap: 24px;
+      width: 100%;
+      margin-top: 36px;
+      padding-top: 8px;
+    }
+    .scope-label {
+      margin: 0;
+      width: 140px;
+      flex-shrink: 0;
+      font-family: var(--noto);
+      font-weight: 500;
+      font-size: 13px;
+      line-height: 1.3;
+      color: var(--ink);
+    }
+    .scope-body {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      flex: 1 1 auto;
+      min-width: 0;
+    }
+    .scope-body p {
+      margin: 0;
+      font-family: var(--noto);
+      font-weight: 300;
+      font-size: 11px;
+      line-height: 1.4;
+      color: var(--ink);
+    }
+    .scope-links {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .scope-links a {
+      font-family: var(--plex);
+      font-weight: 400;
+      font-size: 10px;
+      color: var(--ink);
+      text-decoration: underline;
+    }
+    .folio {
+      display: flex;
+      flex-direction: row;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 16px;
+      width: 100%;
+      margin-top: auto;
+      padding-top: 28px;
+    }
+    .folio-tag {
+      margin: 0;
+      font-family: var(--plex);
+      font-weight: 400;
+      font-size: 9px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink);
+    }
+    .folio-num {
+      margin: 0;
+      font-family: var(--plex);
+      font-weight: 400;
+      font-size: 16px;
+      color: var(--ink);
+    }
+  </style>
+</head>
+<body>
+  <main class="page" id="page-5" aria-label="Seite 5 · Reading Routes">
+    <header class="masthead">
+      <div class="masthead-left">
+        <p class="brand">Zaoly</p>
+        <p class="eyebrow">Reading Routes</p>
+      </div>
+      <div class="masthead-right">
+        <p class="event">Joyconf 2026</p>
+        <div class="accent-bar" aria-hidden="true"></div>
+      </div>
+    </header>
+
+    <div class="columns">
+      <section class="lede" aria-label="Handover lede">
+        <h1 class="title">The handover<br>comes first</h1>
+        <div class="lede-copy">
+          <p>A working handover starts with integration and ownership. AI earns its place when it makes varied customer language usable without erasing uncertainty.</p>
+          <p>One Source means each claim has an explicit authority. Every Touchpoint means the next person can continue the customer’s work. Five things must survive: the goal, completed work, relevant facts, permission and responsibility.</p>
+          <p>Historical and cross-industry perspectives test this proposal against existing ideas and different operating conditions. Published effects support bounded parts of the argument. The economics remains an illustrative scenario: seven recovery minutes and a 3:1 savings split are assumptions, not findings.</p>
+        </div>
+      </section>
+
+      <nav class="routes" aria-label="Reading routes">
+        <div class="route">
+          <div class="route-copy">
+            <p class="route-title">History</p>
+            <p class="route-question">Which existing ideas does this build on?</p>
+          </div>
+          <p class="route-pages">6–9</p>
+        </div>
+        <div class="route">
+          <div class="route-copy">
+            <p class="route-title">01 / Lost work</p>
+            <p class="route-question">When is a form sufficient?</p>
+          </div>
+          <p class="route-pages">10–13</p>
+        </div>
+        <div class="route">
+          <div class="route-copy">
+            <p class="route-title">02 / Generation</p>
+            <p class="route-question">Where could extraction add value?</p>
+          </div>
+          <p class="route-pages">14–17</p>
+        </div>
+        <div class="route">
+          <div class="route-copy">
+            <p class="route-title">03 / Sources and state</p>
+            <p class="route-question">What is known and trusted?</p>
+          </div>
+          <p class="route-pages">18–23</p>
+        </div>
+        <div class="route">
+          <div class="route-copy">
+            <p class="route-title">04 / Receiving</p>
+            <p class="route-question">Who receives it and acts?</p>
+          </div>
+          <p class="route-pages">24–29</p>
+        </div>
+        <div class="route">
+          <div class="route-copy">
+            <p class="route-title">Across industries</p>
+            <p class="route-question">What transfers and what changes?</p>
+          </div>
+          <p class="route-pages">30–35</p>
+        </div>
+        <div class="route">
+          <div class="route-copy">
+            <p class="route-title">05 / Controls + perspective</p>
+            <p class="route-question">Which checks change the outcome?</p>
+          </div>
+          <p class="route-pages">36–43</p>
+        </div>
+        <div class="route">
+          <div class="route-copy">
+            <p class="route-title">06 / Economics</p>
+            <p class="route-question">What would justify the investment?</p>
+          </div>
+          <p class="route-pages">44–51</p>
+        </div>
+        <div class="route">
+          <div class="route-copy">
+            <p class="route-title">07 / Pilot</p>
+            <p class="route-question">How is the AI contribution isolated?</p>
+          </div>
+          <p class="route-pages">52–55</p>
+        </div>
+        <div class="route">
+          <div class="route-copy">
+            <p class="route-title">Working tools</p>
+            <p class="route-question">Handover canvas and decision card</p>
+          </div>
+          <p class="route-pages">56–57</p>
+        </div>
+      </nav>
+    </div>
+
+    <section class="scope" aria-label="Scope and limits">
+      <p class="scope-label">Scope and limits</p>
+      <div class="scope-body">
+        <p>This is an author-led design proposal, not a validated unified model. Maya, the organisations and all economic inputs are fictional. Role summaries are on pp. 2–4. Sources [1]–[19], evidence boundaries and measurement rules are in Evidence and Methods v14. The framework is independent of any particular DXP, CRM or workflow vendor.</p>
+        <div class="scope-links">
+          <a href="https://doi.org/10.1509/jm.15.0420" rel="noopener noreferrer">Source [example DOI]</a>
+          <a href="https://news.microsoft.com/source/features/ai/copilot-dynamics-365-customer-service/" rel="noopener noreferrer">Source [Microsoft Copilot CS]</a>
+        </div>
+      </div>
+    </section>
+
+    <footer class="folio">
+      <p class="folio-tag">One Source / Every Touchpoint</p>
+      <p class="folio-num">05</p>
+    </footer>
+  </main>
+</body>
+</html>

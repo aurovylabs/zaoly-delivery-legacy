@@ -1,0 +1,29 @@
+# EntityCard
+
+Layer: `molecules`
+
+Magazine catalog card shell — meta, title, optional toolbar / actions, preview slot, footer.
+
+**Spec:** `specs/domain/zaoly-ui-entity-card.md`  
+**Origin:** Brandion `TokenCard` face chrome.
+
+## Stories
+
+- ColorPreview / TypePreview / WithActions / Tall
+
+## Usage
+
+```tsx
+import { EntityCard, Button } from '@zaoly/ui'
+
+<EntityCard
+  meta="Color"
+  title="color.brand.primary"
+  headActions={<button type="button" className="ds-entity-card__icon-btn" aria-label="Edit">✎</button>}
+  footer={<Button size="sm">Approve</Button>}
+>
+  <div className="ds-entity-card__swatch" style={{ background: '#0B3D2E' }} />
+</EntityCard>
+```
+
+Typed token editors stay in Brandion (`TokenTypedFields`).

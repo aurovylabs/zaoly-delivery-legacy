@@ -1,0 +1,1140 @@
+/* Flow board chrome — SoT for Audion + Plexon boards. Spec: flow-board-chrome.md */
+:root {
+  --zaoly-flow-node-bg: var(--paper, var(--surface, #fff));
+  --zaoly-flow-node-fg: var(--ink, var(--fg, #111));
+  --zaoly-flow-border: var(--line, rgba(0,0,0,.12));
+  --zaoly-flow-accent: var(--accent, #c4a35a);
+  --zaoly-flow-ok: var(--ok, #3d9a6a);
+  --zaoly-flow-danger: var(--danger, #c45c5c);
+}
+:root, .zaoly-flow-board-stage, .zaoly-flow-rf-node {
+  --flow-node-bg: var(--zaoly-flow-node-bg);
+  --flow-node-fg: var(--zaoly-flow-node-fg);
+  --flow-border: var(--zaoly-flow-border);
+  --flow-accent: var(--zaoly-flow-accent);
+  --flow-ok: var(--zaoly-flow-ok);
+  --flow-danger: var(--zaoly-flow-danger);
+}
+
+.zaoly-flow-lede{margin:0 0 1rem;font-size:.9rem}
+
+.zaoly-flow-studies-actions{margin:0 0 .75rem}
+
+.zaoly-flow-chips{display:flex;flex-wrap:wrap;gap:.35rem;margin:.5rem 0 0}
+
+.zaoly-flow-block-list{list-style:none;margin:1rem 0 0;padding:0;display:grid;gap:.75rem}
+
+.zaoly-flow-block-meta{display:flex;flex-wrap:wrap;gap:.35rem;margin:0 0 .35rem}
+
+.zaoly-flow-block-text{margin:.35rem 0 0;font-size:.9rem}
+
+.zaoly-flow-block-panel--list{padding:.75rem 1rem;border:1px solid var(--line,var(--color-border,rgba(0,0,0,.12)));border-radius:0;background:transparent}
+
+.zaoly-flow-create{margin:0 0 1.25rem}
+
+.zaoly-flow-create-hint,.zaoly-flow-create-error{margin:.35rem 0 0;font-size:.85rem}
+
+.zaoly-flow-create-error{color:var(--danger,var(--color-danger,#b00020))}
+
+.zaoly-flow-view-toggle{display:flex;gap:.35rem;margin:0 0 1rem}
+
+.zaoly-flow-detail-client--immersive{
+  margin:0;
+  min-height:0;
+  /* Stage itself is fixed full-bleed; wrapper only clears layout. */
+  position:relative;
+  inset:auto;
+  z-index:auto;
+  pointer-events:none;
+  width:100%;
+  min-height:0;
+}
+
+/* Immersive board: escape app gutters — full viewport under rail/topbar. */
+body.zaoly-flow-board-active .topbar,
+body.zaoly-flow-board-active .plexon-page-lead,
+body.zaoly-flow-board-active .audion-page-lead,
+body.zaoly-flow-board-active .zaoly-flow-lede{display:none}
+
+body.zaoly-flow-board-active .page-body{
+  gap:0;
+  min-height:0;
+  padding:0;
+  margin:0;
+}
+
+body.zaoly-flow-board-active .app-main{
+  min-height:0;
+  padding:0;
+  max-width:none;
+  width:100%;
+}
+
+body.zaoly-flow-board-active .plexon-stage,
+body.zaoly-flow-board-active .zaoly-flow-detail-client{
+  min-height:0;
+  width:100%;
+}
+
+body.zaoly-flow-board-active .app-frame{
+  padding:0 !important;
+  min-height:100dvh;
+}
+
+
+.zaoly-flow-canvas-shell--immersive{
+  position:fixed;
+  inset:0;
+  width:100vw;
+  height:100dvh;
+  min-height:100dvh;
+  z-index:20;
+  pointer-events:none;
+}
+
+.zaoly-flow-board-stage{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  min-height:100%;
+  pointer-events:none;
+}
+
+.zaoly-flow-board-stage > .snap-dock,
+.zaoly-flow-board-stage > .zaoly-flow-float-panel,
+.zaoly-flow-board-stage > .ds-floating-panel,
+.zaoly-flow-board-stage > .zaoly-flow-canvas-viewport--fullscreen,
+.zaoly-flow-board-stage > .zaoly-flow-board-alert,
+.zaoly-flow-board-stage > .zaoly-flow-board-overlays,
+.zaoly-flow-board-empty{
+  pointer-events:auto;
+}
+
+/* App-owned docks/panels inside the overlays slot must receive clicks. */
+.zaoly-flow-board-overlays{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  pointer-events:none;
+  z-index:30;
+}
+
+.zaoly-flow-board-overlays > *{
+  pointer-events:auto;
+}
+
+.zaoly-flow-board-empty{
+  pointer-events:auto;
+}
+
+.zaoly-flow-board-alert{
+  position:absolute;
+  left:50%;
+  bottom:1.25rem;
+  transform:translateX(-50%);
+  z-index:36;
+  max-width:min(92vw,40rem);
+  margin:0;
+  padding:.55rem .75rem;
+  border-radius:12px;
+  border:1px solid color-mix(in srgb,var(--danger) 45%,var(--line));
+  background:color-mix(in srgb,var(--surface-2) 92%,transparent);
+  color:var(--danger,var(--color-danger,#b00020));
+  font-size:.85rem;
+  box-shadow:0 10px 32px color-mix(in srgb,var(--ink) 16%,transparent);
+}
+
+.zaoly-flow-board-empty{
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  max-width:min(92vw,36rem);
+}
+
+.zaoly-flow-float-panel{
+  max-width:min(96vw,44rem);
+  border:none;
+  border-radius:12px;
+  background:transparent;
+  box-shadow:none;
+  backdrop-filter:none;
+  pointer-events:auto;
+}
+
+.zaoly-flow-float-panel .ds-floating-panel-inner{
+  max-height:min(72vh,680px);
+  overflow:auto;
+  border-radius:12px;
+  box-shadow:
+    0 1px 0 color-mix(in srgb,var(--ink) 6%,transparent),
+    0 12px 40px color-mix(in srgb,var(--ink) 14%,transparent);
+}
+
+.zaoly-flow-float-panel--palette{max-width:min(92vw,17rem)}
+
+.zaoly-flow-float-panel--palette-collapsed{
+  max-width:none;
+  border-radius:999px;
+  z-index:36;
+}
+
+.zaoly-flow-float-panel--palette-collapsed .ds-floating-panel-inner{
+  padding:0;
+  max-height:none;
+  overflow:visible;
+  border:none;
+  background:transparent;
+  box-shadow:none;
+  border-radius:999px;
+}
+
+.zaoly-flow-float-panel--palette-open .ds-floating-panel-inner{
+  padding:.45rem .55rem .55rem;
+}
+
+.zaoly-flow-palette-fab,
+.zaoly-flow-palette-fab.ds-btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:3.5rem;
+  min-width:3.5rem;
+  height:3.5rem;
+  padding:0;
+  border:1px solid var(--line);
+  border-radius:999px;
+  font-size:1.5rem;
+  line-height:1;
+  font-weight:500;
+  box-shadow:
+    0 1px 0 color-mix(in srgb,var(--ink) 6%,transparent),
+    0 12px 36px color-mix(in srgb,var(--ink) 16%,transparent);
+}
+
+.zaoly-flow-palette-head{
+  display:flex;
+  justify-content:flex-end;
+  margin:0 0 .25rem;
+}
+
+.zaoly-flow-float-panel--inspector{
+  width:min(92vw,400px);
+  max-width:min(92vw,400px);
+}
+
+.zaoly-flow-float-panel--run{max-width:min(96vw,52rem)}
+
+.zaoly-flow-protocol-card{margin:1rem 0;padding:1rem 1.1rem;border:1px solid var(--line,var(--color-border,rgba(0,0,0,.12)));border-radius:0;background:transparent;display:grid;gap:.75rem}
+
+.zaoly-flow-protocol-actions{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center}
+
+.zaoly-flow-protocol-log{list-style:none;margin:1rem 0 0;padding:0;display:grid;gap:.35rem;font-size:.85rem;opacity:.9}
+
+.zaoly-flow-protocol-done{display:grid;gap:.75rem;margin-top:1rem}
+
+.zaoly-flow-float-panel--toolbar{
+  max-width:min(96vw,100%);
+  border-radius:12px;
+}
+
+.zaoly-flow-float-panel--toolbar .ds-floating-panel-inner{
+  max-height:none;
+  overflow:visible;
+  padding:.3rem .4rem;
+  border-radius:12px;
+}
+
+.zaoly-flow-canvas-toolbar--compact{
+  flex-wrap:nowrap;
+  align-items:center;
+  gap:.2rem;
+  max-width:100%;
+}
+
+.zaoly-flow-toolbar-grip{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  opacity:.45;
+  cursor:grab;
+  padding:0 .15rem;
+  flex:0 0 auto;
+}
+
+.zaoly-flow-toolbar-grip:active{cursor:grabbing}
+
+.zaoly-flow-toolbar-sep{
+  width:1px;
+  height:1.25rem;
+  background:var(--line);
+  margin:0 .15rem;
+  flex:0 0 auto;
+}
+
+.zaoly-flow-toolbar-btn{
+  flex:0 0 auto;
+  min-width:2rem;
+  padding-inline:.45rem;
+}
+
+.zaoly-flow-toolbar-btn .ui-icon{width:18px;height:18px}
+
+.zaoly-flow-toolbar-chip{
+  font-size:.62rem;
+  letter-spacing:.04em;
+  text-transform:uppercase;
+  padding:.15rem .35rem;
+  flex:0 0 auto;
+}
+
+.zaoly-flow-toolbar-error{
+  color:var(--danger);
+  font-weight:700;
+  font-size:.75rem;
+  padding:0 .15rem;
+}
+
+.zaoly-flow-canvas-toolbar{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;margin:0}
+
+.zaoly-flow-canvas-viewport--fullscreen{
+  --flow-viewport-bg:color-mix(in srgb,var(--surface-2,var(--bg0,#f3f1ec)) 88%,var(--ink, #111) 4%);
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  min-height:100%;
+  max-height:none;
+  border:none;
+  border-radius:0;
+  overflow:hidden;
+  background:var(--flow-viewport-bg);
+  pointer-events:auto;
+}
+
+.zaoly-flow-canvas-viewport--fullscreen .react-flow{
+  width:100%;
+  height:100%;
+  min-height:100%;
+}
+
+.zaoly-flow-canvas-viewport--fullscreen .react-flow__pane{
+  width:100%;
+  height:100%;
+}
+
+.zaoly-flow-canvas-viewport--fullscreen .react-flow{background:transparent}
+
+.zaoly-flow-canvas-viewport--fullscreen .react-flow__background{background:transparent!important}
+
+.zaoly-flow-canvas-viewport--fullscreen .react-flow__controls{
+  border:1px solid var(--line);
+  border-radius:0;
+  overflow:hidden;
+  box-shadow:none;
+  background:var(--surface-1,var(--surface-2));
+}
+
+.zaoly-flow-canvas-viewport--fullscreen .react-flow__controls-button{
+  background:var(--surface-1,var(--surface-2));
+  border-bottom:1px solid var(--line);
+  fill:var(--fg,var(--ink));
+}
+
+.zaoly-flow-canvas-viewport--fullscreen .react-flow__minimap{
+  background:color-mix(in srgb,var(--surface-2) 92%,transparent);
+  border:1px solid var(--line);
+  border-radius:0;
+}
+
+.zaoly-flow-inspector-body{
+  display:grid;
+  gap:.55rem;
+  font-size:.82rem;
+}
+
+.zaoly-flow-inspector-body--start .zaoly-flow-inspector-head{border-left-color:var(--ok,#3d9a6a)}
+
+.zaoly-flow-inspector-body--prompt .zaoly-flow-inspector-head{border-left-color:#5b8def}
+
+.zaoly-flow-inspector-body--observe .zaoly-flow-inspector-head{border-left-color:#c9a227}
+
+.zaoly-flow-inspector-body--action .zaoly-flow-inspector-head{border-left-color:#d97b3a}
+
+.zaoly-flow-inspector-body--gate .zaoly-flow-inspector-head{border-left-color:var(--danger,#c45c5c)}
+
+.zaoly-flow-inspector-body--message .zaoly-flow-inspector-head{border-left-color:#8a8a8a}
+
+.zaoly-flow-inspector-body--success .zaoly-flow-inspector-head{border-left-color:var(--ok,#3d9a6a)}
+
+.zaoly-flow-inspector-body--abandon .zaoly-flow-inspector-head{border-left-color:#b8860b}
+
+.zaoly-flow-inspector-body--measure .zaoly-flow-inspector-head{border-left-color:#3d9ab8}
+
+.zaoly-flow-inspector-head{
+  display:flex;
+  justify-content:space-between;
+  gap:.5rem;
+  align-items:flex-start;
+  padding:.35rem .45rem .5rem;
+  border-left:3px solid var(--line);
+  border-radius:0;
+  background:color-mix(in srgb,var(--surface-2) 88%,transparent);
+}
+
+.zaoly-flow-inspector-head-main{min-width:0;flex:1}
+
+.zaoly-flow-inspector-badges{display:flex;flex-wrap:wrap;gap:.3rem;margin:0 0 .35rem}
+
+.zaoly-flow-inspector-kind--gate{background:color-mix(in srgb,var(--danger) 18%,var(--surface-2))}
+
+.zaoly-flow-inspector-kind--action{background:color-mix(in srgb,#d97b3a 18%,var(--surface-2))}
+
+.zaoly-flow-inspector-run--active{background:color-mix(in srgb,var(--accent) 22%,var(--surface-2))}
+
+.zaoly-flow-inspector-run--done{background:color-mix(in srgb,var(--ok) 20%,var(--surface-2))}
+
+.zaoly-flow-inspector-run--error{background:color-mix(in srgb,var(--danger) 20%,var(--surface-2))}
+
+.zaoly-flow-inspector-run--skipped{opacity:.7}
+
+.zaoly-flow-inspector-meta{display:flex;flex-wrap:wrap;gap:.35rem;margin:0 0 .35rem}
+
+.zaoly-flow-inspector-title{margin:0;font-size:.95rem;line-height:1.25;font-weight:600}
+
+.zaoly-flow-inspector-id{margin:.15rem 0 0;font-size:.65rem;opacity:.6;font-family:var(--font-mono,monospace)}
+
+.zaoly-flow-inspector-section{
+  border:1px solid var(--line);
+  border-radius:0;
+  overflow:hidden;
+  background:transparent;
+}
+
+.zaoly-flow-inspector-section--gate{border-color:color-mix(in srgb,var(--danger) 35%,var(--line))}
+
+.zaoly-flow-inspector-section--run{border-color:color-mix(in srgb,var(--accent) 30%,var(--line))}
+
+.zaoly-flow-inspector-section-toggle{
+  display:grid;
+  grid-template-columns:1fr auto auto;
+  align-items:center;
+  gap:.35rem;
+  width:100%;
+  margin:0;
+  padding:.45rem .55rem;
+  border:none;
+  background:color-mix(in srgb,var(--surface-2) 92%,transparent);
+  color:inherit;
+  font:inherit;
+  text-align:left;
+  cursor:pointer;
+}
+
+.zaoly-flow-inspector-section-toggle:hover{background:color-mix(in srgb,var(--accent) 8%,var(--surface-2))}
+
+.zaoly-flow-inspector-section-title{
+  font-size:.68rem;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:.06em;
+  opacity:.85;
+}
+
+.zaoly-flow-inspector-section-meta{font-size:.65rem;opacity:.7}
+
+.zaoly-flow-inspector-chevron{font-size:.7rem;opacity:.6}
+
+.zaoly-flow-inspector-section-body{
+  display:grid;
+  gap:.4rem;
+  padding:.45rem .55rem .55rem;
+  border-top:1px solid var(--line);
+}
+
+.zaoly-flow-inspector-pill{
+  font-size:.62rem;
+  padding:.1rem .35rem;
+  border-radius:999px;
+  background:color-mix(in srgb,var(--ink) 6%,transparent);
+  white-space:nowrap;
+}
+
+.zaoly-flow-inspector-stats{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:.35rem;
+}
+
+.zaoly-flow-inspector-stat{
+  display:grid;
+  gap:.1rem;
+  padding:.35rem .4rem;
+  border-radius:0;
+  border:1px solid var(--line);
+  background:transparent;
+  font-size:.72rem;
+}
+
+.zaoly-flow-inspector-stat span{opacity:.65;font-size:.6rem;text-transform:uppercase;letter-spacing:.04em}
+
+.zaoly-flow-inspector-stat strong{font-size:.78rem}
+
+.zaoly-flow-inspector-field{
+  display:grid;
+  gap:.2rem;
+  padding:.35rem .45rem;
+  border-radius:0;
+  border:1px solid var(--line);
+  background:transparent;
+}
+
+.zaoly-flow-inspector-field--action{border-left:3px solid #5b8def}
+
+.zaoly-flow-inspector-field--target{border-left:3px solid #3d9ab8}
+
+.zaoly-flow-inspector-field--result{border-left:3px solid var(--ok,#3d9a6a)}
+
+.zaoly-flow-inspector-field--reasoning{border-left:3px solid #9b6bd9}
+
+.zaoly-flow-inspector-field--think{border-left:3px solid #d97b3a}
+
+.zaoly-flow-inspector-field--perception{border-left:3px solid #c9a227}
+
+.zaoly-flow-inspector-field--meta{border-left:3px solid color-mix(in srgb,var(--muted) 70%,var(--line))}
+
+.zaoly-flow-inspector-field--error{border-left:3px solid var(--danger);color:var(--danger)}
+
+.zaoly-flow-inspector-field-label{
+  font-size:.58rem;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:.06em;
+  opacity:.72;
+}
+
+.zaoly-flow-inspector-field-value{font-size:.78rem;line-height:1.4;word-break:break-word}
+
+.zaoly-flow-inspector-field-value--mono{
+  font-family:var(--font-mono,monospace);
+  font-size:.72rem;
+}
+
+.zaoly-flow-inspector-field-group{display:grid;gap:.35rem}
+
+.zaoly-flow-inspector-field-group-label{
+  font-size:.6rem;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:.05em;
+  opacity:.65;
+}
+
+.zaoly-flow-inspector-pre{
+  margin:0;
+  white-space:pre-wrap;
+  word-break:break-word;
+  font:inherit;
+  font-size:.75rem;
+  line-height:1.4;
+  max-height:10rem;
+  overflow:auto;
+}
+
+.zaoly-flow-inspector-prose{margin:0;font-size:.85rem;line-height:1.45;white-space:pre-wrap}
+
+.zaoly-flow-inspector-empty{margin:0;font-size:.8rem;opacity:.75}
+
+.zaoly-flow-inspector-append{margin:0 0 .15rem;justify-self:start}
+
+.zaoly-flow-inspector-steps{
+  list-style:none;
+  margin:0;
+  padding:0 0 0 .45rem;
+  display:grid;
+  gap:.45rem;
+  border-left:2px solid color-mix(in srgb,var(--line) 80%,transparent);
+}
+
+.zaoly-flow-inspector-step-item{position:relative}
+
+.zaoly-flow-inspector-step-item::before{
+  content:'';
+  position:absolute;
+  left:-.58rem;
+  top:.85rem;
+  width:.45rem;
+  height:.45rem;
+  border-radius:999px;
+  background:var(--line);
+  border:2px solid var(--surface-2,var(--bg0));
+}
+
+.zaoly-flow-inspector-step-item.is-latest::before{background:var(--accent)}
+
+.zaoly-flow-inspector-step{
+  border:1px solid var(--line);
+  border-radius:0;
+  overflow:hidden;
+  background:color-mix(in srgb,var(--surface-1,var(--bg0)) 55%,transparent);
+}
+
+.zaoly-flow-inspector-step-toggle{
+  display:grid;
+  grid-template-columns:auto auto 1fr auto auto;
+  align-items:center;
+  gap:.35rem;
+  width:100%;
+  padding:.4rem .45rem;
+  border:none;
+  background:color-mix(in srgb,var(--surface-2) 90%,transparent);
+  color:inherit;
+  font:inherit;
+  text-align:left;
+  cursor:pointer;
+}
+
+.zaoly-flow-inspector-step-toggle:hover{background:color-mix(in srgb,var(--accent) 8%,var(--surface-2))}
+
+.zaoly-flow-inspector-step-num{
+  font-size:.62rem;
+  font-weight:700;
+  font-family:var(--font-mono,monospace);
+  opacity:.75;
+}
+
+.zaoly-flow-inspector-action-badge{
+  font-size:.58rem;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:.04em;
+  padding:.12rem .35rem;
+  border-radius:0;
+  white-space:nowrap;
+}
+
+.zaoly-flow-inspector-action-badge--click{background:color-mix(in srgb,#5b8def 22%,transparent)}
+
+.zaoly-flow-inspector-action-badge--type{background:color-mix(in srgb,#9b6bd9 22%,transparent)}
+
+.zaoly-flow-inspector-action-badge--nav{background:color-mix(in srgb,#3d9ab8 22%,transparent)}
+
+.zaoly-flow-inspector-action-badge--scroll{background:color-mix(in srgb,#8a8a8a 22%,transparent)}
+
+.zaoly-flow-inspector-action-badge--wait{background:color-mix(in srgb,#c9a227 22%,transparent)}
+
+.zaoly-flow-inspector-action-badge--default{background:color-mix(in srgb,var(--muted) 18%,transparent)}
+
+.zaoly-flow-inspector-step-summary{
+  min-width:0;
+  font-size:.72rem;
+  opacity:.8;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+
+.zaoly-flow-inspector-step-timing{
+  font-size:.62rem;
+  font-family:var(--font-mono,monospace);
+  opacity:.65;
+}
+
+.zaoly-flow-inspector-step-body{
+  display:grid;
+  gap:.4rem;
+  padding:.45rem .5rem .55rem;
+  border-top:1px solid var(--line);
+}
+
+.zaoly-flow-inspector-step-meta-row{
+  display:flex;
+  justify-content:space-between;
+  gap:.5rem;
+  font-size:.62rem;
+  font-family:var(--font-mono,monospace);
+  opacity:.65;
+}
+
+.zaoly-flow-inspector-shot{
+  display:block;
+  width:100%;
+  height:auto;
+  border-radius:0;
+  border:1px solid var(--line);
+}
+
+.zaoly-flow-inspector-gate-card{
+  display:grid;
+  gap:.4rem;
+  padding:.45rem .5rem;
+  border-radius:0;
+  border:1px solid var(--line);
+}
+
+.zaoly-flow-inspector-gate-card.is-match{
+  border-color:color-mix(in srgb,var(--ok) 45%,var(--line));
+  background:color-mix(in srgb,var(--ok) 10%,transparent);
+}
+
+.zaoly-flow-inspector-gate-card.is-miss{
+  border-color:color-mix(in srgb,var(--danger) 40%,var(--line));
+  background:color-mix(in srgb,var(--danger) 8%,transparent);
+}
+
+.zaoly-flow-inspector-gate-verdict{
+  font-size:.72rem;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:.05em;
+}
+
+.zaoly-flow-inspector-replans{
+  list-style:none;
+  margin:.25rem 0 0;
+  padding:0;
+  display:grid;
+  gap:.4rem;
+}
+
+.zaoly-flow-inspector-replan{
+  display:grid;
+  gap:.25rem;
+  padding:.4rem .45rem;
+  border-radius:0;
+  border:1px solid var(--line);
+}
+
+.zaoly-flow-inspector-replan--when{
+  border-left:3px solid var(--ok);
+  background:color-mix(in srgb,var(--ok) 8%,transparent);
+}
+
+.zaoly-flow-inspector-replan--otherwise{
+  border-left:3px solid var(--danger);
+  background:color-mix(in srgb,var(--danger) 8%,transparent);
+}
+
+.zaoly-flow-inspector-replan-kind{
+  font-size:.62rem;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:.05em;
+}
+
+/* n8n-like fullscreen node editor (Wave 21) */
+.zaoly-flow-node-editor{
+  position:fixed;inset:0;z-index:1200;
+  display:flex;align-items:center;justify-content:center;
+  padding:max(.75rem,env(safe-area-inset-top)) max(.75rem,env(safe-area-inset-right)) max(.75rem,env(safe-area-inset-bottom)) max(.75rem,env(safe-area-inset-left));
+  pointer-events:none;
+}
+
+.zaoly-flow-node-editor-backdrop{
+  position:absolute;inset:0;border:0;padding:0;margin:0;
+  background:color-mix(in srgb,var(--ink,#0a0a0a) 92%,#000);
+  backdrop-filter:blur(24px) saturate(1.2);
+  -webkit-backdrop-filter:blur(24px) saturate(1.2);
+  cursor:pointer;pointer-events:auto;
+}
+
+.zaoly-flow-node-editor-sheet{
+  position:relative;z-index:1;
+  display:flex;flex-direction:column;
+  width:min(90vw,1400px);height:min(90vh,920px);
+  border:1px solid var(--line);
+  background:var(--bg0,#121212);
+  color:var(--fg,var(--ink));
+  box-shadow:0 24px 64px color-mix(in srgb,#000 55%,transparent);
+  pointer-events:auto;overflow:hidden;
+}
+
+.zaoly-flow-node-editor-head{
+  display:flex;align-items:flex-start;justify-content:space-between;gap:.5rem;
+  flex:0 0 auto;padding:.55rem .75rem;
+  border-bottom:1px solid var(--line);
+  border-left:4px solid var(--flow-accent,var(--accent));
+  background:transparent;
+}
+
+.zaoly-flow-node-editor-head--start{border-left-color:var(--ok,#3d9a6a)}
+.zaoly-flow-node-editor-head--prompt{border-left-color:#5b8def}
+.zaoly-flow-node-editor-head--compare{border-left-color:#3d9ab8}
+.zaoly-flow-node-editor-head--gate{border-left-color:var(--danger,#c45c5c)}
+
+.zaoly-flow-node-editor-head-main{min-width:0;flex:1}
+
+.zaoly-flow-node-editor-title{margin:0;font-size:1.05rem;line-height:1.25;font-weight:600}
+
+.zaoly-flow-node-editor-columns{
+  display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr) minmax(0,1fr);
+  flex:1 1 auto;min-height:0;
+  border-top:1px solid color-mix(in srgb,var(--line) 65%,transparent);
+}
+
+@media (max-width:899px){
+  .zaoly-flow-node-editor-columns{grid-template-columns:1fr;grid-auto-rows:minmax(12rem,auto);overflow:auto}
+  .zaoly-flow-node-editor-sheet{height:min(90vh,960px)}
+}
+
+.zaoly-flow-node-editor-col{
+  display:flex;flex-direction:column;min-height:0;min-width:0;
+  border-right:1px solid color-mix(in srgb,var(--line) 65%,transparent);
+}
+
+.zaoly-flow-node-editor-col:last-child{border-right:0}
+
+.zaoly-flow-node-editor-col--input{background:var(--bg1,#181818)}
+.zaoly-flow-node-editor-col--params{background:var(--bg0,#121212)}
+.zaoly-flow-node-editor-col--output{background:var(--bg1,#181818)}
+
+.zaoly-flow-node-editor-col-title{
+  margin:0;padding:.45rem .65rem;
+  font-size:.62rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+  border-bottom:1px solid color-mix(in srgb,var(--line) 55%,transparent);
+  opacity:.8;flex:0 0 auto;
+}
+
+.zaoly-flow-node-editor-col-body{
+  flex:1 1 auto;min-height:0;overflow:auto;
+  padding:.55rem .65rem .75rem;
+  display:grid;gap:.55rem;align-content:start;
+}
+
+.zaoly-flow-node-editor-col--output .zaoly-flow-node-editor-col-body{
+  display:flex;
+  flex-direction:column;
+  align-content:stretch;
+}
+
+.zaoly-flow-node-editor-col--output .ds-schema-tree{
+  flex:1 1 auto;
+  min-height:0;
+  height:100%;
+  max-height:none;
+}
+
+.zaoly-flow-node-editor-upstream{
+  display:grid;gap:.45rem;padding:.45rem;
+  border:1px solid color-mix(in srgb,var(--line) 70%,transparent);
+  background:color-mix(in srgb,var(--bg0,#111) 35%,transparent);
+}
+
+.zaoly-flow-node-editor-upstream-head{
+  display:flex;flex-wrap:wrap;align-items:center;gap:.35rem;
+  font-size:.72rem;font-weight:600;
+}
+
+.zaoly-flow-node-editor-upstream-kind{
+  font-size:.58rem;text-transform:uppercase;letter-spacing:.04em;opacity:.65;
+}
+
+.zaoly-flow-inspector-pill--schema{
+  opacity:.75;
+  background:color-mix(in srgb,var(--muted,#888) 16%,var(--surface-2));
+}
+
+.zaoly-flow-canvas-main--full{width:100%}
+
+.zaoly-flow-palette{display:grid;gap:.35rem}
+
+.zaoly-flow-palette-row{display:flex;flex-wrap:wrap;gap:.35rem}
+
+.zaoly-flow-canvas-hint{margin:.35rem 0 0;font-size:.75rem;opacity:.75;line-height:1.35}
+
+.zaoly-flow-canvas-viewport{
+  --flow-viewport-bg:color-mix(in srgb,var(--surface-2,var(--bg0,#f3f1ec)) 88%,var(--ink, #111) 4%);
+  height:min(76vh,720px);
+  border:1px solid var(--line,var(--color-border,rgba(0,0,0,.12)));
+  border-radius:0;
+  overflow:hidden;
+  background:var(--flow-viewport-bg);
+}
+
+.zaoly-flow-canvas-viewport--tall{height:min(82vh,820px)}
+
+.zaoly-flow-canvas-viewport .react-flow{background:transparent}
+
+.zaoly-flow-canvas-viewport .react-flow__background{background:transparent!important}
+
+.zaoly-flow-canvas-viewport .react-flow__controls{
+  border:1px solid var(--line);
+  border-radius:0;
+  overflow:hidden;
+  box-shadow:none;
+  background:var(--surface-1,var(--surface-2));
+}
+
+.zaoly-flow-canvas-viewport .react-flow__controls-button{
+  background:var(--surface-1,var(--surface-2));
+  border-bottom:1px solid var(--line);
+  fill:var(--fg,var(--ink));
+}
+
+.zaoly-flow-canvas-viewport .react-flow__minimap{
+  background:color-mix(in srgb,var(--surface-2) 92%,transparent);
+  border:1px solid var(--line);
+  border-radius:0;
+}
+
+.zaoly-flow-rf-node{
+  --flow-node-bg:color-mix(in srgb,var(--surface-2, #1f1f1f) 72%,transparent);
+  --flow-node-border:color-mix(in srgb,var(--line, #2b2b2b) 85%,var(--ink));
+  --flow-node-fg:var(--fg,var(--ink,#f2f2f2));
+  --flow-node-head-border:color-mix(in srgb,var(--line) 55%,transparent);
+  --flow-input-bg:color-mix(in srgb,var(--bg0, #141414) 88%,var(--surface-2));
+  --flow-input-border:color-mix(in srgb,var(--line) 70%,transparent);
+  --flow-accent:var(--accent,#e8a23a);
+  --flow-ok:var(--ok,#3d9a6a);
+  --flow-danger:var(--danger,#c45c4a);
+  position:relative;
+  width:260px;
+  border-radius:0;
+  border:1px solid var(--flow-node-border);
+  background:var(--flow-node-bg);
+  color:var(--flow-node-fg);
+  font-size:.75rem;
+  box-shadow:none;
+  overflow:visible;
+  -webkit-backdrop-filter:blur(16px) saturate(1.15);
+  backdrop-filter:blur(16px) saturate(1.15);
+}
+
+@media (prefers-reduced-transparency: reduce), (prefers-reduced-motion: reduce){
+  .zaoly-flow-rf-node{
+    --flow-node-bg:color-mix(in srgb,var(--surface-2, #1f1f1f) 94%,var(--ink));
+    -webkit-backdrop-filter:none;
+    backdrop-filter:none;
+  }
+}
+
+.zaoly-flow-rf-node.is-selected{outline:2px solid var(--flow-accent);outline-offset:0;box-shadow:none}
+
+.zaoly-flow-rf-node--run-active{outline:2px solid var(--flow-accent);outline-offset:0;box-shadow:none}
+
+.zaoly-flow-rf-node--run-done{outline:2px solid var(--flow-ok);outline-offset:0;box-shadow:none}
+
+.zaoly-flow-rf-node--run-error{outline:2px solid var(--flow-danger);outline-offset:0;box-shadow:none}
+
+.zaoly-flow-rf-node--run-skipped{opacity:.55}
+
+.zaoly-flow-rf-node--run-b-active{outline:2px dashed color-mix(in srgb,var(--flow-accent) 70%,var(--ok,#3d9a6a));outline-offset:2px}
+
+.zaoly-flow-rf-node--run-b-done{outline:2px solid color-mix(in srgb,var(--flow-ok) 55%,var(--accent));outline-offset:2px}
+
+.zaoly-flow-rf-node--run-b-error{outline:2px solid color-mix(in srgb,var(--flow-danger) 70%,var(--accent));outline-offset:2px}
+
+.zaoly-flow-rf-node-head{
+  display:flex;align-items:center;justify-content:space-between;gap:.35rem;
+  padding:.4rem .55rem;
+  border-bottom:1px solid var(--flow-node-head-border);
+  border-radius:0;
+  border-top:3px solid var(--flow-accent);
+  background:transparent;
+}
+
+.zaoly-flow-rf-node-kind{font-weight:700;letter-spacing:.02em;text-transform:uppercase;font-size:.68rem}
+
+.zaoly-flow-rf-node-run{font-size:.58rem;text-transform:uppercase;letter-spacing:.04em;opacity:.85;color:var(--flow-accent);min-width:2.5rem;text-align:center}
+
+.zaoly-flow-rf-node--run-done .zaoly-flow-rf-node-run{color:var(--flow-ok)}
+
+.zaoly-flow-rf-node--run-error .zaoly-flow-rf-node-run{color:var(--flow-danger)}
+
+.zaoly-flow-rf-node--run-skipped .zaoly-flow-rf-node-run{color:var(--muted,#999)}
+
+.zaoly-flow-rf-node-id{opacity:.55;font-size:.62rem;max-width:7rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+.zaoly-flow-run-strip{
+  display:flex;flex-wrap:wrap;align-items:center;gap:.75rem;
+  margin:0;padding:.35rem 0;
+  border-radius:0;
+  border:none;
+  border-top:1px solid var(--line,rgba(0,0,0,.1));
+  background:transparent;
+  font-size:.85rem;
+}
+
+.zaoly-flow-verdict{
+  display:grid;gap:.55rem;margin:.65rem 0 0;padding:.55rem 0 0;
+  border-radius:0;border:none;border-top:1px solid var(--line);
+  background:transparent;
+  font-size:.8rem;
+}
+
+.zaoly-flow-verdict-lede{margin:0;line-height:1.35;opacity:.92}
+
+.zaoly-flow-verdict-grid{display:grid;gap:.35rem}
+
+@media (min-width:520px){.zaoly-flow-verdict-grid{grid-template-columns:1fr 1fr}}
+
+.zaoly-flow-verdict-row{display:flex;flex-wrap:wrap;align-items:center;gap:.35rem .5rem}
+
+.zaoly-flow-verdict-label{min-width:7.5rem;font-size:.72rem;opacity:.8}
+
+.zaoly-flow-verdict-caveat{font-size:.68rem;opacity:.75;flex:1 1 100%}
+
+.zaoly-flow-verdict-terminal{margin:0;font-size:.72rem;opacity:.85}
+
+.zaoly-flow-verdict-gates{display:grid;gap:.3rem}
+
+.zaoly-flow-verdict-gates-label{font-size:.65rem;text-transform:uppercase;letter-spacing:.04em;opacity:.65}
+
+.zaoly-flow-verdict-gate-chips{display:flex;flex-wrap:wrap;gap:.3rem}
+
+.zaoly-flow-verdict-chip--ok{background:color-mix(in srgb,var(--ok,#3d9a6a) 22%,var(--surface-2))}
+
+.zaoly-flow-verdict-chip--no{background:color-mix(in srgb,var(--danger,#c45c5c) 18%,var(--surface-2))}
+
+.zaoly-flow-verdict-chip--open{opacity:.75}
+
+.zaoly-flow-verdict-chip--gate{background:color-mix(in srgb,var(--muted,#888) 16%,var(--surface-2))}
+
+.zaoly-flow-verdict-blockers{margin:0;font-size:.68rem;color:var(--danger,#c45c5c)}
+
+.zaoly-flow-live-thumb{
+  width:168px;height:100px;object-fit:cover;border-radius:0;
+  border:1px solid var(--line,rgba(0,0,0,.12));
+  background:color-mix(in srgb,var(--bg0,#111) 90%,var(--ink));
+}
+
+.zaoly-flow-rf-node-body{display:grid;gap:.4rem;padding:.5rem .55rem .65rem}
+
+.zaoly-flow-rf-node.has-output{width:280px}
+
+.zaoly-flow-rf-output{display:grid;gap:.35rem;margin-top:.25rem;padding:.45rem;border-radius:0;border:1px solid var(--line);background:transparent}
+
+.zaoly-flow-rf-output-label{margin:0;font-size:.58rem;text-transform:uppercase;letter-spacing:.04em;opacity:.7}
+
+.zaoly-flow-rf-output-headline{margin:0;font-size:.72rem;font-weight:600;line-height:1.25;word-break:break-word}
+
+.zaoly-flow-rf-output-text{margin:0;white-space:pre-wrap;word-break:break-word;font:inherit;font-size:.68rem;line-height:1.35;opacity:.92;max-height:7.5rem;overflow:auto}
+
+.zaoly-flow-rf-output-img{display:block;width:100%;height:auto;max-height:120px;object-fit:cover;border-radius:0;border:1px solid color-mix(in srgb,var(--flow-border,#444) 80%,transparent);background:#0a0a0a}
+
+.zaoly-flow-rf-field{display:grid;gap:.15rem;margin:0}
+
+.zaoly-flow-rf-field>span{font-size:.62rem;text-transform:uppercase;letter-spacing:.04em;opacity:.65}
+
+.zaoly-flow-rf-field--inline{grid-template-columns:1fr auto;align-items:center}
+
+.zaoly-flow-rf-input{
+  width:100%;box-sizing:border-box;
+  border:1px solid var(--flow-input-border);
+  border-radius:0;
+  background:var(--flow-input-bg);
+  color:var(--flow-node-fg);
+  padding:.28rem .4rem;font:inherit;
+}
+
+.zaoly-flow-rf-input:focus{outline:1px solid var(--flow-accent);border-color:var(--flow-accent)}
+
+.zaoly-flow-rf-input--narrow{width:4.5rem}
+
+.zaoly-flow-rf-textarea{resize:vertical;min-height:3.2rem;line-height:1.35}
+
+.zaoly-flow-rf-textarea--note{min-height:2.4rem;font-size:.72rem}
+
+.zaoly-flow-rf-gate-evidence{margin:0;font-size:.65rem;opacity:.8;line-height:1.3}
+
+.zaoly-flow-rf-gate-actions{display:flex;flex-wrap:wrap;gap:.35rem;margin-top:.25rem}
+
+.zaoly-flow-rf-segment{margin-top:.15rem}
+
+.zaoly-flow-rf-btn{
+  font:inherit;font-size:.65rem;padding:.25rem .45rem;border-radius:0;
+  border:1px solid color-mix(in srgb,var(--flow-accent) 50%,var(--flow-border));
+  background:color-mix(in srgb,var(--flow-accent) 12%,var(--flow-node-bg));
+  color:var(--flow-node-fg);cursor:pointer;
+}
+
+.zaoly-flow-rf-btn:hover:not(:disabled){background:color-mix(in srgb,var(--flow-accent) 22%,var(--flow-node-bg))}
+
+.zaoly-flow-rf-btn:disabled{opacity:.45;cursor:not-allowed}
+
+.zaoly-flow-rf-btn--muted{border-color:color-mix(in srgb,var(--flow-danger) 45%,var(--flow-border))}
+
+.zaoly-flow-rf-btn--inline{margin-top:.25rem;width:100%}
+
+.zaoly-flow-rf-select{appearance:auto}
+
+.zaoly-flow-rf-select{
+  width:100%;box-sizing:border-box;
+  border:none;border-bottom:2px solid var(--line);border-radius:0;
+  background:transparent;color:var(--flow-node-fg);
+  padding:.28rem 0;font:inherit;appearance:auto;
+}
+
+.zaoly-flow-rf-select:focus{outline:none;border-bottom-color:var(--flow-accent)}
+
+.zaoly-flow-rf-node .ds-textarea{
+  --control-radius:0;
+  border-radius:0;
+  font-size:.72rem;
+}
+
+.zaoly-flow-rf-input--narrow{width:4.5rem;max-width:4.5rem}
+
+.zaoly-flow-rf-textarea--note{min-height:2.4rem;font-size:.72rem}
+
+.zaoly-flow-rf-handle{width:10px;height:10px;border:2px solid var(--flow-node-bg);background:var(--flow-accent)}
+
+.zaoly-flow-rf-handle--when{background:var(--flow-ok)}
+
+.zaoly-flow-rf-handle--otherwise{background:var(--flow-danger)}
+
+.zaoly-flow-rf-port-label{position:absolute;right:14px;font-size:.58rem;opacity:.7;pointer-events:none;text-transform:uppercase}
+
+.zaoly-flow-rf-port-label--when{top:calc(38% - .55rem)}
+
+.zaoly-flow-rf-port-label--otherwise{top:calc(72% - .55rem)}
+
+.zaoly-flow-rf-node--start .zaoly-flow-rf-node-head{border-top-color:var(--ok,#3d9a6a);background:transparent}
+
+.zaoly-flow-rf-node--prompt .zaoly-flow-rf-node-head{border-top-color:#5b8def;background:transparent}
+
+.zaoly-flow-rf-node--observe .zaoly-flow-rf-node-head{border-top-color:#c9a227;background:transparent}
+
+.zaoly-flow-rf-node--action .zaoly-flow-rf-node-head{border-top-color:#d97b3a;background:transparent}
+
+.zaoly-flow-rf-node--gate .zaoly-flow-rf-node-head{border-top-color:var(--danger,#c45c5c);background:transparent}
+
+.zaoly-flow-rf-node--message .zaoly-flow-rf-node-head{border-top-color:var(--muted,#888);background:transparent}
+
+.zaoly-flow-rf-node--success .zaoly-flow-rf-node-head{border-top-color:var(--ok,#3d9a6a);background:transparent}
+
+.zaoly-flow-rf-node--abandon .zaoly-flow-rf-node-head{border-top-color:#b8860b;background:transparent}
+
+.zaoly-flow-rf-node--measure .zaoly-flow-rf-node-head{border-top-color:#3d9ab8;background:transparent}
+
+/* Layout helpers for DS organisms (apps compose FloatingPanel around these). */
+.zaoly-flow-toolbar{
+  display:flex;flex-wrap:wrap;align-items:center;gap:.45rem;margin:0;width:100%;
+}
+.zaoly-flow-toolbar-leading,
+.zaoly-flow-toolbar-actions,
+.zaoly-flow-toolbar-trailing{display:inline-flex;flex-wrap:wrap;align-items:center;gap:.35rem}
+.zaoly-flow-palette-fab-wrap{display:inline-flex}
+.zaoly-flow-palette-body{display:grid;gap:.35rem}
+.zaoly-flow-run-strip-status,
+.zaoly-flow-run-strip-links,
+.zaoly-flow-run-strip-verdict{display:inline-flex;flex-wrap:wrap;align-items:center;gap:.45rem}
+.zaoly-flow-rf-footer{display:flex;flex-wrap:wrap;gap:.35rem;padding:.35rem .55rem .55rem}
+
+/* Layout helpers for DS organisms (apps compose FloatingPanel around these). */
+.zaoly-flow-toolbar{
+  display:flex;flex-wrap:wrap;align-items:center;gap:.45rem;margin:0;width:100%;
+}
+.zaoly-flow-toolbar-leading,
+.zaoly-flow-toolbar-actions,
+.zaoly-flow-toolbar-trailing{display:inline-flex;flex-wrap:wrap;align-items:center;gap:.35rem}
+.zaoly-flow-palette-fab-wrap{display:inline-flex}
+.zaoly-flow-palette-body{display:grid;gap:.35rem}
+.zaoly-flow-run-strip-status,
+.zaoly-flow-run-strip-links,
+.zaoly-flow-run-strip-verdict{display:inline-flex;flex-wrap:wrap;align-items:center;gap:.45rem}
+.zaoly-flow-rf-footer{display:flex;flex-wrap:wrap;gap:.35rem;padding:.35rem .55rem .55rem}
+
+.zaoly-flow-toolbar-grip-icon{display:inline-block;width:1rem;height:1rem}
